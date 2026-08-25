@@ -551,46 +551,132 @@
   flex: none;
 }
 
+/* --- mobile: a different hero, not a squeezed desktop one ----
+   The diagonal wedge cannot work at this width — it cuts straight through the
+   headline and drops navy text onto turquoise. Below 900px the composition
+   becomes a straight stack: copy, then the portrait on its own turquoise
+   block, then the service band closing it off. */
+
 @media (max-width: 900px) {
   .hero {
+    display: block;
     min-height: 0;
-    padding-block-end: 0;
+    padding-block: clamp(1.5rem, 5vw, 2.5rem) 0;
   }
+  .hero__ribbons,
+  .hero__hairlines {
+    display: none;
+  }
+  .hero::before {
+    -webkit-mask-image: radial-gradient(120% 60% at 50% 0%, #000 0%, transparent 75%);
+    mask-image: radial-gradient(120% 60% at 50% 0%, #000 0%, transparent 75%);
+  }
+
   .hero__grid {
-    grid-template-columns: 1fr;
+    display: block;
   }
   .hero__copy,
   .hero__figure {
-    grid-column: 1;
+    grid-column: auto;
     grid-row: auto;
   }
   .hero__copy {
     padding-block-end: 0;
   }
+  .hero__eyebrow::after {
+    max-width: 90px;
+  }
+  .hero__lead {
+    max-width: none;
+  }
+  .hero__actions .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  /* portrait gets the turquoise instead of the page */
   .hero__figure {
-    order: -1;
-    width: min(330px, 78%);
+    order: 0;
+    width: auto;
+    margin-block-start: clamp(1.75rem, 6vw, 2.5rem);
+    background: linear-gradient(165deg, var(--turq-300), var(--turq-500) 55%, var(--turq-600));
+    border-radius: var(--r-lg) var(--r-lg) 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-block-start: 1.5rem;
+    overflow: hidden;
   }
   .hero__portrait {
     height: auto;
-    width: 100%;
+    width: min(310px, 80%);
+    filter: none;
   }
+  .hero__spark {
+    inset-block-start: 7%;
+    inset-inline-start: 5%;
+    width: 44px;
+    height: 42px;
+  }
+
+  /* band closes the block off, flat and full width */
   .hero__strip {
     position: static;
+    inset: auto;
+    width: min(100% - (var(--gutter) * 2), var(--container));
+    margin-inline: auto;
+    border-radius: 0 0 var(--r-lg) var(--r-lg);
+    box-shadow: none;
     transform: none;
-    margin-block-start: 2.25rem;
-    inset-inline: 0;
-    border-radius: var(--r-sm);
   }
   .hero__strip ul {
-    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.85rem 1rem;
+  }
+  .hero__strip li {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    text-align: center;
+    font-size: 0.8125rem;
+    line-height: 1.25;
+  }
+  .hero__strip li + li {
+    border-inline-start: 1px solid rgb(8 12 41 / 0.2);
+    padding-inline-start: 0.5rem;
+  }
+  .hero__strip svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Below ~430px three columns cannot hold two-word labels legibly, so the band
+   becomes a short vertical list instead of squeezing them. */
+@media (max-width: 430px) {
+  .hero__strip ul {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0.35rem 1.1rem;
+  }
+  .hero__strip li {
+    flex-direction: row;
+    align-items: center;
     justify-content: flex-start;
-    gap: 0.7rem 1.25rem;
-    padding: 0.9rem 1.1rem;
+    gap: 0.6rem;
+    text-align: start;
+    font-size: 0.875rem;
+    padding-block: 0.55rem;
+  }
+  .hero__strip li br {
+    display: none;
   }
   .hero__strip li + li {
     border-inline-start: 0;
     padding-inline-start: 0;
+    border-block-start: 1px solid rgb(8 12 41 / 0.18);
   }
 }
 
@@ -1494,7 +1580,14 @@
   }
   .article__rail {
     position: static;
-    order: -1;
+    order: 0;   /* after the article, not before: on one column the rail was
+                   two screens of chrome between the reader and the content */
+    margin-block-start: clamp(2rem, 6vw, 3rem);
+  }
+  /* the section list is a desktop convenience; on a single column the page is
+     one scroll anyway and it only repeats the headings */
+  .toc {
+    display: none;
   }
 }
 

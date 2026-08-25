@@ -101,9 +101,9 @@ function homePage(page, ctx) {
         </div>
         <div class="hero__strip">
             <ul>
-              <li>${icons.chart}<span>שיווק דיגיטלי<br>ממוקד תוצאות</span></li>
-              <li>${icons.target}<span>ייעוץ<br>עסקי</span></li>
-              <li>${icons.growth}<span>אסטרטגיית<br>צמיחה</span></li>
+              <li>${icons.chart}<span>שיווק דיגיטלי <br> ממוקד תוצאות</span></li>
+              <li>${icons.target}<span>ייעוץ <br> עסקי</span></li>
+              <li>${icons.growth}<span>אסטרטגיית <br> צמיחה</span></li>
             </ul>
         </div>
       </section>
@@ -209,7 +209,7 @@ function landingPage(page, ctx) {
         <div class="container">
           <div class="article">
             <div class="article__main">${renderFlow(body, ctx)}</div>
-            ${ctx.rail(body)}
+            ${ctx.rail(body, Boolean(form))}
           </div>
         </div>
       </section>
@@ -383,7 +383,7 @@ const main = async () => {
       return h1?.text || target.seo.title || ''
     },
     /** Sticky rail: section links built from the page's own H2s, plus a CTA. */
-    rail(blocks) {
+    rail(blocks, hasForm) {
       const h2s = blocks.filter(
         (b) => b.type === 'heading' && b.level === 2 && !/^["“”״']/.test((b.text || '').trim())
       )
@@ -396,13 +396,19 @@ const main = async () => {
                 .join('')}</ol>
             </nav>`
         : ''
-      return `<aside class="article__rail reveal reveal--near">
-            ${toc}
-            <div class="rail-cta">
+      // A page that already ends in a contact form does not need the rail to
+      // repeat the same call to action — on the contact page it echoed the H1.
+      const cta = hasForm
+        ? ''
+        : `<div class="rail-cta">
               <h2>זה הזמן למנף את העסק שלך</h2>
               <p>אשמח לפגוש אותך וללמוד הכל על העסק שלך</p>
               <a class="btn btn--on-dark btn--sm" href="/צרו-קשר/">לשיחת ייעוץ חינם</a>
-            </div>
+            </div>`
+      if (!toc && !cta) return ''
+      return `<aside class="article__rail reveal reveal--near">
+            ${toc}
+            ${cta}
           </aside>`
     },
     contactList() {
