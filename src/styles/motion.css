@@ -306,8 +306,11 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .js .hero__title[data-split-lines].is-split .ln > span {
-    animation: line-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
-    animation-delay: calc(var(--i, 0) * 90ms);
+    /* Slower, and on a curve that spreads the travel out. The previous
+       expo-out covered ~85% of the distance in the first fifth of the
+       duration, so the rise was over before the eye caught it. */
+    animation: line-rise 1.15s cubic-bezier(0.32, 0.72, 0.18, 1) both;
+    animation-delay: calc(180ms + var(--i, 0) * 130ms);
   }
   @keyframes line-rise {
     from {
@@ -326,8 +329,9 @@
   .js .hero-intro > * {
     opacity: 0;
     transform: translate3d(0, 14px, 0);
-    animation: intro-in 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
-    animation-delay: calc(90ms + var(--i, 0) * 95ms);
+    animation: intro-in 0.8s cubic-bezier(0.25, 0.7, 0.2, 1) both;
+    /* kicker leads, lead paragraph and buttons land as the headline settles */
+    animation-delay: calc(60ms + var(--i, 0) * 240ms);
   }
   /* the headline handles its own motion, so it only needs to be present */
   .js .hero-intro > .hero__title {
