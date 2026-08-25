@@ -30,7 +30,7 @@ export const hrefFor = (p) => {
 
 /* ------------------------------------------------------------------ head */
 
-export function head({ seo, extraCss = '', bodyClass = '', preload = '' }) {
+export function head({ seo, extraCss = '', bodyClass = '', preload = '', cssUrl = '/assets/css/site.css' }) {
   const jsonld = (seo.jsonld || [])
     .map((b) => `<script type="application/ld+json">${JSON.stringify(b)}</script>`)
     .join('\n    ')
@@ -73,7 +73,7 @@ export function head({ seo, extraCss = '', bodyClass = '', preload = '' }) {
     ${preload}
     <link rel="preload" href="/assets/fonts/plex-hebrew-400-hebrew.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/assets/fonts/plex-hebrew-700-hebrew.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="/assets/css/site.css">
+    <link rel="stylesheet" href="${cssUrl}">
     <meta name="theme-color" content="#2b0038">
     <script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js')</script>
     ${extraCss}
@@ -131,7 +131,7 @@ export function header(nav, currentPath) {
 
 /* ---------------------------------------------------------------- footer */
 
-export function footer(nav, groups) {
+export function footer(nav, groups, jsUrl = '/assets/js/site.js') {
   const col = (title, links) => `
           <div>
             <h3>${esc(title)}</h3>
@@ -168,7 +168,7 @@ export function footer(nav, groups) {
       </div>
     </footer>
     <a class="wa" href="${site.whatsapp}" target="_blank" rel="noopener" aria-label="שליחת הודעת וואטסאפ">${social.whatsapp}</a>
-    <script src="/assets/js/site.js" defer></script>
+    <script src="${jsUrl}" defer></script>
   </body>
 </html>`
 }

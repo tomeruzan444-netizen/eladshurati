@@ -5,6 +5,7 @@
  * the live site uses, so nothing about the address of a page changes.
  */
 import { readFile, writeFile, mkdir, cp, rm, readdir, stat } from 'node:fs/promises'
+import { createHash } from 'node:crypto'
 import { existsSync } from 'node:fs'
 import path from 'node:path'
 import {
@@ -435,6 +436,9 @@ const main = async () => {
     ],
   }
 
+  // Built before the pages so the hashed asset URLs can go into every <head>.
+  const { outCss, jsSource, cssUrl, jsUrl } = await buildAssets()
+
   let written = 0
   for (const page of pages) {
     const p = page.seo.path
@@ -450,7 +454,7 @@ const main = async () => {
           derivatives,
         })
       : ''
-    let html = head({ seo: page.seo, preload }) + header(nav, p) + body + footer(nav, groups)
+    let html = head({ seo: page.seo, preload, cssUrl }) + header(nav, p) + body + footer(nav, groups, jsUrl)
     if (!RAW) html = minifyHtml(html)
     const file = outFile(p)
     await mkdir(path.dirname(file), { recursive: true })
@@ -492,7 +496,18 @@ const main = async () => {
   }
   await mkdir(path.join(OUT, 'assets', 'css'), { recursive: true })
   await mkdir(path.join(OUT, 'assets', 'js'), { recursive: true })
+  await writeFile(path.join(OUT, cssUrl.replace(/^\//, '')), outCss, 'utf8')
+  await writeFile(path.join(OUT, jsUrl.replace(/^\//, '')), jsSource, 'utf8')
 
+  await writeSitemapAndMap(pages)
+
+  console.log(`built ${written} pages -> site/`)
+  console.log(`       ${copied} assets copied (${(bytes / 1048576).toFixed(1)} MB), sitemap.xml, robots.txt, url-map.csv`)
+  console.log(`       ${cssUrl}  ${jsUrl}`)
+}
+
+/** Assemble the stylesheet and script, and give each a content-hashed URL. */
+async function buildAssets() {
   const css = (
     await Promise.all(
       ['tokens.css', 'motifs.css', 'base.css', 'components.css', 'motion.css'].map((f) =>
@@ -519,9 +534,20 @@ const main = async () => {
     if (/[a-z%\d]\+/.test(mathOnly)) problems.push('a "+" lost its surrounding space')
     if (problems.length) throw new Error('CSS minification damaged the stylesheet: ' + problems.join('; '))
   }
-  await writeFile(path.join(OUT, 'assets', 'css', 'site.css'), outCss, 'utf8')
-  await cp(path.join(ROOT, 'src', 'js', 'site.js'), path.join(OUT, 'assets', 'js', 'site.js'))
 
+  const jsSource = await readFile(path.join(ROOT, 'src', 'js', 'site.js'), 'utf8')
+  // Content hash in the filename is what makes a one-year immutable cache safe:
+  // an edit produces a new URL instead of a stale hit.
+  const digest = (text) => createHash('sha256').update(text).digest('hex').slice(0, 10)
+  return {
+    outCss,
+    jsSource,
+    cssUrl: `/assets/css/site.${digest(outCss)}.css`,
+    jsUrl: `/assets/js/site.${digest(jsSource)}.js`,
+  }
+}
+
+async function writeSitemapAndMap(pages) {
   // sitemap — same URL set as the live Rank Math sitemaps
   const urls = pages
     .map(
@@ -535,9 +561,13 @@ const main = async () => {
     `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`,
     'utf8'
   )
+  // A staging build must not invite crawlers: the live site is still up at the
+  // same content, and an indexed copy would compete with it.
   await writeFile(
     path.join(OUT, 'robots.txt'),
-    `User-agent: *\nAllow: /\n\nSitemap: ${site.origin}/sitemap.xml\n`,
+    RAW || process.env.STAGING !== '1'
+      ? `User-agent: *\nAllow: /\n\nSitemap: ${site.origin}/sitemap.xml\n`
+      : `User-agent: *\nDisallow: /\n`,
     'utf8'
   )
 
@@ -559,8 +589,6 @@ const main = async () => {
     'utf8'
   )
 
-  console.log(`built ${written} pages -> site/`)
-  console.log(`       ${copied} assets copied (${(bytes / 1048576).toFixed(1)} MB), sitemap.xml, robots.txt, url-map.csv`)
 }
 
 main()

@@ -88,8 +88,30 @@ STAGING=1 npm run build
 - **פונטים** — subsets נפרדים לעברית וללטינית עם `unicode-range`, שני הקבצים הקריטיים ב-preload.
 - **מיניפיקציה** — CSS ו-HTML. יש בדיקת בטיחות בבנייה שנכשלת אם המיניפייר שבר חישובי `calc`/`clamp`.
 
-> בהעלאה לאוויר: להפעיל gzip/brotli ו-`Cache-Control: immutable` על `/assets/`.
-> זה יוריד עוד ~70% מה-HTML וה-CSS.
+שמות ה-CSS וה-JS כוללים hash של התוכן (`site.ffedd15ad0.css`), ולכן `vercel.json`
+נותן להם מטמון של שנה עם `immutable` — שינוי מייצר כתובת חדשה, אף פעם לא מטמון תקוע.
+
+---
+
+## פריסה ב-Vercel
+
+`vercel.json` מגדיר הכל, אין מה להגדיר בממשק:
+
+| | |
+|---|---|
+| `outputDirectory` | `site` — לא `public`, וזו הייתה שגיאת הפריסה הראשונה |
+| `buildCommand` | `STAGING=1 node scripts/4-build.mjs` |
+| `trailingSlash` | `true` — תואם למבנה `/עמוד/index.html` ולכתובות של האתר החי |
+| `headers` | מטמון שנה ל-CSS/JS/פונטים/נגזרות, שבוע לשאר, ותוספי אבטחה |
+
+### ⚠️ לפני שמפנים דומיין אמיתי
+
+הבנייה רצה עם `STAGING=1`, כלומר **כל העמודים מקבלים `noindex, nofollow`
+ו-`robots.txt` חוסם הכל**. זה מכוון: האתר החי עדיין באוויר עם אותו תוכן, ועותק
+מאונדקס ב-`vercel.app` יתחרה בו על אותן מילות מפתח.
+
+ביום העלייה לאוויר: להסיר את `STAGING=1` מ-`buildCommand` ב-`vercel.json`.
+בלי זה — האתר החדש לא ייכנס לאינדקס בכלל.
 
 ---
 
