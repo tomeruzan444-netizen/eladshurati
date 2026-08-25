@@ -1,43 +1,44 @@
 # -*- coding: utf-8 -*-
 """
-Cut the studio backdrop out of the hero portrait.
+Cut a studio backdrop out of a portrait.
 
-The naive version of this keyed on brightness alone and ate the backlit ear,
-whose skin is almost as light as the backdrop. What actually separates them is
-colour, not luminance:
+Keying on brightness alone does not work here: on the first portrait it ate a
+backlit ear, and on the current one the cream sweater is nearly as light as the
+white sweep. What separates subject from backdrop is *colour*:
 
-    backdrop   rgb(202,204,211) … rgb(220,220,226)   neutral, R-B ≈ -10
-    lit ear    rgb(174,147,136)                      warm,    R-B ≈ +38
+    backdrop        rgb(254,254,254)   spread 0    R-B 0     perfectly neutral
+    cream sweater   rgb(239,232,227)   spread 19   R-B 19    consistently warm
+    skin            rgb(191,130,104)   spread 92   R-B 92
 
-So a pixel counts as backdrop only if it is achromatic (small spread between
-channels), not warm (R-B below a small threshold) and bright enough. A flood
-fill seeded from the border then removes only backdrop that is actually
-connected to the edge, so anything enclosed by the subject survives.
+So a pixel is backdrop only when it is achromatic (small spread between
+channels), not warm, and bright. A flood fill seeded from the border then
+removes only backdrop actually connected to the edge, so anything enclosed by
+the subject survives.
 
-Alpha is a soft ramp across the transition band rather than a hard mask, and
-edge pixels get their backdrop tint subtracted so no grey fringe is left when
-the portrait sits on the purple hero panel.
+Alpha is a soft ramp across the transition band, then blurred and pushed
+through an S-curve so the edge reads as anti-aliased rather than stair-stepped.
+Edge pixels get the backdrop tint subtracted so no pale fringe survives on a
+dark panel.
 
-Writes assets/brand/portrait-cutout.{png,webp}. The source photo is untouched.
+    python scripts/cutout-portrait.py [source] [--spread N] [--warmth N]
+                                      [--luma N] [--out name]
+
+Defaults suit a white sweep. The source image is never modified.
 """
+import argparse
 import os
 from collections import deque
+
 from PIL import Image, ImageFilter
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, ".."))
-SRC = os.path.join(ROOT, "assets", "images", "2024", "06", "פרופיל-אלעד.jpg")
+DEFAULT_SRC = os.path.join(ROOT, "assets", "images", "תמונה חדשה של אלעד שורתי.jpg")
 OUT_DIR = os.path.join(ROOT, "assets", "brand")
 
-MAX_SPREAD = 20     # max channel spread for "achromatic"
-MAX_WARMTH = 10     # max R-B for "not skin"
-MIN_LUMA = 150      # backdrop is a bright studio sweep
-SOFT_SPREAD = 46    # spread at which a pixel is fully subject
-FEATHER = 1.1
 
-
-def main():
-    im = Image.open(SRC).convert("RGB")
+def build(src, max_spread, max_warmth, min_luma, soft, feather, out_name):
+    im = Image.open(src).convert("RGB")
     w, h = im.size
     px = im.load()
 
@@ -47,18 +48,16 @@ def main():
         spread = max(r, g, b) - min(r, g, b)
         warmth = r - b
         luma = (r * 299 + g * 587 + b * 114) // 1000
-        if luma < MIN_LUMA:
+        if luma < min_luma:
             return 255
-        if spread <= MAX_SPREAD and warmth <= MAX_WARMTH:
+        if spread <= max_spread and warmth <= max_warmth:
             return 0
-        # soft ramp so anti-aliased edge pixels get partial alpha
-        t = max((spread - MAX_SPREAD) / (SOFT_SPREAD - MAX_SPREAD),
-                (warmth - MAX_WARMTH) / (SOFT_SPREAD - MAX_WARMTH))
+        t = max((spread - max_spread) / (soft - max_spread),
+                (warmth - max_warmth) / (soft - max_warmth))
         return max(0, min(255, int(t * 255)))
 
     conf = [classify(px[x, y]) for y in range(h) for x in range(w)]
 
-    # Flood fill inward from the border, crossing only backdrop-ish pixels.
     alpha = bytearray([255]) * (w * h)
     seen = bytearray(w * h)
     q = deque()
@@ -90,10 +89,7 @@ def main():
                         q.append((nx, ny))
 
     a = Image.frombytes("L", (w, h), bytes(alpha))
-    # Per-pixel classification leaves a stair-stepped edge. Blurring averages the
-    # staircase away; the S-curve afterwards pulls the matte back to a ~1px edge
-    # so it reads as anti-aliased rather than soft.
-    a = a.filter(ImageFilter.GaussianBlur(2.2))
+    a = a.filter(ImageFilter.GaussianBlur(2.0))
     lo, hi = 86, 170
     curve = []
     for v in range(256):
@@ -101,14 +97,13 @@ def main():
         t = 0.0 if t < 0 else 1.0 if t > 1 else t
         curve.append(int(255 * t * t * (3 - 2 * t)))   # smoothstep
     a = a.point(curve)
-    a = a.filter(ImageFilter.GaussianBlur(FEATHER * 0.5))
+    a = a.filter(ImageFilter.GaussianBlur(feather))
 
-    # De-fringe: where alpha is partial the pixel is a blend of subject and the
-    # grey sweep, so subtract the backdrop contribution instead of leaving it.
     out = im.convert("RGBA")
     op = out.load()
     ap = a.load()
-    BR, BG, BB = 212, 214, 220
+    # Sample the backdrop from a corner rather than assuming a value.
+    BR, BG, BB = px[2, 2]
     for y in range(h):
         for x in range(w):
             al = ap[x, y]
@@ -116,22 +111,38 @@ def main():
                 continue
             r, g, b = px[x, y]
             f = al / 255
-            nr = min(255, max(0, int((r - BR * (1 - f)) / f)))
-            ng = min(255, max(0, int((g - BG * (1 - f)) / f)))
-            nb = min(255, max(0, int((b - BB * (1 - f)) / f)))
-            op[x, y] = (nr, ng, nb, al)
+            op[x, y] = (
+                min(255, max(0, int((r - BR * (1 - f)) / f))),
+                min(255, max(0, int((g - BG * (1 - f)) / f))),
+                min(255, max(0, int((b - BB * (1 - f)) / f))),
+                al,
+            )
 
     out.putalpha(a)
-    out = out.crop(out.getbbox())
+    box = out.getbbox()
+    out = out.crop(box)
 
     os.makedirs(OUT_DIR, exist_ok=True)
-    base = os.path.join(OUT_DIR, "portrait-cutout")
+    base = os.path.join(OUT_DIR, out_name)
     out.save(base + ".png", optimize=True)
     out.save(base + ".webp", quality=92, method=6)
 
     kept = sum(1 for v in alpha if v > 127) / (w * h)
-    print(f"subject covers {kept:.0%}  ->  {out.size[0]}x{out.size[1]}")
-    print("wrote assets/brand/portrait-cutout.png / .webp")
+    print(f"backdrop rgb({BR},{BG},{BB})   subject covers {kept:.0%}")
+    print(f"cropped to {out.size[0]}x{out.size[1]}  ->  assets/brand/{out_name}.png / .webp")
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("source", nargs="?", default=DEFAULT_SRC)
+    ap.add_argument("--spread", type=int, default=8, help="max channel spread still counted as backdrop")
+    ap.add_argument("--warmth", type=int, default=8, help="max R-B still counted as backdrop")
+    ap.add_argument("--luma", type=int, default=150, help="backdrop must be at least this bright")
+    ap.add_argument("--soft", type=int, default=34, help="value at which a pixel is fully subject")
+    ap.add_argument("--feather", type=float, default=0.55)
+    ap.add_argument("--out", default="portrait-cutout")
+    args = ap.parse_args()
+    build(args.source, args.spread, args.warmth, args.luma, args.soft, args.feather, args.out)
 
 
 main()

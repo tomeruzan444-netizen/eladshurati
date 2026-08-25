@@ -1,55 +1,35 @@
 {
  "/assets/brand/portrait-cutout.png": {
-  "width": 1120,
-  "height": 1599,
+  "width": 571,
+  "height": 710,
   "webp": [
    {
     "w": 400,
     "url": "/assets/derived/0/portrait-cutout-400.webp",
-    "bytes": 19748
+    "bytes": 21444
    },
    {
-    "w": 700,
-    "url": "/assets/derived/0/portrait-cutout-700.webp",
-    "bytes": 46944
-   },
-   {
-    "w": 1000,
-    "url": "/assets/derived/0/portrait-cutout-1000.webp",
-    "bytes": 81224
-   },
-   {
-    "w": 1120,
-    "url": "/assets/derived/0/portrait-cutout-1120.webp",
-    "bytes": 96770
+    "w": 571,
+    "url": "/assets/derived/0/portrait-cutout-571.webp",
+    "bytes": 34134
    }
   ],
   "avif": [
    {
     "w": 400,
     "url": "/assets/derived/0/portrait-cutout-400.avif",
-    "bytes": 17383
+    "bytes": 14178
    },
    {
-    "w": 700,
-    "url": "/assets/derived/0/portrait-cutout-700.avif",
-    "bytes": 38829
-   },
-   {
-    "w": 1000,
-    "url": "/assets/derived/0/portrait-cutout-1000.avif",
-    "bytes": 65626
-   },
-   {
-    "w": 1120,
-    "url": "/assets/derived/0/portrait-cutout-1120.avif",
-    "bytes": 80551
+    "w": 571,
+    "url": "/assets/derived/0/portrait-cutout-571.avif",
+    "bytes": 23263
    }
   ],
   "fallback": {
-   "w": 1120,
-   "url": "/assets/derived/0/portrait-cutout-1120.png",
-   "bytes": 1455066
+   "w": 571,
+   "url": "/assets/derived/0/portrait-cutout-571.png",
+   "bytes": 507584
   }
  },
  "/assets/brand/wordmark-dark.png": {

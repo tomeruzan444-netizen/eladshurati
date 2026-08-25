@@ -69,11 +69,18 @@ function homePage(page, ctx) {
   return `
     <main id="main">
       <section class="hero">
-        <div class="hero__glow" aria-hidden="true"></div>
-        <img class="hero__arcs" src="/assets/brand/arcs.svg" alt="" aria-hidden="true">
+        <svg class="hero__ribbons" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <path class="ribbon" d="M40 100 L74 0 L100 0 L100 100 Z" fill="#60DADB"/>
+        </svg>
+        <svg class="hero__hairlines" viewBox="0 0 200 200" preserveAspectRatio="xMaxYMin meet" aria-hidden="true" focusable="false">
+          <g stroke="#0B1024" stroke-opacity=".18" stroke-width="1">
+            <path d="M150 14 V96"/><path d="M158 14 V96"/><path d="M166 14 V96"/>
+            <path d="M174 14 V96"/><path d="M182 14 V96"/><path d="M190 14 V96"/>
+          </g>
+        </svg>
         <div class="container hero__grid">
           <div class="hero__copy hero-intro">
-            <p class="hero__kicker" style="--i:0">${esc(kicker)}</p>
+            <p class="hero__eyebrow" style="--i:0">${esc(kicker)}${icons.arrowDown}</p>
             <h1 class="hero__title" data-split-lines style="--i:1">${esc(title)}</h1>
             ${sub ? `<p class="hero__lead" style="--i:2">${esc(sub)}</p>` : ''}
             <div class="hero__actions" style="--i:3">
@@ -82,17 +89,22 @@ function homePage(page, ctx) {
             </div>
           </div>
           <figure class="hero__figure reveal reveal--near is-in">
-            <div class="hero__stage" aria-hidden="true"></div>
             ${responsiveImage('/assets/brand/portrait-cutout.png', {
               alt: 'אלעד שורתי, יועץ עסקי ודיגיטלי',
-              sizes: '(max-width: 900px) 78vw, 430px',
+              sizes: '(max-width: 900px) 84vw, 520px',
               className: 'hero__portrait',
               priority: true,
               derivatives: ctx.derivatives,
             })}
-            <img class="hero__spark" src="/assets/brand/mark-duotone.svg" alt="" aria-hidden="true">
-            <figcaption class="hero__chip"><i aria-hidden="true"></i>${esc(site.phone)}</figcaption>
+            <img class="hero__spark" src="/assets/brand/mark-navy.svg" alt="" aria-hidden="true" width="62" height="59">
           </figure>
+        </div>
+        <div class="hero__strip">
+            <ul>
+              <li>${icons.chart}<span>שיווק דיגיטלי<br>ממוקד תוצאות</span></li>
+              <li>${icons.target}<span>ייעוץ<br>עסקי</span></li>
+              <li>${icons.growth}<span>אסטרטגיית<br>צמיחה</span></li>
+            </ul>
         </div>
       </section>
 

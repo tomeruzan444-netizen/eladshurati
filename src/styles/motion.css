@@ -184,8 +184,8 @@
   z-index: -1;
   inset: -40%;
   background:
-    radial-gradient(38% 44% at 22% 30%, rgb(174 93 255 / 0.42), transparent 65%),
-    radial-gradient(34% 40% at 78% 68%, rgb(254 122 29 / 0.26), transparent 62%);
+    radial-gradient(38% 44% at 22% 30%, rgb(96 218 219 / 0.34), transparent 65%),
+    radial-gradient(34% 40% at 78% 68%, rgb(217 246 80 / 0.2), transparent 62%);
   opacity: 0.85;
 }
 @media (prefers-reduced-motion: no-preference) {
@@ -219,7 +219,7 @@
   transition: opacity 0.3s var(--ease);
   background: radial-gradient(
     16rem 16rem at var(--mx, 50%) var(--my, 0%),
-    rgb(174 93 255 / 0.1),
+    rgb(96 218 219 / 0.14),
     transparent 70%
   );
 }
@@ -273,7 +273,7 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(105deg, var(--orange-500), var(--purple-500) 60%);
+  background: linear-gradient(105deg, var(--turq-500), var(--lime-500) 70%);
   opacity: 0;
   transition: opacity 0.35s var(--ease);
 }
@@ -343,6 +343,40 @@
     to {
       opacity: 1;
       transform: none;
+    }
+  }
+}
+
+
+/* ---------- hero service band ----------------------------- */
+/* The band is rotated, so it cannot use .reveal: that class sets its own
+   transform and would flatten it. It gets a keyframe that carries the
+   rotation through instead. */
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .hero__strip {
+    animation: strip-in 0.9s cubic-bezier(0.25, 0.7, 0.2, 1) 0.62s both;
+  }
+  @keyframes strip-in {
+    from {
+      opacity: 0;
+      transform: rotate(-4deg) translate3d(0, 30px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: rotate(-4deg) translate3d(0, 0, 0);
+    }
+  }
+  @media (max-width: 900px) {
+    @keyframes strip-in {
+      from {
+        opacity: 0;
+        transform: translate3d(0, 30px, 0);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
     }
   }
 }

@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" fill="none" aria-hidden="true">
   <g stroke-linecap="round">
-    <circle cx="400" cy="400" r="150" stroke="#AE5DFF" stroke-width="1" opacity=".35"/>
-    <circle cx="400" cy="400" r="232" stroke="#FE7A1D" stroke-width="1" opacity=".28"/>
-    <circle cx="400" cy="400" r="316" stroke="#AE5DFF" stroke-width="1" opacity=".22"/>
-    <circle cx="400" cy="400" r="399" stroke="#FE7A1D" stroke-width="1" opacity=".16"/>
-    <path d="M400 68a332 332 0 0 1 288 166" stroke="#AE5DFF" stroke-width="2.5" opacity=".5"/>
-    <path d="M117 566a316 316 0 0 1-32-166" stroke="#FE7A1D" stroke-width="2.5" opacity=".45"/>
+    <circle cx="400" cy="400" r="150" stroke="#60DADB" stroke-width="1" opacity=".35"/>
+    <circle cx="400" cy="400" r="232" stroke="#D9F650" stroke-width="1" opacity=".28"/>
+    <circle cx="400" cy="400" r="316" stroke="#60DADB" stroke-width="1" opacity=".22"/>
+    <circle cx="400" cy="400" r="399" stroke="#D9F650" stroke-width="1" opacity=".16"/>
+    <path d="M400 68a332 332 0 0 1 288 166" stroke="#60DADB" stroke-width="2.5" opacity=".5"/>
+    <path d="M117 566a316 316 0 0 1-32-166" stroke="#D9F650" stroke-width="2.5" opacity=".45"/>
   </g>
 </svg>

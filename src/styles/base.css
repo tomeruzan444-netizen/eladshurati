@@ -21,7 +21,7 @@ body {
   font-weight: 400;
   line-height: 1.75;
   color: var(--ink-soft);
-  background: var(--surface);
+  background: var(--surface-page);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   /* Safety net only — the layout itself no longer overflows at any width.
@@ -176,6 +176,9 @@ th {
 }
 .section--mist {
   background: var(--surface-mist);
+}
+.section--white {
+  background: var(--surface);
 }
 .section--tint {
   background: var(--surface-tint);
