@@ -207,7 +207,8 @@ function landingPage(page, ctx) {
           <div class="sec-head reveal"><span class="eyebrow">להמשך קריאה</span><h2 style="font-size:var(--step-3)">מאמרים נוספים</h2></div>
           <ul class="linklist" style="margin-block-start:1.5rem">
             ${[...new Map(related.map((l) => [l.href, l])).values()]
-              .map((l) => `<li><a href="${esc(hrefFor(l.href))}">${esc(l.text)}</a></li>`)
+              .map((l) => `<li><a href="${esc(hrefFor(l.href))}">${esc(ctx.titleFor(l.href) || l.text)}</a></li>`)
+              .filter(Boolean)
               .join('')}
           </ul>
         </div>
@@ -357,6 +358,17 @@ const main = async () => {
           </div>
         </div>
       </section>`
+    },
+    /**
+     * The heading of the page a path points at. Used for the "related reading"
+     * links, whose anchor text in the source is unusable escaped markup.
+     */
+    titleFor(href) {
+      if (!href) return ''
+      const target = lookup[href] || lookup[href.replace(/\/?$/, '/')]
+      if (!target) return ''
+      const h1 = target.blocks.find((b) => b.type === 'heading' && b.level === 1)
+      return h1?.text || target.seo.title || ''
     },
     /** Sticky rail: section links built from the page's own H2s, plus a CTA. */
     rail(blocks) {

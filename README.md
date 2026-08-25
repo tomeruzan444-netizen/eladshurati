@@ -11,7 +11,7 @@
 
 ```bash
 npm install
-npm run serve       # http://localhost:4321
+npm run serve       # http://localhost:4471 (also prints the LAN address for a phone)
 ```
 
 לבנייה מחדש אחרי שינוי:
@@ -59,6 +59,10 @@ STAGING=1 npm run build
 | 7 | `7-mobile.mjs` | בודק ב-320/360/390/430 שאין גלישה אופקית, שהעמוד נגלל, ושההדר נשאר נעוץ |
 
 `npm run check` מריץ את 5–7 ברצף. שלב 7 דורש שרת תצוגה פעיל (`npm run serve`).
+
+השרת מאזין על 4471 ולא על פורט נפוץ, ומסרב לחלוק אותו (`exclusive: true`). זה לא
+קפריזה: פרויקט אחר על המחשב תפס 4321 במקביל, והבקשות התחלקו בין שני האתרים.
+בעלייה הוא גם מוודא שהתשובה על `/` היא באמת האתר הזה.
 
 סקריפטים נוספים: `optimize-images.py` (נגזרות רספונסיביות — להריץ אחרי כל שינוי תמונות),
 `extract-brand.py` (חילוץ לוגו ופונטים מה-PDF), `cutout-portrait.py` (חיתוך רקע הפורטרט),

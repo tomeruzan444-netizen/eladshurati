@@ -28,6 +28,9 @@ const main = async () => {
 
   const brokenLinks = new Map()
   const brokenImages = new Map()
+  // WordPress double-escaped some shortcode output, so raw tag source ended up
+  // as visible text. Escaped markup in the output means that leaked through.
+  const leakedMarkup = new Map()
   let links = 0
   let images = 0
 
@@ -48,6 +51,10 @@ const main = async () => {
       }
     }
 
+    for (const m of html.matchAll(/&lt;(img|a|div|span|p)/gi)) {
+      leakedMarkup.set(`${rel} → "${m[0]}"`, true)
+    }
+
     for (const m of html.matchAll(/<img[^>]+src="([^"]+)"/g)) {
       const src = m[1]
       if (/^(https?:|data:)/.test(src)) continue
@@ -60,11 +67,13 @@ const main = async () => {
   console.log(`pages           ${htmlFiles.length}`)
   console.log(`internal links  ${links} checked, ${brokenLinks.size} broken`)
   console.log(`images          ${images} checked, ${brokenImages.size} missing`)
+  console.log(`escaped markup  ${leakedMarkup.size} pages showing tag source as text`)
 
   for (const k of [...brokenLinks.keys()].slice(0, 20)) console.log('  broken link  ' + k)
   for (const k of [...brokenImages.keys()].slice(0, 20)) console.log('  missing img  ' + k)
+  for (const k of [...leakedMarkup.keys()].slice(0, 10)) console.log('  markup text  ' + k)
 
-  if (brokenLinks.size || brokenImages.size) process.exitCode = 1
+  if (brokenLinks.size || brokenImages.size || leakedMarkup.size) process.exitCode = 1
 }
 
 main()

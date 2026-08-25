@@ -402,11 +402,17 @@ function extractBlocks($, container, media) {
           // On this site the shortcode widget is always the shared "latest posts"
           // Elementor template, rendered identically on 46 pages. Recorded as a
           // recurring section rather than page copy.
+          // WordPress double-escapes the shortcode output here, so the anchor's
+          // text node is the literal source of an <img> tag rather than the post
+          // title. Anything that looks like markup is dropped; the build resolves
+          // the real title from the page the href points at.
+          const looksLikeMarkup = (t) => /<[a-z!/]|srcset=|decoding=|\bsizes="/i.test(t)
           const links = []
           $scope.find('a[href]').each((_, a) => {
             const href = toRelative($(a).attr('href'))
+            if (!href || links.some((l) => l.href === href)) return
             const text = clean($(a).text())
-            if (href && text && !links.some((l) => l.href === href)) links.push({ href, text })
+            links.push({ href, text: looksLikeMarkup(text) ? '' : text })
           })
           blocks.push({ type: 'template', name: 'latest-posts', links })
           break

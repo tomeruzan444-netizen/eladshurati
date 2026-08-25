@@ -5,7 +5,9 @@ import path from 'node:path'
 import { networkInterfaces } from 'node:os'
 
 const ROOT = path.resolve(import.meta.dirname, '..', 'site')
-const PORT = Number(process.env.PORT || 4321)
+// 4471, not a common default: another project's dev server once bound 4321
+// alongside this one and requests were split between the two sites.
+const PORT = Number(process.env.PORT || 4471)
 
 const TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -23,7 +25,7 @@ const TYPES = {
   '.mp4': 'video/mp4',
 }
 
-createServer(async (req, res) => {
+const handler = async (req, res) => {
   try {
     let p = decodeURIComponent(new URL(req.url, 'http://x').pathname)
     let file = path.join(ROOT, p)
@@ -44,7 +46,31 @@ createServer(async (req, res) => {
     res.writeHead(500)
     res.end(String(err))
   }
-}).listen(PORT, () => {
+}
+
+const server = createServer(handler)
+
+// Refuse to share the port. Without this Windows will happily let a second
+// server bind the same port and serve half the requests from another project.
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.error(`port ${PORT} is already taken — run with PORT=<other> npm run serve`)
+    process.exit(1)
+  }
+  throw err
+})
+
+server.listen({ port: PORT, exclusive: true }, async () => {
+  // Confirm this server is the one answering, and that it is serving THIS build.
+  try {
+    const res = await fetch(`http://127.0.0.1:${PORT}/`)
+    const html = await res.text()
+    if (!html.includes('ELAD SHURATI') && !html.includes('אלעד שורתי')) {
+      console.error('WARNING: something else is answering on this port — the page served is not this site')
+    }
+  } catch {
+    /* self-check is best effort */
+  }
   console.log(`preview  →  http://localhost:${PORT}`)
   // Same-Wi-Fi address, for checking the build on a phone.
   for (const ifaces of Object.values(networkInterfaces())) {

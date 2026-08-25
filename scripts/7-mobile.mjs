@@ -21,7 +21,7 @@ import path from 'node:path'
 const run = promisify(execFile)
 const ROOT = path.resolve(import.meta.dirname, '..')
 const OUT = path.join(ROOT, 'site')
-const BASE = process.env.PREVIEW || 'http://localhost:4321'
+const BASE = process.env.PREVIEW || 'http://localhost:4471'
 
 const PAGES = ['/', '/פיתוח-עסקי/', '/צרו-קשר/', '/רווח-תפעולי/', '/category/בלוג-עסקי-מקצועי/']
 const WIDTHS = [320, 360, 390, 430]
