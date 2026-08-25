@@ -1,0 +1,15 @@
+# dependencies
+node_modules/
+
+# Commercial fonts extracted from the brand PDF (Discovery FS, Fb*).
+# Licensed desktop fonts — publishing them in a public repo would be
+# redistribution. They live only on the machine that has the licence.
+# The site itself ships IBM Plex Sans Hebrew (OFL), which is committed.
+_source/brand-fonts/
+
+# OS / editor noise
+Thumbs.db
+.DS_Store
+*.swp
+.vscode/
+.idea/

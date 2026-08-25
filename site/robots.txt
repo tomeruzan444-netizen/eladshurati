@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://elad-digital.co.il/sitemap.xml

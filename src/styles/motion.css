@@ -1,0 +1,344 @@
+/* ============================================================
+   Motion
+   Two mechanisms, picked per effect:
+
+   · Continuous, scroll-linked things (hero parallax, progress bar)
+     use CSS scroll-driven animations. They run on the compositor,
+     cost no JavaScript, and degrade to "no movement" cleanly.
+
+   · One-shot reveals need a stagger across grid children, which a
+     view() timeline can't express (siblings enter together), so
+     those are driven by a single IntersectionObserver that
+     unobserves each element once it has fired.
+
+   Everything animates opacity and transform only — never a property
+   that would trigger layout. All of it is off under
+   prefers-reduced-motion.
+   ============================================================ */
+
+/* ---------- one-shot reveal ------------------------------- */
+
+.reveal {
+  --reveal-y: 18px;
+  --reveal-blur: 0px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal {
+    opacity: 0;
+    transform: translate3d(0, var(--reveal-y), 0);
+    filter: blur(var(--reveal-blur));
+    transition:
+      opacity 0.62s cubic-bezier(0.22, 0.61, 0.36, 1) var(--reveal-delay, 0ms),
+      transform 0.62s cubic-bezier(0.22, 0.61, 0.36, 1) var(--reveal-delay, 0ms),
+      filter 0.62s linear var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+  .js .reveal.is-in {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    will-change: auto;
+  }
+
+  /* Failsafe: the `js` flag is set in <head>, so if site.js then fails to load
+     nothing would ever add `is-in` and the page would stay invisible. This
+     animation forces the end state a few seconds in regardless. It is inert in
+     the normal case, where `is-in` has already landed. */
+  .js .reveal {
+    animation: reveal-failsafe 1ms linear 4s forwards;
+  }
+  @keyframes reveal-failsafe {
+    to {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+  }
+
+  /* Softer, slower entrance for large display type */
+  .reveal--soft {
+    --reveal-y: 26px;
+    --reveal-blur: 6px;
+  }
+  /* Images rise a touch less so they never feel detached from their caption */
+  .reveal--near {
+    --reveal-y: 10px;
+  }
+}
+
+/* ---------- hero: slow drift on the decorative layers ------ */
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    .hero__arcs {
+      animation: drift-up linear both;
+      animation-timeline: scroll();
+      animation-range: 0 90vh;
+    }
+    .hero__glow {
+      animation: drift-down linear both;
+      animation-timeline: scroll();
+      animation-range: 0 90vh;
+    }
+    .hero__figure {
+      animation: sink linear both;
+      animation-timeline: scroll();
+      animation-range: 0 80vh;
+    }
+  }
+
+  @keyframes drift-up {
+    to {
+      transform: translate3d(0, -80px, 0) rotate(-6deg);
+    }
+  }
+  @keyframes drift-down {
+    to {
+      transform: translate3d(0, 46px, 0);
+    }
+  }
+  @keyframes sink {
+    to {
+      transform: translate3d(0, 26px, 0);
+    }
+  }
+
+  /* the symbol floating beside the portrait */
+  .hero__spark {
+    animation: bob 7s ease-in-out infinite;
+  }
+  @keyframes bob {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+    50% {
+      transform: translate3d(0, -9px, 0) rotate(5deg);
+    }
+  }
+}
+
+/* ---------- reading progress ------------------------------ */
+
+.progress {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  height: 3px;
+  z-index: 200;
+  background: linear-gradient(90deg, var(--purple-500), var(--orange-500));
+  transform-origin: 100% 50%; /* RTL: grows from the right */
+  transform: scaleX(0);
+  pointer-events: none;
+}
+@supports (animation-timeline: scroll()) {
+  .progress {
+    animation: fill-bar linear both;
+    animation-timeline: scroll();
+  }
+}
+@keyframes fill-bar {
+  to {
+    transform: scaleX(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .progress {
+    display: none;
+  }
+}
+
+/* ---------- section heading underline --------------------- */
+
+.sec-head h2,
+.page-hero h1 {
+  position: relative;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .js .sec-head.reveal h2::after {
+    content: '';
+    position: absolute;
+    inset-block-end: -0.42em;
+    inset-inline-start: 0;
+    height: 3px;
+    width: 0;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--purple-500), var(--orange-500));
+    transition: width 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) 0.18s;
+  }
+  .js .sec-head.reveal.is-in h2::after {
+    width: clamp(48px, 12%, 96px);
+  }
+  .sec-head--center.reveal h2::after {
+    inset-inline-start: 50%;
+    translate: -50% 0;
+  }
+}
+
+/* ---------- dark panel: slow aurora ----------------------- */
+
+.panel::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: -40%;
+  background:
+    radial-gradient(38% 44% at 22% 30%, rgb(174 93 255 / 0.42), transparent 65%),
+    radial-gradient(34% 40% at 78% 68%, rgb(254 122 29 / 0.26), transparent 62%);
+  opacity: 0.85;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .panel::after {
+    animation: aurora 22s ease-in-out infinite alternate;
+  }
+  @keyframes aurora {
+    0% {
+      transform: translate3d(-3%, -2%, 0) scale(1);
+    }
+    100% {
+      transform: translate3d(4%, 3%, 0) scale(1.12);
+    }
+  }
+}
+
+/* ---------- cards: pointer-tracked sheen ------------------ */
+
+.card,
+.post-card {
+  position: relative;
+}
+.card::before,
+.post-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease);
+  background: radial-gradient(
+    16rem 16rem at var(--mx, 50%) var(--my, 0%),
+    rgb(174 93 255 / 0.1),
+    transparent 70%
+  );
+}
+.card:hover::before,
+.post-card:hover::before {
+  opacity: 1;
+}
+
+/* ---------- table of contents: active section ------------- */
+
+.toc a {
+  position: relative;
+}
+.toc a[data-active='true'] {
+  font-weight: 700;
+}
+
+/* ---------- nav underline grow ---------------------------- */
+
+.nav__link::before {
+  content: '';
+  position: absolute;
+  inset-inline: 0.7rem;
+  bottom: 0.3rem;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--purple-500), var(--orange-500));
+  transform: scaleX(0);
+  transform-origin: 100% 50%;
+  transition: transform 0.28s var(--ease);
+}
+.nav__link:hover::before {
+  transform: scaleX(1);
+}
+.nav__link[aria-current='page']::before {
+  transform: scaleX(1);
+}
+.nav__link[aria-current='page']::after {
+  display: none;
+}
+
+/* ---------- buttons: sheen on hover ----------------------- */
+
+.btn--primary {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn--primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(105deg, var(--orange-500), var(--purple-500) 60%);
+  opacity: 0;
+  transition: opacity 0.35s var(--ease);
+}
+.btn--primary:hover::after {
+  opacity: 1;
+}
+
+/* ============================================================
+   Hero entrance
+   The headline is split into its rendered lines at runtime; each
+   line sits in its own clipping box and rises out of it. The
+   surrounding copy follows on a short stagger.
+
+   Only transform moves — the text is painted at full opacity from
+   the first frame, so the headline is never invisible to the LCP
+   measurement, just briefly offset behind its mask.
+   ============================================================ */
+
+.hero__title .ln {
+  display: block;
+  overflow: hidden;
+  /* room for descenders (ך ן ף ץ) so the mask never crops them */
+  padding-block-end: 0.14em;
+  margin-block-end: -0.14em;
+}
+.hero__title .ln > span {
+  display: block;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .hero__title[data-split-lines].is-split .ln > span {
+    animation: line-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc(var(--i, 0) * 90ms);
+  }
+  @keyframes line-rise {
+    from {
+      transform: translate3d(0, 112%, 0);
+    }
+    to {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  /* a resize re-splits the headline; it should settle, not replay */
+  .hero__title.is-split.no-anim .ln > span {
+    animation: none;
+  }
+
+  /* kicker, lead and buttons follow the headline in */
+  .js .hero-intro > * {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+    animation: intro-in 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc(90ms + var(--i, 0) * 95ms);
+  }
+  /* the headline handles its own motion, so it only needs to be present */
+  .js .hero-intro > .hero__title {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  @keyframes intro-in {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}

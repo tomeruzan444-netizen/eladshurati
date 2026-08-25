@@ -1,0 +1,226 @@
+/* ============================================================
+   Base — reset, RTL typography, shared primitives
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: var(--step-0);
+  font-weight: 400;
+  line-height: 1.75;
+  color: var(--ink-soft);
+  background: var(--surface);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* Safety net only — the layout itself no longer overflows at any width.
+     Must be `hidden`, not `clip`: body's overflow propagates to the viewport,
+     and `clip` on one axis forces `clip` on the other, which would stop the
+     page scrolling vertically. `hidden` pairs with `auto` and scrolls fine. */
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  color: var(--ink);
+  font-weight: 700;
+  line-height: 1.16;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--step-5);
+  line-height: 1.06;
+  letter-spacing: -0.028em;
+}
+h2 {
+  font-size: var(--step-4);
+  line-height: 1.1;
+  letter-spacing: -0.022em;
+}
+h3 {
+  font-size: var(--step-2);
+}
+h4 {
+  font-size: var(--step-1);
+}
+h5,
+h6 {
+  font-size: var(--step-0);
+}
+
+p {
+  margin: 0 0 1.15em;
+  text-wrap: pretty;
+}
+p:last-child {
+  margin-bottom: 0;
+}
+
+a {
+  color: var(--purple-ink);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  text-decoration-color: color-mix(in srgb, var(--purple-ink) 35%, transparent);
+  transition: color 0.18s var(--ease), text-decoration-color 0.18s var(--ease);
+}
+a:hover {
+  color: var(--plum-700);
+  text-decoration-color: currentColor;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* The <picture> wrapper has no box of its own, so layout rules written for the
+   image (centring in prose, object-fit in cards) keep applying unchanged. */
+picture {
+  display: contents;
+}
+
+ul,
+ol {
+  margin: 0 0 1.15em;
+  padding-inline-start: 1.35em;
+}
+li {
+  margin-bottom: 0.5em;
+}
+li::marker {
+  color: var(--purple-500);
+}
+
+strong,
+b {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+blockquote {
+  margin: 0;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 2.5rem 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--step--1);
+}
+th,
+td {
+  border: 1px solid var(--line);
+  padding: 0.7rem 0.9rem;
+  text-align: start;
+}
+th {
+  background: var(--surface-mist);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+:where(a, button, input, textarea, select, summary):focus-visible {
+  outline: 3px solid var(--purple-500);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--purple-100);
+  color: var(--plum-800);
+}
+
+/* --- layout primitives ------------------------------------ */
+
+.container {
+  width: min(100% - (var(--gutter) * 2), var(--container));
+  margin-inline: auto;
+}
+.container--narrow {
+  width: min(100% - (var(--gutter) * 2), var(--container-narrow));
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: var(--section-y);
+  position: relative;
+}
+.section--tight {
+  padding-block: clamp(3rem, 5.5vw, 5rem);
+}
+.section--mist {
+  background: var(--surface-mist);
+}
+.section--tint {
+  background: var(--surface-tint);
+}
+
+.stack > * + * {
+  margin-block-start: var(--stack, 1.5rem);
+}
+
+.skip-link {
+  position: fixed;
+  top: 0;
+  inset-inline-start: 1rem;
+  z-index: 999;
+  background: var(--plum-800);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0 0 var(--r-sm) var(--r-sm);
+  /* Parked above the viewport, not off to the side: an off-canvas inline
+     offset flips direction in RTL and lets the page pan sideways on iOS. */
+  transform: translateY(-150%);
+  transition: transform 0.18s var(--ease);
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

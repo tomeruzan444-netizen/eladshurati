@@ -1,0 +1,21 @@
+{
+  "name": "elad-shurati-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Redesign of elad-digital.co.il — content and SEO migrated 1:1 from the live WordPress site.",
+  "scripts": {
+    "crawl": "node scripts/1-crawl.mjs",
+    "extract": "node scripts/2-extract.mjs",
+    "media": "node scripts/3-media.mjs",
+    "build": "node scripts/4-build.mjs",
+    "audit": "node scripts/5-audit.mjs",
+    "serve": "node scripts/serve.mjs",
+    "all": "npm run extract && npm run media && npm run build && npm run check",
+    "mobile": "node scripts/7-mobile.mjs",
+    "check": "node scripts/5-audit.mjs && node scripts/6-linkcheck.mjs && node scripts/7-mobile.mjs"
+  },
+  "devDependencies": {
+    "cheerio": "^1.0.0"
+  }
+}

@@ -1,0 +1,947 @@
+{
+ "/assets/brand/portrait-cutout.png": {
+  "width": 1120,
+  "height": 1599,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/0/portrait-cutout-400.webp",
+    "bytes": 19748
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/0/portrait-cutout-700.webp",
+    "bytes": 46944
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/0/portrait-cutout-1000.webp",
+    "bytes": 81224
+   },
+   {
+    "w": 1120,
+    "url": "/assets/derived/0/portrait-cutout-1120.webp",
+    "bytes": 96770
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/0/portrait-cutout-400.avif",
+    "bytes": 17383
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/0/portrait-cutout-700.avif",
+    "bytes": 38829
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/0/portrait-cutout-1000.avif",
+    "bytes": 65626
+   },
+   {
+    "w": 1120,
+    "url": "/assets/derived/0/portrait-cutout-1120.avif",
+    "bytes": 80551
+   }
+  ],
+  "fallback": {
+   "w": 1120,
+   "url": "/assets/derived/0/portrait-cutout-1120.png",
+   "bytes": 1455066
+  }
+ },
+ "/assets/brand/wordmark-dark.png": {
+  "width": 600,
+  "height": 100,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/1/wordmark-dark-400.webp",
+    "bytes": 12820
+   },
+   {
+    "w": 600,
+    "url": "/assets/derived/1/wordmark-dark-600.webp",
+    "bytes": 19998
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/1/wordmark-dark-400.avif",
+    "bytes": 6927
+   },
+   {
+    "w": 600,
+    "url": "/assets/derived/1/wordmark-dark-600.avif",
+    "bytes": 10902
+   }
+  ],
+  "fallback": {
+   "w": 600,
+   "url": "/assets/derived/1/wordmark-dark-600.png",
+   "bytes": 37099
+  }
+ },
+ "/assets/brand/wordmark-white.png": {
+  "width": 600,
+  "height": 99,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/2/wordmark-white-400.webp",
+    "bytes": 11162
+   },
+   {
+    "w": 600,
+    "url": "/assets/derived/2/wordmark-white-600.webp",
+    "bytes": 16770
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/2/wordmark-white-400.avif",
+    "bytes": 6820
+   },
+   {
+    "w": 600,
+    "url": "/assets/derived/2/wordmark-white-600.avif",
+    "bytes": 9870
+   }
+  ],
+  "fallback": {
+   "w": 600,
+   "url": "/assets/derived/2/wordmark-white-600.png",
+   "bytes": 27091
+  }
+ },
+ "https://elad-digital.co.il/wp-content/uploads/2023/07/CTA-contact-us-new.png": {
+  "width": 539,
+  "height": 539,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/3/CTA-contact-us-new-400.webp",
+    "bytes": 10640
+   },
+   {
+    "w": 539,
+    "url": "/assets/derived/3/CTA-contact-us-new-539.webp",
+    "bytes": 15620
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/3/CTA-contact-us-new-400.avif",
+    "bytes": 9052
+   },
+   {
+    "w": 539,
+    "url": "/assets/derived/3/CTA-contact-us-new-539.avif",
+    "bytes": 13165
+   }
+  ],
+  "fallback": {
+   "w": 539,
+   "url": "/assets/derived/3/CTA-contact-us-new-539.png",
+   "bytes": 336489
+  }
+ },
+ "https://elad-digital.co.il/wp-content/uploads/2023/07/team-work-process-young-business-managers-crew-working-with-new-startup-project-labtop-wood-table-typing-keyboard-texting-message-analyze-graph-plans-1024x683.jpg": {
+  "width": 1024,
+  "height": 683,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/4/team-work-process-young-business-managers-crew-working-with-new-startup-project-labtop-wood-table-typing-keyboard-texting-message-analyze-graph-plans-1024x683-400.webp",
+    "bytes": 8570
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/4/team-work-process-young-business-managers-crew-working-with-new-startup-project-labtop-wood-table-typing-keyboard-texting-message-analyze-graph-plans-1024x683-700.webp",
+    "bytes": 17522
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/4/team-work-process-young-business-managers-crew-working-with-new-startup-project-labtop-wood-table-typing-keyboard-texting-message-analyze-graph-plans-1024x683-1000.webp",
+    "bytes": 27058
+   },
+   {
+    "w": 1024,
+    "url": "/assets/derived/4/team-work-process-young-business-managers-crew-working-with-new-startup-project-labtop-wood-table-typing-keyboard-texting-message-analyze-graph-plans-1024x683-1024.webp",
+    "bytes": 28350
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/4/team-work-process-young-business-managers-crew-working-with-new-startup-project-labtop-wood-table-typing-keyboard-texting-message-analyze-graph-plans-1024x683-400.avif",
+    "bytes": 22098
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/4/team-work-process-young-business-managers-crew-working-with-new-startup-project-labtop-wood-table-typing-keyboard-texting-message-analyze-graph-plans-1024x683-700.avif",
+    "bytes": 29507
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/4/team-work-process-young-business-managers-crew-working-with-new-startup-project-labtop-wood-table-typing-keyboard-texting-message-analyze-graph-plans-1024x683-1000.avif",
+    "bytes": 38055
+   },
+   {
+    "w": 1024,
+    "url": "/assets/derived/4/team-work-process-young-business-managers-crew-working-with-new-startup-project-labtop-wood-table-typing-keyboard-texting-message-analyze-graph-plans-1024x683-1024.avif",
+    "bytes": 39544
+   }
+  ],
+  "fallback": {
+   "w": 1024,
+   "url": "/assets/derived/4/team-work-process-young-business-managers-crew-working-with-new-startup-project-labtop-wood-table-typing-keyboard-texting-message-analyze-graph-plans-1024x683-1024.jpg",
+   "bytes": 65787
+  }
+ },
+ "https://elad-digital.co.il/wp-content/uploads/2024/06/3E9A2033-1024x683.jpg": {
+  "width": 1024,
+  "height": 683,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/5/3E9A2033-1024x683-400.webp",
+    "bytes": 8364
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/5/3E9A2033-1024x683-700.webp",
+    "bytes": 17872
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/5/3E9A2033-1024x683-1000.webp",
+    "bytes": 29134
+   },
+   {
+    "w": 1024,
+    "url": "/assets/derived/5/3E9A2033-1024x683-1024.webp",
+    "bytes": 30944
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/5/3E9A2033-1024x683-400.avif",
+    "bytes": 30787
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/5/3E9A2033-1024x683-700.avif",
+    "bytes": 37190
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/5/3E9A2033-1024x683-1000.avif",
+    "bytes": 45422
+   },
+   {
+    "w": 1024,
+    "url": "/assets/derived/5/3E9A2033-1024x683-1024.avif",
+    "bytes": 46846
+   }
+  ],
+  "fallback": {
+   "w": 1024,
+   "url": "/assets/derived/5/3E9A2033-1024x683-1024.jpg",
+   "bytes": 53841
+  }
+ },
+ "https://elad-digital.co.il/wp-content/uploads/2024/06/unnamed.png": {
+  "width": 828,
+  "height": 1125,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/6/unnamed-400.webp",
+    "bytes": 23198
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/6/unnamed-700.webp",
+    "bytes": 51022
+   },
+   {
+    "w": 828,
+    "url": "/assets/derived/6/unnamed-828.webp",
+    "bytes": 64448
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/6/unnamed-400.avif",
+    "bytes": 17788
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/6/unnamed-700.avif",
+    "bytes": 42433
+   },
+   {
+    "w": 828,
+    "url": "/assets/derived/6/unnamed-828.avif",
+    "bytes": 54384
+   }
+  ],
+  "fallback": {
+   "w": 828,
+   "url": "/assets/derived/6/unnamed-828.jpg",
+   "bytes": 131670
+  }
+ },
+ "https://elad-digital.co.il/wp-content/uploads/2025/01/%D7%90%D7%9C%D7%A2%D7%93.jpg": {
+  "width": 400,
+  "height": 600,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/7/אלעד-400.webp",
+    "bytes": 8816
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/7/אלעד-400.avif",
+    "bytes": 12094
+   }
+  ],
+  "fallback": {
+   "w": 400,
+   "url": "/assets/derived/7/אלעד-400.jpg",
+   "bytes": 21164
+  }
+ },
+ "https://elad-digital.co.il/wp-content/uploads/2025/01/%D7%90%D7%A1%D7%98%D7%A8%D7%98%D7%92%D7%99%D7%94-%D7%A2%D7%A1%D7%A7%D7%99%D7%AA.png": {
+  "width": 700,
+  "height": 500,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/8/אסטרטגיה-עסקית-400.webp",
+    "bytes": 8782
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/8/אסטרטגיה-עסקית-700.webp",
+    "bytes": 17610
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/8/אסטרטגיה-עסקית-400.avif",
+    "bytes": 7076
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/8/אסטרטגיה-עסקית-700.avif",
+    "bytes": 13841
+   }
+  ],
+  "fallback": {
+   "w": 700,
+   "url": "/assets/derived/8/אסטרטגיה-עסקית-700.jpg",
+   "bytes": 39401
+  }
+ },
+ "https://elad-digital.co.il/wp-content/uploads/2025/01/%D7%A2%D7%A7%D7%A8%D7%95%D7%A0%D7%95%D7%AA-%D7%A4%D7%99%D7%AA%D7%95%D7%97-%D7%A2%D7%A1%D7%A7%D7%99.png": {
+  "width": 700,
+  "height": 600,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/9/עקרונות-פיתוח-עסקי-400.webp",
+    "bytes": 24694
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/9/עקרונות-פיתוח-עסקי-700.webp",
+    "bytes": 27916
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/9/עקרונות-פיתוח-עסקי-400.avif",
+    "bytes": 15176
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/9/עקרונות-פיתוח-עסקי-700.avif",
+    "bytes": 19179
+   }
+  ],
+  "fallback": {
+   "w": 700,
+   "url": "/assets/derived/9/עקרונות-פיתוח-עסקי-700.png",
+   "bytes": 53299
+  }
+ },
+ "https://elad-digital.co.il/wp-content/uploads/2025/01/1.png": {
+  "width": 141,
+  "height": 32,
+  "webp": [
+   {
+    "w": 141,
+    "url": "/assets/derived/10/1-141.webp",
+    "bytes": 544
+   }
+  ],
+  "avif": [
+   {
+    "w": 141,
+    "url": "/assets/derived/10/1-141.avif",
+    "bytes": 964
+   }
+  ],
+  "fallback": {
+   "w": 141,
+   "url": "/assets/derived/10/1-141.png",
+   "bytes": 832
+  }
+ },
+ "https://elad-digital.co.il/wp-content/uploads/2025/01/2.png": {
+  "width": 141,
+  "height": 32,
+  "webp": [
+   {
+    "w": 141,
+    "url": "/assets/derived/11/2-141.webp",
+    "bytes": 950
+   }
+  ],
+  "avif": [
+   {
+    "w": 141,
+    "url": "/assets/derived/11/2-141.avif",
+    "bytes": 1326
+   }
+  ],
+  "fallback": {
+   "w": 141,
+   "url": "/assets/derived/11/2-141.png",
+   "bytes": 1871
+  }
+ },
+ "https://elad-digital.co.il/wp-content/uploads/2025/01/3.png": {
+  "width": 141,
+  "height": 32,
+  "webp": [
+   {
+    "w": 141,
+    "url": "/assets/derived/12/3-141.webp",
+    "bytes": 536
+   }
+  ],
+  "avif": [
+   {
+    "w": 141,
+    "url": "/assets/derived/12/3-141.avif",
+    "bytes": 945
+   }
+  ],
+  "fallback": {
+   "w": 141,
+   "url": "/assets/derived/12/3-141.png",
+   "bytes": 1020
+  }
+ },
+ "https://elad-digital.co.il/wp-content/uploads/2025/01/4.png": {
+  "width": 141,
+  "height": 32,
+  "webp": [
+   {
+    "w": 141,
+    "url": "/assets/derived/13/4-141.webp",
+    "bytes": 748
+   }
+  ],
+  "avif": [
+   {
+    "w": 141,
+    "url": "/assets/derived/13/4-141.avif",
+    "bytes": 1165
+   }
+  ],
+  "fallback": {
+   "w": 141,
+   "url": "/assets/derived/13/4-141.png",
+   "bytes": 1256
+  }
+ },
+ "https://elad-digital.co.il/wp-content/uploads/2025/01/5.png": {
+  "width": 141,
+  "height": 32,
+  "webp": [
+   {
+    "w": 141,
+    "url": "/assets/derived/14/5-141.webp",
+    "bytes": 648
+   }
+  ],
+  "avif": [
+   {
+    "w": 141,
+    "url": "/assets/derived/14/5-141.avif",
+    "bytes": 1146
+   }
+  ],
+  "fallback": {
+   "w": 141,
+   "url": "/assets/derived/14/5-141.png",
+   "bytes": 1200
+  }
+ },
+ "https://elad-digital.co.il/wp-content/uploads/2025/01/6.png": {
+  "width": 141,
+  "height": 32,
+  "webp": [
+   {
+    "w": 141,
+    "url": "/assets/derived/15/6-141.webp",
+    "bytes": 734
+   }
+  ],
+  "avif": [
+   {
+    "w": 141,
+    "url": "/assets/derived/15/6-141.avif",
+    "bytes": 1160
+   }
+  ],
+  "fallback": {
+   "w": 141,
+   "url": "/assets/derived/15/6-141.png",
+   "bytes": 1419
+  }
+ },
+ "https://elad-digital.co.il/wp-content/uploads/2025/01/Screenshot-2025-01-12-151831.png": {
+  "width": 906,
+  "height": 539,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/16/Screenshot-2025-01-12-151831-400.webp",
+    "bytes": 6716
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/16/Screenshot-2025-01-12-151831-700.webp",
+    "bytes": 11644
+   },
+   {
+    "w": 906,
+    "url": "/assets/derived/16/Screenshot-2025-01-12-151831-906.webp",
+    "bytes": 15514
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/16/Screenshot-2025-01-12-151831-400.avif",
+    "bytes": 5424
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/16/Screenshot-2025-01-12-151831-700.avif",
+    "bytes": 9740
+   },
+   {
+    "w": 906,
+    "url": "/assets/derived/16/Screenshot-2025-01-12-151831-906.avif",
+    "bytes": 13011
+   }
+  ],
+  "fallback": {
+   "w": 906,
+   "url": "/assets/derived/16/Screenshot-2025-01-12-151831-906.png",
+   "bytes": 364869
+  }
+ },
+ "https://elad-digital.co.il/wp-content/uploads/2025/01/Untitled-design-21.png": {
+  "width": 512,
+  "height": 512,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/17/Untitled-design-21-400.webp",
+    "bytes": 21002
+   },
+   {
+    "w": 512,
+    "url": "/assets/derived/17/Untitled-design-21-512.webp",
+    "bytes": 22246
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/17/Untitled-design-21-400.avif",
+    "bytes": 13230
+   },
+   {
+    "w": 512,
+    "url": "/assets/derived/17/Untitled-design-21-512.avif",
+    "bytes": 16456
+   }
+  ],
+  "fallback": {
+   "w": 512,
+   "url": "/assets/derived/17/Untitled-design-21-512.png",
+   "bytes": 57106
+  }
+ },
+ "https://elad-digital.co.il/wp-content/uploads/2025/02/%D7%90%D7%99%D7%A0%D7%A4%D7%95%D7%92%D7%A8%D7%A4%D7%99%D7%94-%D7%A2%D7%9C-%D7%9E%D7%97%D7%A7%D7%A8-%D7%A9%D7%95%D7%A7-%D7%9E%D7%90%D7%AA-%D7%90%D7%9C%D7%A2%D7%93-%D7%A9%D7%95%D7%A8%D7%AA%D7%99-812x1024.png": {
+  "width": 812,
+  "height": 1024,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/18/אינפוגרפיה-על-מחקר-שוק-מאת-אלעד-שורתי-812x1024-400.webp",
+    "bytes": 30350
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/18/אינפוגרפיה-על-מחקר-שוק-מאת-אלעד-שורתי-812x1024-700.webp",
+    "bytes": 58412
+   },
+   {
+    "w": 812,
+    "url": "/assets/derived/18/אינפוגרפיה-על-מחקר-שוק-מאת-אלעד-שורתי-812x1024-812.webp",
+    "bytes": 42116
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/18/אינפוגרפיה-על-מחקר-שוק-מאת-אלעד-שורתי-812x1024-400.avif",
+    "bytes": 17037
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/18/אינפוגרפיה-על-מחקר-שוק-מאת-אלעד-שורתי-812x1024-700.avif",
+    "bytes": 29761
+   },
+   {
+    "w": 812,
+    "url": "/assets/derived/18/אינפוגרפיה-על-מחקר-שוק-מאת-אלעד-שורתי-812x1024-812.avif",
+    "bytes": 28529
+   }
+  ],
+  "fallback": {
+   "w": 812,
+   "url": "/assets/derived/18/אינפוגרפיה-על-מחקר-שוק-מאת-אלעד-שורתי-812x1024-812.png",
+   "bytes": 66605
+  }
+ },
+ "https://elad-digital.co.il/wp-content/uploads/2025/02/%D7%90%D7%99%D7%A0%D7%A4%D7%95%D7%92%D7%A8%D7%A4%D7%99%D7%94_-%D7%A9%D7%9C%D7%91%D7%99%D7%9D-%D7%9C%D7%A4%D7%99%D7%AA%D7%95%D7%97-%D7%A2%D7%A1%D7%A7%D7%99-%D7%A0%D7%9B%D7%95%D7%9F-visual-selection-1024x794.png": {
+  "width": 1024,
+  "height": 794,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/19/אינפוגרפיה_-שלבים-לפיתוח-עסקי-נכון-visual-selection-1024x794-400.webp",
+    "bytes": 28232
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/19/אינפוגרפיה_-שלבים-לפיתוח-עסקי-נכון-visual-selection-1024x794-700.webp",
+    "bytes": 63898
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/19/אינפוגרפיה_-שלבים-לפיתוח-עסקי-נכון-visual-selection-1024x794-1000.webp",
+    "bytes": 102226
+   },
+   {
+    "w": 1024,
+    "url": "/assets/derived/19/אינפוגרפיה_-שלבים-לפיתוח-עסקי-נכון-visual-selection-1024x794-1024.webp",
+    "bytes": 57206
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/19/אינפוגרפיה_-שלבים-לפיתוח-עסקי-נכון-visual-selection-1024x794-400.avif",
+    "bytes": 21051
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/19/אינפוגרפיה_-שלבים-לפיתוח-עסקי-נכון-visual-selection-1024x794-700.avif",
+    "bytes": 43966
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/19/אינפוגרפיה_-שלבים-לפיתוח-עסקי-נכון-visual-selection-1024x794-1000.avif",
+    "bytes": 68708
+   },
+   {
+    "w": 1024,
+    "url": "/assets/derived/19/אינפוגרפיה_-שלבים-לפיתוח-עסקי-נכון-visual-selection-1024x794-1024.avif",
+    "bytes": 42859
+   }
+  ],
+  "fallback": {
+   "w": 1024,
+   "url": "/assets/derived/19/אינפוגרפיה_-שלבים-לפיתוח-עסקי-נכון-visual-selection-1024x794-1024.png",
+   "bytes": 101623
+  }
+ },
+ "https://elad-digital.co.il/wp-content/uploads/2025/02/%D7%9E%D7%A1%D7%A2-%D7%94%D7%9C%D7%A7%D7%95%D7%97-%D7%91%D7%A2%D7%A1%D7%A7-1024x1013.png": {
+  "width": 1024,
+  "height": 1013,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/20/מסע-הלקוח-בעסק-1024x1013-400.webp",
+    "bytes": 35494
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/20/מסע-הלקוח-בעסק-1024x1013-700.webp",
+    "bytes": 67472
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/20/מסע-הלקוח-בעסק-1024x1013-1000.webp",
+    "bytes": 99500
+   },
+   {
+    "w": 1024,
+    "url": "/assets/derived/20/מסע-הלקוח-בעסק-1024x1013-1024.webp",
+    "bytes": 60184
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/20/מסע-הלקוח-בעסק-1024x1013-400.avif",
+    "bytes": 23817
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/20/מסע-הלקוח-בעסק-1024x1013-700.avif",
+    "bytes": 43495
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/20/מסע-הלקוח-בעסק-1024x1013-1000.avif",
+    "bytes": 62983
+   },
+   {
+    "w": 1024,
+    "url": "/assets/derived/20/מסע-הלקוח-בעסק-1024x1013-1024.avif",
+    "bytes": 37994
+   }
+  ],
+  "fallback": {
+   "w": 1024,
+   "url": "/assets/derived/20/מסע-הלקוח-בעסק-1024x1013-1024.png",
+   "bytes": 108209
+  }
+ },
+ "https://elad-digital.co.il/wp-content/uploads/2025/02/%D7%A1%D7%99%D7%9E%D7%A0%D7%99-%D7%90%D7%96%D7%94%D7%A8%D7%94-%D7%91%D7%A2%D7%A1%D7%A7-visual-1024x980.png": {
+  "width": 1024,
+  "height": 980,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/21/סימני-אזהרה-בעסק-visual-1024x980-400.webp",
+    "bytes": 15538
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/21/סימני-אזהרה-בעסק-visual-1024x980-700.webp",
+    "bytes": 29582
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/21/סימני-אזהרה-בעסק-visual-1024x980-1000.webp",
+    "bytes": 45770
+   },
+   {
+    "w": 1024,
+    "url": "/assets/derived/21/סימני-אזהרה-בעסק-visual-1024x980-1024.webp",
+    "bytes": 31330
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/21/סימני-אזהרה-בעסק-visual-1024x980-400.avif",
+    "bytes": 9448
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/21/סימני-אזהרה-בעסק-visual-1024x980-700.avif",
+    "bytes": 17551
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/21/סימני-אזהרה-בעסק-visual-1024x980-1000.avif",
+    "bytes": 25367
+   },
+   {
+    "w": 1024,
+    "url": "/assets/derived/21/סימני-אזהרה-בעסק-visual-1024x980-1024.avif",
+    "bytes": 21443
+   }
+  ],
+  "fallback": {
+   "w": 1024,
+   "url": "/assets/derived/21/סימני-אזהרה-בעסק-visual-1024x980-1024.png",
+   "bytes": 77973
+  }
+ },
+ "https://elad-digital.co.il/wp-content/uploads/2025/03/%D7%90%D7%99%D7%A0%D7%A4%D7%95%D7%92%D7%A8%D7%A4%D7%99%D7%94-%D7%A2%D7%9C-%D7%9E%D7%A0%D7%98%D7%95%D7%A8-%D7%A2%D7%A1%D7%A7%D7%99-visual-selection-min-1024x920.png": {
+  "width": 1024,
+  "height": 920,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/22/אינפוגרפיה-על-מנטור-עסקי-visual-selection-min-1024x920-400.webp",
+    "bytes": 31686
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/22/אינפוגרפיה-על-מנטור-עסקי-visual-selection-min-1024x920-700.webp",
+    "bytes": 61848
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/22/אינפוגרפיה-על-מנטור-עסקי-visual-selection-min-1024x920-1000.webp",
+    "bytes": 92930
+   },
+   {
+    "w": 1024,
+    "url": "/assets/derived/22/אינפוגרפיה-על-מנטור-עסקי-visual-selection-min-1024x920-1024.webp",
+    "bytes": 54282
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/22/אינפוגרפיה-על-מנטור-עסקי-visual-selection-min-1024x920-400.avif",
+    "bytes": 21821
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/22/אינפוגרפיה-על-מנטור-עסקי-visual-selection-min-1024x920-700.avif",
+    "bytes": 42314
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/22/אינפוגרפיה-על-מנטור-עסקי-visual-selection-min-1024x920-1000.avif",
+    "bytes": 62735
+   },
+   {
+    "w": 1024,
+    "url": "/assets/derived/22/אינפוגרפיה-על-מנטור-עסקי-visual-selection-min-1024x920-1024.avif",
+    "bytes": 37434
+   }
+  ],
+  "fallback": {
+   "w": 1024,
+   "url": "/assets/derived/22/אינפוגרפיה-על-מנטור-עסקי-visual-selection-min-1024x920-1024.png",
+   "bytes": 130306
+  }
+ },
+ "https://elad-digital.co.il/wp-content/uploads/2025/03/%D7%A9%D7%99%D7%95%D7%95%D7%A7-%D7%91%D7%90%D7%99%D7%A0%D7%A1%D7%98%D7%92%D7%A8%D7%9D.png": {
+  "width": 500,
+  "height": 300,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/23/שיווק-באינסטגרם-400.webp",
+    "bytes": 12038
+   },
+   {
+    "w": 500,
+    "url": "/assets/derived/23/שיווק-באינסטגרם-500.webp",
+    "bytes": 16904
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/23/שיווק-באינסטגרם-400.avif",
+    "bytes": 9266
+   },
+   {
+    "w": 500,
+    "url": "/assets/derived/23/שיווק-באינסטגרם-500.avif",
+    "bytes": 12583
+   }
+  ],
+  "fallback": {
+   "w": 500,
+   "url": "/assets/derived/23/שיווק-באינסטגרם-500.png",
+   "bytes": 224381
+  }
+ },
+ "https://elad-digital.co.il/wp-content/uploads/2025/08/%D7%90%D7%9C%D7%A2%D7%93-%D7%A9%D7%95%D7%A8%D7%AA%D7%99-min-1-1024x683.webp": {
+  "width": 1024,
+  "height": 683,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/24/אלעד-שורתי-min-1-1024x683-400.webp",
+    "bytes": 13824
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/24/אלעד-שורתי-min-1-1024x683-700.webp",
+    "bytes": 30602
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/24/אלעד-שורתי-min-1-1024x683-1000.webp",
+    "bytes": 46602
+   },
+   {
+    "w": 1024,
+    "url": "/assets/derived/24/אלעד-שורתי-min-1-1024x683-1024.webp",
+    "bytes": 45202
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/24/אלעד-שורתי-min-1-1024x683-400.avif",
+    "bytes": 9532
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/24/אלעד-שורתי-min-1-1024x683-700.avif",
+    "bytes": 22357
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/24/אלעד-שורתי-min-1-1024x683-1000.avif",
+    "bytes": 36340
+   },
+   {
+    "w": 1024,
+    "url": "/assets/derived/24/אלעד-שורתי-min-1-1024x683-1024.avif",
+    "bytes": 38352
+   }
+  ],
+  "fallback": {
+   "w": 1024,
+   "url": "/assets/derived/24/אלעד-שורתי-min-1-1024x683-1024.jpg",
+   "bytes": 90626
+  }
+ }
+}
