@@ -168,6 +168,10 @@ export function footer(nav, groups, jsUrl = '/assets/js/site.js') {
       </div>
     </footer>
     <a class="wa" href="${site.whatsapp}" target="_blank" rel="noopener" aria-label="שליחת הודעת וואטסאפ">${social.whatsapp}</a>
+    <div class="actionbar">
+      <a class="btn btn--primary" href="/צרו-קשר/">לשיחת ייעוץ חינם</a>
+      <a class="actionbar__wa" href="${site.whatsapp}" target="_blank" rel="noopener" aria-label="שליחת הודעת וואטסאפ">${social.whatsapp}</a>
+    </div>
     <script src="${jsUrl}" defer></script>
   </body>
 </html>`

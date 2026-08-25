@@ -1678,3 +1678,245 @@
   height: 46%;
   pointer-events: none;
 }
+
+/* ============================================================
+   Mobile refinements
+   The stacked layout was correct but read as a template: full-width
+   rectangles, even spacing, nothing with any edge. These give the
+   small screen its own character rather than a narrowed desktop.
+   Everything here is CSS — no extra JavaScript, no extra requests.
+   ============================================================ */
+
+@media (max-width: 900px) {
+  /* --- type: bigger and tighter, the way a phone wants it ---- */
+  .hero__title {
+    font-size: clamp(2.5rem, 10.5vw, 3.4rem);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+  }
+  .hero__lead {
+    font-size: 1.0625rem;
+    padding-block-end: 0;
+    border-block-end: 0;
+  }
+  .hero__copy > * + * {
+    margin-block-start: 1.1rem;
+  }
+
+  /* --- actions: one decisive button, one quiet one ---------- */
+  .hero__actions {
+    gap: 0.6rem;
+  }
+  .hero__actions .btn--primary {
+    flex: 1 1 100%;
+    padding-block: 1.05rem;
+    font-size: 1.0625rem;
+  }
+  .hero__actions .btn--ghost {
+    flex: 1 1 100%;
+    background: transparent;
+    border-color: transparent;
+    text-decoration: underline;
+    text-underline-offset: 0.35em;
+    text-decoration-color: var(--turq-500);
+    text-decoration-thickness: 2px;
+    padding-block: 0.5rem;
+  }
+
+  /* --- portrait: a shaped block, not a rectangle ------------- */
+  .hero__figure {
+    border-radius: var(--r-xl) var(--r-xl) 40% 40% / var(--r-xl) var(--r-xl) 12% 12%;
+    padding-block-start: 1.1rem;
+    position: relative;
+  }
+  .hero__figure::after {
+    content: '';
+    position: absolute;
+    inset-block-start: -18%;
+    inset-inline-start: -22%;
+    width: 78%;
+    aspect-ratio: 1;
+    border: 2px solid rgb(255 255 255 / 0.35);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hero__portrait {
+    width: min(300px, 76%);
+  }
+
+  /* Band tucks under the shaped block. It needs its own stacking position:
+     the figure's curved bottom was painting over the first label. */
+  .hero__strip {
+    position: relative;
+    z-index: 2;
+    margin-block-start: -1.1rem;
+    border-radius: var(--r-md);
+    width: min(100% - (var(--gutter) * 2) - 1.5rem, var(--container));
+    box-shadow: 0 12px 26px -14px rgb(8 12 41 / 0.45);
+  }
+
+  /* --- rhythm: closer together, less template-like ---------- */
+  :root {
+    --section-y: clamp(3rem, 11vw, 4.5rem);
+  }
+  .sec-head h2 {
+    font-size: clamp(1.75rem, 7.5vw, 2.25rem);
+    letter-spacing: -0.03em;
+  }
+
+  /* --- card rows become a snap rail -------------------------- */
+  .grid--4,
+  .grid--3 {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: min(76%, 300px);
+    grid-template-columns: none;
+    gap: 0.85rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    padding-inline: var(--gutter);
+    padding-block-end: 0.5rem;
+    margin-inline: calc(var(--gutter) * -1);
+    scrollbar-width: none;
+  }
+  .grid--4::-webkit-scrollbar,
+  .grid--3::-webkit-scrollbar {
+    display: none;
+  }
+  .grid--4 > *,
+  .grid--3 > * {
+    scroll-snap-align: start;
+  }
+
+  /* --- touch feedback ---------------------------------------- */
+  .btn:active {
+    transform: scale(0.975);
+  }
+  .card:active,
+  .post-card:active {
+    transform: scale(0.99);
+  }
+}
+
+/* --- a real action bar, not a lone floating bubble ---------- */
+
+.actionbar {
+  display: none;
+}
+@media (max-width: 900px) {
+  .actionbar {
+    position: fixed;
+    z-index: 95;
+    inset-inline: 0;
+    inset-block-end: 0;
+    display: flex;
+    gap: 0.6rem;
+    padding: 0.6rem var(--gutter) calc(0.6rem + env(safe-area-inset-bottom));
+    background: color-mix(in srgb, var(--cream) 92%, transparent);
+    backdrop-filter: saturate(180%) blur(14px);
+    border-block-start: 1px solid var(--line);
+  }
+  .actionbar .btn {
+    flex: 1;
+    justify-content: center;
+    padding-block: 0.85rem;
+  }
+  .actionbar__wa {
+    flex: 0 0 52px;
+    display: grid;
+    place-items: center;
+    border-radius: var(--r-pill);
+    background: #25d366;
+    color: #fff;
+  }
+  .actionbar__wa svg {
+    width: 25px;
+    height: 25px;
+  }
+  /* the floating bubble would duplicate the bar */
+  .wa {
+    display: none;
+  }
+  body {
+    padding-block-end: 5.25rem;
+  }
+}
+
+/* --- full-screen mobile menu -------------------------------- */
+
+@media (max-width: 1080px) {
+  .nav {
+    inset: 0;
+    max-height: none;
+    height: 100dvh;
+    padding: 5.5rem var(--gutter) 2.5rem;
+    background: var(--navy);
+    border-bottom: 0;
+    transform: none;
+    opacity: 0;
+    visibility: hidden;
+    /* visibility is never transitioned: it is inherited, so if the transition
+       does not complete the whole panel and its links stay unreachable. Only
+       opacity animates. */
+    transition: opacity 0.28s var(--ease);
+  }
+  .header[data-menu='open'] .nav {
+    opacity: 1;
+    visibility: visible;
+  }
+  /* the current-page link is teal by default, which is unreadable on navy */
+  .nav__link[aria-current='page'],
+  .nav__link[aria-current='page']:hover {
+    color: var(--lime-500);
+  }
+  .nav__link[aria-current='page']::before {
+    background: var(--lime-500);
+  }
+  .header[data-menu='open'] .header__toggle span,
+  .header[data-menu='open'] .header__toggle span::before,
+  .header[data-menu='open'] .header__toggle span::after {
+    background: var(--cream);
+  }
+  .header[data-menu='open'] .header__toggle {
+    background: transparent;
+    border-color: rgb(255 255 255 / 0.25);
+    position: relative;
+    z-index: 101;
+  }
+  .nav__link {
+    color: var(--cream);
+    font-size: clamp(1.25rem, 6vw, 1.75rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    padding-block: 0.6rem;
+  }
+  .nav__link:hover,
+  .nav__item[data-open='true'] > .nav__link {
+    background: transparent;
+    color: var(--lime-500);
+  }
+  .nav__list {
+    gap: 0.1rem;
+  }
+  .nav__panel a {
+    color: rgb(248 245 238 / 0.72);
+    font-size: 1rem;
+    padding-block: 0.45rem;
+  }
+  .nav__panel a:hover {
+    background: transparent;
+    color: var(--lime-500);
+  }
+  .nav__caret {
+    width: 12px;
+    height: 12px;
+  }
+  /* The global `display:none` for this button sits after the older media
+     block, so it won all widths and the menu never had a call to action. */
+  .nav__mobile-cta {
+    display: block;
+    margin-top: 1.75rem;
+  }
+}
