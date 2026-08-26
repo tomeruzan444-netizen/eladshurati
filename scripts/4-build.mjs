@@ -137,6 +137,8 @@ function homePage(page, ctx) {
         </div>
       </section>` : ''}
 
+      ${ctx.work()}
+
       ${beliefs.length ? `<section class="section">
         <div class="container">
           <div class="panel panel--statement reveal reveal--soft">
@@ -316,6 +318,9 @@ const main = async () => {
   const derivatives = existsSync(path.join(ROOT, 'content', 'image-derivatives.json'))
     ? await read('image-derivatives.json')
     : {}
+  const projects = existsSync(path.join(ROOT, 'content', 'projects.json'))
+    ? await read('projects.json')
+    : []
   const lookup = byPath(pages)
 
   await rm(OUT, { recursive: true, force: true })
@@ -331,6 +336,7 @@ const main = async () => {
     manifest,
     altMap,
     derivatives,
+    projects,
     portrait,
     img(src) {
       if (src?.startsWith('/wp-content/')) return manifest[site.origin + src] || src
@@ -381,6 +387,43 @@ const main = async () => {
       if (!target) return ''
       const h1 = target.blocks.find((b) => b.type === 'heading' && b.level === 1)
       return h1?.text || target.seo.title || ''
+    },
+    /** Portfolio: brand-coloured tiles, each holding a browser frame. */
+    work() {
+      if (!ctx.projects.length) return ''
+      const cards = ctx.projects
+        .map(
+          (p) => `<article class="work-card" data-tone="${esc(p.tone)}">
+              <div class="work-card__screen">
+                <div class="work-card__bar" aria-hidden="true"><i></i><i></i><i></i><span></span></div>
+                ${responsiveImage(p.image, {
+                  alt: `אתר ${p.name}`,
+                  sizes: '(max-width: 760px) 84vw, (max-width: 1080px) 46vw, 30vw',
+                  className: 'work-card__shot',
+                  derivatives: ctx.derivatives,
+                })}
+              </div>
+              <div class="work-card__body">
+                <span class="work-card__tag">${esc(p.tag)}</span>
+                <h3 class="work-card__name">${esc(p.name)}</h3>
+                <p class="work-card__text">${esc(p.summary)}</p>
+              </div>
+            </article>`
+        )
+        .join('')
+      return `
+      <section class="section" id="work">
+        <div class="container">
+          <div class="sec-head reveal">
+            <span class="eyebrow">תיק עבודות</span>
+            <h2>פרוייקטים שיצאו לדרך</h2>
+          </div>
+          <div class="work" style="margin-block-start:2.25rem">
+            ${cards}
+          </div>
+          <p class="work-hint">${icons.arrow.replace('<svg', '<svg width="15" height="15"')}<span>החליקו לצפייה בכל הפרוייקטים</span></p>
+        </div>
+      </section>`
     },
     /** Sticky rail: section links built from the page's own H2s, plus a CTA. */
     rail(blocks, hasForm) {

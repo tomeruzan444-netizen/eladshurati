@@ -5,30 +5,30 @@
   "webp": [
    {
     "w": 400,
-    "url": "/assets/derived/0/portrait-cutout-400.webp",
+    "url": "/assets/derived/a43ce81e-400.webp",
     "bytes": 21444
    },
    {
     "w": 571,
-    "url": "/assets/derived/0/portrait-cutout-571.webp",
+    "url": "/assets/derived/a43ce81e-571.webp",
     "bytes": 34134
    }
   ],
   "avif": [
    {
     "w": 400,
-    "url": "/assets/derived/0/portrait-cutout-400.avif",
+    "url": "/assets/derived/a43ce81e-400.avif",
     "bytes": 14178
    },
    {
     "w": 571,
-    "url": "/assets/derived/0/portrait-cutout-571.avif",
+    "url": "/assets/derived/a43ce81e-571.avif",
     "bytes": 23263
    }
   ],
   "fallback": {
    "w": 571,
-   "url": "/assets/derived/0/portrait-cutout-571.png",
+   "url": "/assets/derived/a43ce81e-571.png",
    "bytes": 507584
   }
  },
@@ -38,31 +38,64 @@
   "webp": [
    {
     "w": 400,
-    "url": "/assets/derived/1/wordmark-dark-400.webp",
+    "url": "/assets/derived/0885c513-400.webp",
     "bytes": 12820
    },
    {
     "w": 600,
-    "url": "/assets/derived/1/wordmark-dark-600.webp",
+    "url": "/assets/derived/0885c513-600.webp",
     "bytes": 19998
    }
   ],
   "avif": [
    {
     "w": 400,
-    "url": "/assets/derived/1/wordmark-dark-400.avif",
+    "url": "/assets/derived/0885c513-400.avif",
     "bytes": 6927
    },
    {
     "w": 600,
-    "url": "/assets/derived/1/wordmark-dark-600.avif",
+    "url": "/assets/derived/0885c513-600.avif",
     "bytes": 10902
    }
   ],
   "fallback": {
    "w": 600,
-   "url": "/assets/derived/1/wordmark-dark-600.png",
+   "url": "/assets/derived/0885c513-600.png",
    "bytes": 37099
+  }
+ },
+ "/assets/brand/wordmark-navy.png": {
+  "width": 600,
+  "height": 100,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/c7e8af58-400.webp",
+    "bytes": 9170
+   },
+   {
+    "w": 600,
+    "url": "/assets/derived/c7e8af58-600.webp",
+    "bytes": 12460
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/c7e8af58-400.avif",
+    "bytes": 5228
+   },
+   {
+    "w": 600,
+    "url": "/assets/derived/c7e8af58-600.avif",
+    "bytes": 7698
+   }
+  ],
+  "fallback": {
+   "w": 600,
+   "url": "/assets/derived/c7e8af58-600.png",
+   "bytes": 22309
   }
  },
  "/assets/brand/wordmark-white.png": {
@@ -71,31 +104,409 @@
   "webp": [
    {
     "w": 400,
-    "url": "/assets/derived/2/wordmark-white-400.webp",
+    "url": "/assets/derived/654d680c-400.webp",
     "bytes": 11162
    },
    {
     "w": 600,
-    "url": "/assets/derived/2/wordmark-white-600.webp",
+    "url": "/assets/derived/654d680c-600.webp",
     "bytes": 16770
    }
   ],
   "avif": [
    {
     "w": 400,
-    "url": "/assets/derived/2/wordmark-white-400.avif",
+    "url": "/assets/derived/654d680c-400.avif",
     "bytes": 6820
    },
    {
     "w": 600,
-    "url": "/assets/derived/2/wordmark-white-600.avif",
+    "url": "/assets/derived/654d680c-600.avif",
     "bytes": 9870
    }
   ],
   "fallback": {
    "w": 600,
-   "url": "/assets/derived/2/wordmark-white-600.png",
+   "url": "/assets/derived/654d680c-600.png",
    "bytes": 27091
+  }
+ },
+ "/assets/images/פרוייקטים ולקוחות/פוייקט 6 - עורך דין אסף ברוך .png": {
+  "width": 1884,
+  "height": 892,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/b313bf04-400.webp",
+    "bytes": 5078
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/b313bf04-700.webp",
+    "bytes": 11364
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/b313bf04-1000.webp",
+    "bytes": 19370
+   },
+   {
+    "w": 1400,
+    "url": "/assets/derived/b313bf04-1400.webp",
+    "bytes": 31276
+   },
+   {
+    "w": 1884,
+    "url": "/assets/derived/b313bf04-1884.webp",
+    "bytes": 47976
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/b313bf04-400.avif",
+    "bytes": 4218
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/b313bf04-700.avif",
+    "bytes": 8587
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/b313bf04-1000.avif",
+    "bytes": 13767
+   },
+   {
+    "w": 1400,
+    "url": "/assets/derived/b313bf04-1400.avif",
+    "bytes": 22082
+   },
+   {
+    "w": 1884,
+    "url": "/assets/derived/b313bf04-1884.avif",
+    "bytes": 30891
+   }
+  ],
+  "fallback": {
+   "w": 1400,
+   "url": "/assets/derived/b313bf04-1400.png",
+   "bytes": 403920
+  }
+ },
+ "/assets/images/פרוייקטים ולקוחות/פרוייקט 1 - מועלם מטבייב משרד עורכי דין.png": {
+  "width": 1894,
+  "height": 904,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/323da819-400.webp",
+    "bytes": 3832
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/323da819-700.webp",
+    "bytes": 7950
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/323da819-1000.webp",
+    "bytes": 12988
+   },
+   {
+    "w": 1400,
+    "url": "/assets/derived/323da819-1400.webp",
+    "bytes": 19796
+   },
+   {
+    "w": 1894,
+    "url": "/assets/derived/323da819-1894.webp",
+    "bytes": 28574
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/323da819-400.avif",
+    "bytes": 3513
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/323da819-700.avif",
+    "bytes": 6762
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/323da819-1000.avif",
+    "bytes": 10765
+   },
+   {
+    "w": 1400,
+    "url": "/assets/derived/323da819-1400.avif",
+    "bytes": 16190
+   },
+   {
+    "w": 1894,
+    "url": "/assets/derived/323da819-1894.avif",
+    "bytes": 22539
+   }
+  ],
+  "fallback": {
+   "w": 1400,
+   "url": "/assets/derived/323da819-1400.png",
+   "bytes": 385061
+  }
+ },
+ "/assets/images/פרוייקטים ולקוחות/פרוייקט 2 - אודם קייר קוסמטיק.png": {
+  "width": 1899,
+  "height": 886,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/2a861f7b-400.webp",
+    "bytes": 8020
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/2a861f7b-700.webp",
+    "bytes": 19314
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/2a861f7b-1000.webp",
+    "bytes": 31790
+   },
+   {
+    "w": 1400,
+    "url": "/assets/derived/2a861f7b-1400.webp",
+    "bytes": 46952
+   },
+   {
+    "w": 1899,
+    "url": "/assets/derived/2a861f7b-1899.webp",
+    "bytes": 68372
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/2a861f7b-400.avif",
+    "bytes": 6165
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/2a861f7b-700.avif",
+    "bytes": 15618
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/2a861f7b-1000.avif",
+    "bytes": 26566
+   },
+   {
+    "w": 1400,
+    "url": "/assets/derived/2a861f7b-1400.avif",
+    "bytes": 38610
+   },
+   {
+    "w": 1899,
+    "url": "/assets/derived/2a861f7b-1899.avif",
+    "bytes": 49738
+   }
+  ],
+  "fallback": {
+   "w": 1400,
+   "url": "/assets/derived/2a861f7b-1400.png",
+   "bytes": 673337
+  }
+ },
+ "/assets/images/פרוייקטים ולקוחות/פרוייקט 3 - דוקטור אשרף עתאמנה.png": {
+  "width": 1900,
+  "height": 904,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/55e6a3f1-400.webp",
+    "bytes": 7226
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/55e6a3f1-700.webp",
+    "bytes": 15938
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/55e6a3f1-1000.webp",
+    "bytes": 26116
+   },
+   {
+    "w": 1400,
+    "url": "/assets/derived/55e6a3f1-1400.webp",
+    "bytes": 41042
+   },
+   {
+    "w": 1900,
+    "url": "/assets/derived/55e6a3f1-1900.webp",
+    "bytes": 60184
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/55e6a3f1-400.avif",
+    "bytes": 5227
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/55e6a3f1-700.avif",
+    "bytes": 11382
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/55e6a3f1-1000.avif",
+    "bytes": 18957
+   },
+   {
+    "w": 1400,
+    "url": "/assets/derived/55e6a3f1-1400.avif",
+    "bytes": 30106
+   },
+   {
+    "w": 1900,
+    "url": "/assets/derived/55e6a3f1-1900.avif",
+    "bytes": 40933
+   }
+  ],
+  "fallback": {
+   "w": 1400,
+   "url": "/assets/derived/55e6a3f1-1400.png",
+   "bytes": 744512
+  }
+ },
+ "/assets/images/פרוייקטים ולקוחות/פרוייקט 4 - התאחדות המלאכה והתעשייה בירושלים.png": {
+  "width": 1902,
+  "height": 904,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/3528dfe2-400.webp",
+    "bytes": 7902
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/3528dfe2-700.webp",
+    "bytes": 15988
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/3528dfe2-1000.webp",
+    "bytes": 25584
+   },
+   {
+    "w": 1400,
+    "url": "/assets/derived/3528dfe2-1400.webp",
+    "bytes": 37136
+   },
+   {
+    "w": 1902,
+    "url": "/assets/derived/3528dfe2-1902.webp",
+    "bytes": 55270
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/3528dfe2-400.avif",
+    "bytes": 5692
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/3528dfe2-700.avif",
+    "bytes": 12130
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/3528dfe2-1000.avif",
+    "bytes": 19680
+   },
+   {
+    "w": 1400,
+    "url": "/assets/derived/3528dfe2-1400.avif",
+    "bytes": 29518
+   },
+   {
+    "w": 1902,
+    "url": "/assets/derived/3528dfe2-1902.avif",
+    "bytes": 41035
+   }
+  ],
+  "fallback": {
+   "w": 1400,
+   "url": "/assets/derived/3528dfe2-1400.png",
+   "bytes": 806399
+  }
+ },
+ "/assets/images/פרוייקטים ולקוחות/פרוייקט 5 - עורך דין ליאור עייש.png": {
+  "width": 1896,
+  "height": 900,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/cfbc93fd-400.webp",
+    "bytes": 4660
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/cfbc93fd-700.webp",
+    "bytes": 10678
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/cfbc93fd-1000.webp",
+    "bytes": 18024
+   },
+   {
+    "w": 1400,
+    "url": "/assets/derived/cfbc93fd-1400.webp",
+    "bytes": 29764
+   },
+   {
+    "w": 1896,
+    "url": "/assets/derived/cfbc93fd-1896.webp",
+    "bytes": 42602
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/cfbc93fd-400.avif",
+    "bytes": 3741
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/cfbc93fd-700.avif",
+    "bytes": 8641
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/cfbc93fd-1000.avif",
+    "bytes": 13780
+   },
+   {
+    "w": 1400,
+    "url": "/assets/derived/cfbc93fd-1400.avif",
+    "bytes": 21931
+   },
+   {
+    "w": 1896,
+    "url": "/assets/derived/cfbc93fd-1896.avif",
+    "bytes": 28632
+   }
+  ],
+  "fallback": {
+   "w": 1400,
+   "url": "/assets/derived/cfbc93fd-1400.png",
+   "bytes": 360339
   }
  },
  "https://elad-digital.co.il/wp-content/uploads/2023/07/CTA-contact-us-new.png": {
@@ -104,30 +515,30 @@
   "webp": [
    {
     "w": 400,
-    "url": "/assets/derived/3/CTA-contact-us-new-400.webp",
+    "url": "/assets/derived/76f85c82-400.webp",
     "bytes": 10640
    },
    {
     "w": 539,
-    "url": "/assets/derived/3/CTA-contact-us-new-539.webp",
+    "url": "/assets/derived/76f85c82-539.webp",
     "bytes": 15620
    }
   ],
   "avif": [
    {
     "w": 400,
-    "url": "/assets/derived/3/CTA-contact-us-new-400.avif",
+    "url": "/assets/derived/76f85c82-400.avif",
     "bytes": 9052
    },
    {
     "w": 539,
-    "url": "/assets/derived/3/CTA-contact-us-new-539.avif",
+    "url": "/assets/derived/76f85c82-539.avif",
     "bytes": 13165
    }
   ],
   "fallback": {
    "w": 539,
-   "url": "/assets/derived/3/CTA-contact-us-new-539.png",
+   "url": "/assets/derived/76f85c82-539.png",
    "bytes": 336489
   }
  },
@@ -137,50 +548,50 @@
   "webp": [
    {
     "w": 400,
-    "url": "/assets/derived/4/team-work-process-young-business-managers-crew-working-with-new-startup-project-labtop-wood-table-typing-keyboard-texting-message-analyze-graph-plans-1024x683-400.webp",
+    "url": "/assets/derived/b36026c0-400.webp",
     "bytes": 8570
    },
    {
     "w": 700,
-    "url": "/assets/derived/4/team-work-process-young-business-managers-crew-working-with-new-startup-project-labtop-wood-table-typing-keyboard-texting-message-analyze-graph-plans-1024x683-700.webp",
+    "url": "/assets/derived/b36026c0-700.webp",
     "bytes": 17522
    },
    {
     "w": 1000,
-    "url": "/assets/derived/4/team-work-process-young-business-managers-crew-working-with-new-startup-project-labtop-wood-table-typing-keyboard-texting-message-analyze-graph-plans-1024x683-1000.webp",
+    "url": "/assets/derived/b36026c0-1000.webp",
     "bytes": 27058
    },
    {
     "w": 1024,
-    "url": "/assets/derived/4/team-work-process-young-business-managers-crew-working-with-new-startup-project-labtop-wood-table-typing-keyboard-texting-message-analyze-graph-plans-1024x683-1024.webp",
+    "url": "/assets/derived/b36026c0-1024.webp",
     "bytes": 28350
    }
   ],
   "avif": [
    {
     "w": 400,
-    "url": "/assets/derived/4/team-work-process-young-business-managers-crew-working-with-new-startup-project-labtop-wood-table-typing-keyboard-texting-message-analyze-graph-plans-1024x683-400.avif",
+    "url": "/assets/derived/b36026c0-400.avif",
     "bytes": 22098
    },
    {
     "w": 700,
-    "url": "/assets/derived/4/team-work-process-young-business-managers-crew-working-with-new-startup-project-labtop-wood-table-typing-keyboard-texting-message-analyze-graph-plans-1024x683-700.avif",
+    "url": "/assets/derived/b36026c0-700.avif",
     "bytes": 29507
    },
    {
     "w": 1000,
-    "url": "/assets/derived/4/team-work-process-young-business-managers-crew-working-with-new-startup-project-labtop-wood-table-typing-keyboard-texting-message-analyze-graph-plans-1024x683-1000.avif",
+    "url": "/assets/derived/b36026c0-1000.avif",
     "bytes": 38055
    },
    {
     "w": 1024,
-    "url": "/assets/derived/4/team-work-process-young-business-managers-crew-working-with-new-startup-project-labtop-wood-table-typing-keyboard-texting-message-analyze-graph-plans-1024x683-1024.avif",
+    "url": "/assets/derived/b36026c0-1024.avif",
     "bytes": 39544
    }
   ],
   "fallback": {
    "w": 1024,
-   "url": "/assets/derived/4/team-work-process-young-business-managers-crew-working-with-new-startup-project-labtop-wood-table-typing-keyboard-texting-message-analyze-graph-plans-1024x683-1024.jpg",
+   "url": "/assets/derived/b36026c0-1024.jpg",
    "bytes": 65787
   }
  },
@@ -190,50 +601,50 @@
   "webp": [
    {
     "w": 400,
-    "url": "/assets/derived/5/3E9A2033-1024x683-400.webp",
+    "url": "/assets/derived/5209cfc9-400.webp",
     "bytes": 8364
    },
    {
     "w": 700,
-    "url": "/assets/derived/5/3E9A2033-1024x683-700.webp",
+    "url": "/assets/derived/5209cfc9-700.webp",
     "bytes": 17872
    },
    {
     "w": 1000,
-    "url": "/assets/derived/5/3E9A2033-1024x683-1000.webp",
+    "url": "/assets/derived/5209cfc9-1000.webp",
     "bytes": 29134
    },
    {
     "w": 1024,
-    "url": "/assets/derived/5/3E9A2033-1024x683-1024.webp",
+    "url": "/assets/derived/5209cfc9-1024.webp",
     "bytes": 30944
    }
   ],
   "avif": [
    {
     "w": 400,
-    "url": "/assets/derived/5/3E9A2033-1024x683-400.avif",
+    "url": "/assets/derived/5209cfc9-400.avif",
     "bytes": 30787
    },
    {
     "w": 700,
-    "url": "/assets/derived/5/3E9A2033-1024x683-700.avif",
+    "url": "/assets/derived/5209cfc9-700.avif",
     "bytes": 37190
    },
    {
     "w": 1000,
-    "url": "/assets/derived/5/3E9A2033-1024x683-1000.avif",
+    "url": "/assets/derived/5209cfc9-1000.avif",
     "bytes": 45422
    },
    {
     "w": 1024,
-    "url": "/assets/derived/5/3E9A2033-1024x683-1024.avif",
+    "url": "/assets/derived/5209cfc9-1024.avif",
     "bytes": 46846
    }
   ],
   "fallback": {
    "w": 1024,
-   "url": "/assets/derived/5/3E9A2033-1024x683-1024.jpg",
+   "url": "/assets/derived/5209cfc9-1024.jpg",
    "bytes": 53841
   }
  },
@@ -243,40 +654,40 @@
   "webp": [
    {
     "w": 400,
-    "url": "/assets/derived/6/unnamed-400.webp",
+    "url": "/assets/derived/86f03d75-400.webp",
     "bytes": 23198
    },
    {
     "w": 700,
-    "url": "/assets/derived/6/unnamed-700.webp",
+    "url": "/assets/derived/86f03d75-700.webp",
     "bytes": 51022
    },
    {
     "w": 828,
-    "url": "/assets/derived/6/unnamed-828.webp",
+    "url": "/assets/derived/86f03d75-828.webp",
     "bytes": 64448
    }
   ],
   "avif": [
    {
     "w": 400,
-    "url": "/assets/derived/6/unnamed-400.avif",
+    "url": "/assets/derived/86f03d75-400.avif",
     "bytes": 17788
    },
    {
     "w": 700,
-    "url": "/assets/derived/6/unnamed-700.avif",
+    "url": "/assets/derived/86f03d75-700.avif",
     "bytes": 42433
    },
    {
     "w": 828,
-    "url": "/assets/derived/6/unnamed-828.avif",
+    "url": "/assets/derived/86f03d75-828.avif",
     "bytes": 54384
    }
   ],
   "fallback": {
    "w": 828,
-   "url": "/assets/derived/6/unnamed-828.jpg",
+   "url": "/assets/derived/86f03d75-828.jpg",
    "bytes": 131670
   }
  },
@@ -286,20 +697,20 @@
   "webp": [
    {
     "w": 400,
-    "url": "/assets/derived/7/אלעד-400.webp",
+    "url": "/assets/derived/ce6d49b6-400.webp",
     "bytes": 8816
    }
   ],
   "avif": [
    {
     "w": 400,
-    "url": "/assets/derived/7/אלעד-400.avif",
+    "url": "/assets/derived/ce6d49b6-400.avif",
     "bytes": 12094
    }
   ],
   "fallback": {
    "w": 400,
-   "url": "/assets/derived/7/אלעד-400.jpg",
+   "url": "/assets/derived/ce6d49b6-400.jpg",
    "bytes": 21164
   }
  },
@@ -309,30 +720,30 @@
   "webp": [
    {
     "w": 400,
-    "url": "/assets/derived/8/אסטרטגיה-עסקית-400.webp",
+    "url": "/assets/derived/067eafcc-400.webp",
     "bytes": 8782
    },
    {
     "w": 700,
-    "url": "/assets/derived/8/אסטרטגיה-עסקית-700.webp",
+    "url": "/assets/derived/067eafcc-700.webp",
     "bytes": 17610
    }
   ],
   "avif": [
    {
     "w": 400,
-    "url": "/assets/derived/8/אסטרטגיה-עסקית-400.avif",
+    "url": "/assets/derived/067eafcc-400.avif",
     "bytes": 7076
    },
    {
     "w": 700,
-    "url": "/assets/derived/8/אסטרטגיה-עסקית-700.avif",
+    "url": "/assets/derived/067eafcc-700.avif",
     "bytes": 13841
    }
   ],
   "fallback": {
    "w": 700,
-   "url": "/assets/derived/8/אסטרטגיה-עסקית-700.jpg",
+   "url": "/assets/derived/067eafcc-700.jpg",
    "bytes": 39401
   }
  },
@@ -342,30 +753,30 @@
   "webp": [
    {
     "w": 400,
-    "url": "/assets/derived/9/עקרונות-פיתוח-עסקי-400.webp",
+    "url": "/assets/derived/3fb8e6ce-400.webp",
     "bytes": 24694
    },
    {
     "w": 700,
-    "url": "/assets/derived/9/עקרונות-פיתוח-עסקי-700.webp",
+    "url": "/assets/derived/3fb8e6ce-700.webp",
     "bytes": 27916
    }
   ],
   "avif": [
    {
     "w": 400,
-    "url": "/assets/derived/9/עקרונות-פיתוח-עסקי-400.avif",
+    "url": "/assets/derived/3fb8e6ce-400.avif",
     "bytes": 15176
    },
    {
     "w": 700,
-    "url": "/assets/derived/9/עקרונות-פיתוח-עסקי-700.avif",
+    "url": "/assets/derived/3fb8e6ce-700.avif",
     "bytes": 19179
    }
   ],
   "fallback": {
    "w": 700,
-   "url": "/assets/derived/9/עקרונות-פיתוח-עסקי-700.png",
+   "url": "/assets/derived/3fb8e6ce-700.png",
    "bytes": 53299
   }
  },
@@ -375,20 +786,20 @@
   "webp": [
    {
     "w": 141,
-    "url": "/assets/derived/10/1-141.webp",
+    "url": "/assets/derived/a0cafe13-141.webp",
     "bytes": 544
    }
   ],
   "avif": [
    {
     "w": 141,
-    "url": "/assets/derived/10/1-141.avif",
+    "url": "/assets/derived/a0cafe13-141.avif",
     "bytes": 964
    }
   ],
   "fallback": {
    "w": 141,
-   "url": "/assets/derived/10/1-141.png",
+   "url": "/assets/derived/a0cafe13-141.png",
    "bytes": 832
   }
  },
@@ -398,20 +809,20 @@
   "webp": [
    {
     "w": 141,
-    "url": "/assets/derived/11/2-141.webp",
+    "url": "/assets/derived/0e934548-141.webp",
     "bytes": 950
    }
   ],
   "avif": [
    {
     "w": 141,
-    "url": "/assets/derived/11/2-141.avif",
+    "url": "/assets/derived/0e934548-141.avif",
     "bytes": 1326
    }
   ],
   "fallback": {
    "w": 141,
-   "url": "/assets/derived/11/2-141.png",
+   "url": "/assets/derived/0e934548-141.png",
    "bytes": 1871
   }
  },
@@ -421,20 +832,20 @@
   "webp": [
    {
     "w": 141,
-    "url": "/assets/derived/12/3-141.webp",
+    "url": "/assets/derived/10c0a664-141.webp",
     "bytes": 536
    }
   ],
   "avif": [
    {
     "w": 141,
-    "url": "/assets/derived/12/3-141.avif",
+    "url": "/assets/derived/10c0a664-141.avif",
     "bytes": 945
    }
   ],
   "fallback": {
    "w": 141,
-   "url": "/assets/derived/12/3-141.png",
+   "url": "/assets/derived/10c0a664-141.png",
    "bytes": 1020
   }
  },
@@ -444,20 +855,20 @@
   "webp": [
    {
     "w": 141,
-    "url": "/assets/derived/13/4-141.webp",
+    "url": "/assets/derived/6e0de899-141.webp",
     "bytes": 748
    }
   ],
   "avif": [
    {
     "w": 141,
-    "url": "/assets/derived/13/4-141.avif",
+    "url": "/assets/derived/6e0de899-141.avif",
     "bytes": 1165
    }
   ],
   "fallback": {
    "w": 141,
-   "url": "/assets/derived/13/4-141.png",
+   "url": "/assets/derived/6e0de899-141.png",
    "bytes": 1256
   }
  },
@@ -467,20 +878,20 @@
   "webp": [
    {
     "w": 141,
-    "url": "/assets/derived/14/5-141.webp",
+    "url": "/assets/derived/81f8d709-141.webp",
     "bytes": 648
    }
   ],
   "avif": [
    {
     "w": 141,
-    "url": "/assets/derived/14/5-141.avif",
+    "url": "/assets/derived/81f8d709-141.avif",
     "bytes": 1146
    }
   ],
   "fallback": {
    "w": 141,
-   "url": "/assets/derived/14/5-141.png",
+   "url": "/assets/derived/81f8d709-141.png",
    "bytes": 1200
   }
  },
@@ -490,20 +901,20 @@
   "webp": [
    {
     "w": 141,
-    "url": "/assets/derived/15/6-141.webp",
+    "url": "/assets/derived/3564ad10-141.webp",
     "bytes": 734
    }
   ],
   "avif": [
    {
     "w": 141,
-    "url": "/assets/derived/15/6-141.avif",
+    "url": "/assets/derived/3564ad10-141.avif",
     "bytes": 1160
    }
   ],
   "fallback": {
    "w": 141,
-   "url": "/assets/derived/15/6-141.png",
+   "url": "/assets/derived/3564ad10-141.png",
    "bytes": 1419
   }
  },
@@ -513,40 +924,40 @@
   "webp": [
    {
     "w": 400,
-    "url": "/assets/derived/16/Screenshot-2025-01-12-151831-400.webp",
+    "url": "/assets/derived/45289810-400.webp",
     "bytes": 6716
    },
    {
     "w": 700,
-    "url": "/assets/derived/16/Screenshot-2025-01-12-151831-700.webp",
+    "url": "/assets/derived/45289810-700.webp",
     "bytes": 11644
    },
    {
     "w": 906,
-    "url": "/assets/derived/16/Screenshot-2025-01-12-151831-906.webp",
+    "url": "/assets/derived/45289810-906.webp",
     "bytes": 15514
    }
   ],
   "avif": [
    {
     "w": 400,
-    "url": "/assets/derived/16/Screenshot-2025-01-12-151831-400.avif",
+    "url": "/assets/derived/45289810-400.avif",
     "bytes": 5424
    },
    {
     "w": 700,
-    "url": "/assets/derived/16/Screenshot-2025-01-12-151831-700.avif",
+    "url": "/assets/derived/45289810-700.avif",
     "bytes": 9740
    },
    {
     "w": 906,
-    "url": "/assets/derived/16/Screenshot-2025-01-12-151831-906.avif",
+    "url": "/assets/derived/45289810-906.avif",
     "bytes": 13011
    }
   ],
   "fallback": {
    "w": 906,
-   "url": "/assets/derived/16/Screenshot-2025-01-12-151831-906.png",
+   "url": "/assets/derived/45289810-906.png",
    "bytes": 364869
   }
  },
@@ -556,30 +967,30 @@
   "webp": [
    {
     "w": 400,
-    "url": "/assets/derived/17/Untitled-design-21-400.webp",
+    "url": "/assets/derived/1c2fdd01-400.webp",
     "bytes": 21002
    },
    {
     "w": 512,
-    "url": "/assets/derived/17/Untitled-design-21-512.webp",
+    "url": "/assets/derived/1c2fdd01-512.webp",
     "bytes": 22246
    }
   ],
   "avif": [
    {
     "w": 400,
-    "url": "/assets/derived/17/Untitled-design-21-400.avif",
+    "url": "/assets/derived/1c2fdd01-400.avif",
     "bytes": 13230
    },
    {
     "w": 512,
-    "url": "/assets/derived/17/Untitled-design-21-512.avif",
+    "url": "/assets/derived/1c2fdd01-512.avif",
     "bytes": 16456
    }
   ],
   "fallback": {
    "w": 512,
-   "url": "/assets/derived/17/Untitled-design-21-512.png",
+   "url": "/assets/derived/1c2fdd01-512.png",
    "bytes": 57106
   }
  },
@@ -589,40 +1000,40 @@
   "webp": [
    {
     "w": 400,
-    "url": "/assets/derived/18/אינפוגרפיה-על-מחקר-שוק-מאת-אלעד-שורתי-812x1024-400.webp",
+    "url": "/assets/derived/03f400e8-400.webp",
     "bytes": 30350
    },
    {
     "w": 700,
-    "url": "/assets/derived/18/אינפוגרפיה-על-מחקר-שוק-מאת-אלעד-שורתי-812x1024-700.webp",
+    "url": "/assets/derived/03f400e8-700.webp",
     "bytes": 58412
    },
    {
     "w": 812,
-    "url": "/assets/derived/18/אינפוגרפיה-על-מחקר-שוק-מאת-אלעד-שורתי-812x1024-812.webp",
+    "url": "/assets/derived/03f400e8-812.webp",
     "bytes": 42116
    }
   ],
   "avif": [
    {
     "w": 400,
-    "url": "/assets/derived/18/אינפוגרפיה-על-מחקר-שוק-מאת-אלעד-שורתי-812x1024-400.avif",
+    "url": "/assets/derived/03f400e8-400.avif",
     "bytes": 17037
    },
    {
     "w": 700,
-    "url": "/assets/derived/18/אינפוגרפיה-על-מחקר-שוק-מאת-אלעד-שורתי-812x1024-700.avif",
+    "url": "/assets/derived/03f400e8-700.avif",
     "bytes": 29761
    },
    {
     "w": 812,
-    "url": "/assets/derived/18/אינפוגרפיה-על-מחקר-שוק-מאת-אלעד-שורתי-812x1024-812.avif",
+    "url": "/assets/derived/03f400e8-812.avif",
     "bytes": 28529
    }
   ],
   "fallback": {
    "w": 812,
-   "url": "/assets/derived/18/אינפוגרפיה-על-מחקר-שוק-מאת-אלעד-שורתי-812x1024-812.png",
+   "url": "/assets/derived/03f400e8-812.png",
    "bytes": 66605
   }
  },
@@ -632,50 +1043,50 @@
   "webp": [
    {
     "w": 400,
-    "url": "/assets/derived/19/אינפוגרפיה_-שלבים-לפיתוח-עסקי-נכון-visual-selection-1024x794-400.webp",
+    "url": "/assets/derived/d864f002-400.webp",
     "bytes": 28232
    },
    {
     "w": 700,
-    "url": "/assets/derived/19/אינפוגרפיה_-שלבים-לפיתוח-עסקי-נכון-visual-selection-1024x794-700.webp",
+    "url": "/assets/derived/d864f002-700.webp",
     "bytes": 63898
    },
    {
     "w": 1000,
-    "url": "/assets/derived/19/אינפוגרפיה_-שלבים-לפיתוח-עסקי-נכון-visual-selection-1024x794-1000.webp",
+    "url": "/assets/derived/d864f002-1000.webp",
     "bytes": 102226
    },
    {
     "w": 1024,
-    "url": "/assets/derived/19/אינפוגרפיה_-שלבים-לפיתוח-עסקי-נכון-visual-selection-1024x794-1024.webp",
+    "url": "/assets/derived/d864f002-1024.webp",
     "bytes": 57206
    }
   ],
   "avif": [
    {
     "w": 400,
-    "url": "/assets/derived/19/אינפוגרפיה_-שלבים-לפיתוח-עסקי-נכון-visual-selection-1024x794-400.avif",
+    "url": "/assets/derived/d864f002-400.avif",
     "bytes": 21051
    },
    {
     "w": 700,
-    "url": "/assets/derived/19/אינפוגרפיה_-שלבים-לפיתוח-עסקי-נכון-visual-selection-1024x794-700.avif",
+    "url": "/assets/derived/d864f002-700.avif",
     "bytes": 43966
    },
    {
     "w": 1000,
-    "url": "/assets/derived/19/אינפוגרפיה_-שלבים-לפיתוח-עסקי-נכון-visual-selection-1024x794-1000.avif",
+    "url": "/assets/derived/d864f002-1000.avif",
     "bytes": 68708
    },
    {
     "w": 1024,
-    "url": "/assets/derived/19/אינפוגרפיה_-שלבים-לפיתוח-עסקי-נכון-visual-selection-1024x794-1024.avif",
+    "url": "/assets/derived/d864f002-1024.avif",
     "bytes": 42859
    }
   ],
   "fallback": {
    "w": 1024,
-   "url": "/assets/derived/19/אינפוגרפיה_-שלבים-לפיתוח-עסקי-נכון-visual-selection-1024x794-1024.png",
+   "url": "/assets/derived/d864f002-1024.png",
    "bytes": 101623
   }
  },
@@ -685,50 +1096,50 @@
   "webp": [
    {
     "w": 400,
-    "url": "/assets/derived/20/מסע-הלקוח-בעסק-1024x1013-400.webp",
+    "url": "/assets/derived/e972d0cd-400.webp",
     "bytes": 35494
    },
    {
     "w": 700,
-    "url": "/assets/derived/20/מסע-הלקוח-בעסק-1024x1013-700.webp",
+    "url": "/assets/derived/e972d0cd-700.webp",
     "bytes": 67472
    },
    {
     "w": 1000,
-    "url": "/assets/derived/20/מסע-הלקוח-בעסק-1024x1013-1000.webp",
+    "url": "/assets/derived/e972d0cd-1000.webp",
     "bytes": 99500
    },
    {
     "w": 1024,
-    "url": "/assets/derived/20/מסע-הלקוח-בעסק-1024x1013-1024.webp",
+    "url": "/assets/derived/e972d0cd-1024.webp",
     "bytes": 60184
    }
   ],
   "avif": [
    {
     "w": 400,
-    "url": "/assets/derived/20/מסע-הלקוח-בעסק-1024x1013-400.avif",
+    "url": "/assets/derived/e972d0cd-400.avif",
     "bytes": 23817
    },
    {
     "w": 700,
-    "url": "/assets/derived/20/מסע-הלקוח-בעסק-1024x1013-700.avif",
+    "url": "/assets/derived/e972d0cd-700.avif",
     "bytes": 43495
    },
    {
     "w": 1000,
-    "url": "/assets/derived/20/מסע-הלקוח-בעסק-1024x1013-1000.avif",
+    "url": "/assets/derived/e972d0cd-1000.avif",
     "bytes": 62983
    },
    {
     "w": 1024,
-    "url": "/assets/derived/20/מסע-הלקוח-בעסק-1024x1013-1024.avif",
+    "url": "/assets/derived/e972d0cd-1024.avif",
     "bytes": 37994
    }
   ],
   "fallback": {
    "w": 1024,
-   "url": "/assets/derived/20/מסע-הלקוח-בעסק-1024x1013-1024.png",
+   "url": "/assets/derived/e972d0cd-1024.png",
    "bytes": 108209
   }
  },
@@ -738,50 +1149,50 @@
   "webp": [
    {
     "w": 400,
-    "url": "/assets/derived/21/סימני-אזהרה-בעסק-visual-1024x980-400.webp",
+    "url": "/assets/derived/5c1956fd-400.webp",
     "bytes": 15538
    },
    {
     "w": 700,
-    "url": "/assets/derived/21/סימני-אזהרה-בעסק-visual-1024x980-700.webp",
+    "url": "/assets/derived/5c1956fd-700.webp",
     "bytes": 29582
    },
    {
     "w": 1000,
-    "url": "/assets/derived/21/סימני-אזהרה-בעסק-visual-1024x980-1000.webp",
+    "url": "/assets/derived/5c1956fd-1000.webp",
     "bytes": 45770
    },
    {
     "w": 1024,
-    "url": "/assets/derived/21/סימני-אזהרה-בעסק-visual-1024x980-1024.webp",
+    "url": "/assets/derived/5c1956fd-1024.webp",
     "bytes": 31330
    }
   ],
   "avif": [
    {
     "w": 400,
-    "url": "/assets/derived/21/סימני-אזהרה-בעסק-visual-1024x980-400.avif",
+    "url": "/assets/derived/5c1956fd-400.avif",
     "bytes": 9448
    },
    {
     "w": 700,
-    "url": "/assets/derived/21/סימני-אזהרה-בעסק-visual-1024x980-700.avif",
+    "url": "/assets/derived/5c1956fd-700.avif",
     "bytes": 17551
    },
    {
     "w": 1000,
-    "url": "/assets/derived/21/סימני-אזהרה-בעסק-visual-1024x980-1000.avif",
+    "url": "/assets/derived/5c1956fd-1000.avif",
     "bytes": 25367
    },
    {
     "w": 1024,
-    "url": "/assets/derived/21/סימני-אזהרה-בעסק-visual-1024x980-1024.avif",
+    "url": "/assets/derived/5c1956fd-1024.avif",
     "bytes": 21443
    }
   ],
   "fallback": {
    "w": 1024,
-   "url": "/assets/derived/21/סימני-אזהרה-בעסק-visual-1024x980-1024.png",
+   "url": "/assets/derived/5c1956fd-1024.png",
    "bytes": 77973
   }
  },
@@ -791,50 +1202,50 @@
   "webp": [
    {
     "w": 400,
-    "url": "/assets/derived/22/אינפוגרפיה-על-מנטור-עסקי-visual-selection-min-1024x920-400.webp",
+    "url": "/assets/derived/74d172c7-400.webp",
     "bytes": 31686
    },
    {
     "w": 700,
-    "url": "/assets/derived/22/אינפוגרפיה-על-מנטור-עסקי-visual-selection-min-1024x920-700.webp",
+    "url": "/assets/derived/74d172c7-700.webp",
     "bytes": 61848
    },
    {
     "w": 1000,
-    "url": "/assets/derived/22/אינפוגרפיה-על-מנטור-עסקי-visual-selection-min-1024x920-1000.webp",
+    "url": "/assets/derived/74d172c7-1000.webp",
     "bytes": 92930
    },
    {
     "w": 1024,
-    "url": "/assets/derived/22/אינפוגרפיה-על-מנטור-עסקי-visual-selection-min-1024x920-1024.webp",
+    "url": "/assets/derived/74d172c7-1024.webp",
     "bytes": 54282
    }
   ],
   "avif": [
    {
     "w": 400,
-    "url": "/assets/derived/22/אינפוגרפיה-על-מנטור-עסקי-visual-selection-min-1024x920-400.avif",
+    "url": "/assets/derived/74d172c7-400.avif",
     "bytes": 21821
    },
    {
     "w": 700,
-    "url": "/assets/derived/22/אינפוגרפיה-על-מנטור-עסקי-visual-selection-min-1024x920-700.avif",
+    "url": "/assets/derived/74d172c7-700.avif",
     "bytes": 42314
    },
    {
     "w": 1000,
-    "url": "/assets/derived/22/אינפוגרפיה-על-מנטור-עסקי-visual-selection-min-1024x920-1000.avif",
+    "url": "/assets/derived/74d172c7-1000.avif",
     "bytes": 62735
    },
    {
     "w": 1024,
-    "url": "/assets/derived/22/אינפוגרפיה-על-מנטור-עסקי-visual-selection-min-1024x920-1024.avif",
+    "url": "/assets/derived/74d172c7-1024.avif",
     "bytes": 37434
    }
   ],
   "fallback": {
    "w": 1024,
-   "url": "/assets/derived/22/אינפוגרפיה-על-מנטור-עסקי-visual-selection-min-1024x920-1024.png",
+   "url": "/assets/derived/74d172c7-1024.png",
    "bytes": 130306
   }
  },
@@ -844,30 +1255,30 @@
   "webp": [
    {
     "w": 400,
-    "url": "/assets/derived/23/שיווק-באינסטגרם-400.webp",
+    "url": "/assets/derived/0dd37e03-400.webp",
     "bytes": 12038
    },
    {
     "w": 500,
-    "url": "/assets/derived/23/שיווק-באינסטגרם-500.webp",
+    "url": "/assets/derived/0dd37e03-500.webp",
     "bytes": 16904
    }
   ],
   "avif": [
    {
     "w": 400,
-    "url": "/assets/derived/23/שיווק-באינסטגרם-400.avif",
+    "url": "/assets/derived/0dd37e03-400.avif",
     "bytes": 9266
    },
    {
     "w": 500,
-    "url": "/assets/derived/23/שיווק-באינסטגרם-500.avif",
+    "url": "/assets/derived/0dd37e03-500.avif",
     "bytes": 12583
    }
   ],
   "fallback": {
    "w": 500,
-   "url": "/assets/derived/23/שיווק-באינסטגרם-500.png",
+   "url": "/assets/derived/0dd37e03-500.png",
    "bytes": 224381
   }
  },
@@ -877,50 +1288,50 @@
   "webp": [
    {
     "w": 400,
-    "url": "/assets/derived/24/אלעד-שורתי-min-1-1024x683-400.webp",
+    "url": "/assets/derived/6b40efe6-400.webp",
     "bytes": 13824
    },
    {
     "w": 700,
-    "url": "/assets/derived/24/אלעד-שורתי-min-1-1024x683-700.webp",
+    "url": "/assets/derived/6b40efe6-700.webp",
     "bytes": 30602
    },
    {
     "w": 1000,
-    "url": "/assets/derived/24/אלעד-שורתי-min-1-1024x683-1000.webp",
+    "url": "/assets/derived/6b40efe6-1000.webp",
     "bytes": 46602
    },
    {
     "w": 1024,
-    "url": "/assets/derived/24/אלעד-שורתי-min-1-1024x683-1024.webp",
+    "url": "/assets/derived/6b40efe6-1024.webp",
     "bytes": 45202
    }
   ],
   "avif": [
    {
     "w": 400,
-    "url": "/assets/derived/24/אלעד-שורתי-min-1-1024x683-400.avif",
+    "url": "/assets/derived/6b40efe6-400.avif",
     "bytes": 9532
    },
    {
     "w": 700,
-    "url": "/assets/derived/24/אלעד-שורתי-min-1-1024x683-700.avif",
+    "url": "/assets/derived/6b40efe6-700.avif",
     "bytes": 22357
    },
    {
     "w": 1000,
-    "url": "/assets/derived/24/אלעד-שורתי-min-1-1024x683-1000.avif",
+    "url": "/assets/derived/6b40efe6-1000.avif",
     "bytes": 36340
    },
    {
     "w": 1024,
-    "url": "/assets/derived/24/אלעד-שורתי-min-1-1024x683-1024.avif",
+    "url": "/assets/derived/6b40efe6-1024.avif",
     "bytes": 38352
    }
   ],
   "fallback": {
    "w": 1024,
-   "url": "/assets/derived/24/אלעד-שורתי-min-1-1024x683-1024.jpg",
+   "url": "/assets/derived/6b40efe6-1024.jpg",
    "bytes": 90626
   }
  }

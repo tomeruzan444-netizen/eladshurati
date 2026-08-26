@@ -198,17 +198,21 @@ export function responsiveImage(src, opts = {}) {
 
   if (!d) {
     const dim = width && height ? ` width="${width}" height="${height}"` : ''
-    return `<img${cls} src="${esc(src)}" alt="${esc(alt)}"${dim}${prio}>`
+    return `<img${cls} src="${esc(encodeURI(src))}" alt="${esc(alt)}"${dim}${prio}>`
   }
 
-  const set = (list) => list.map((c) => `${c.url} ${c.w}w`).join(', ')
+  // srcset has no way to escape a space, so a raw URL with one is parsed as
+  // "url" + "descriptor" and the candidate is discarded. Several project
+  // screenshots have spaces in their filenames.
+  const enc = (u) => encodeURI(u)
+  const set = (list) => list.map((c) => `${enc(c.url)} ${c.w}w`).join(', ')
   const fb = d.fallback
   const ratioH = Math.round((d.height * fb.w) / d.width)
   const sources = []
   if (d.avif?.length) sources.push(`<source type="image/avif" srcset="${set(d.avif)}" sizes="${sizes}">`)
   if (d.webp?.length) sources.push(`<source type="image/webp" srcset="${set(d.webp)}" sizes="${sizes}">`)
 
-  return `<picture>${sources.join('')}<img${cls} src="${fb.url}" alt="${esc(alt)}" width="${fb.w}" height="${ratioH}"${prio}></picture>`
+  return `<picture>${sources.join('')}<img${cls} src="${enc(fb.url)}" alt="${esc(alt)}" width="${fb.w}" height="${ratioH}"${prio}></picture>`
 }
 
 /** Preload hint matching the srcset a <picture> will choose — for the LCP image. */
@@ -218,7 +222,7 @@ export function preloadImage(src, { sizes, derivatives = {} }) {
   const list = d.avif?.length ? d.avif : d.webp
   const type = d.avif?.length ? 'image/avif' : 'image/webp'
   if (!list?.length) return ''
-  const set = list.map((c) => `${c.url} ${c.w}w`).join(', ')
+  const set = list.map((c) => `${encodeURI(c.url)} ${c.w}w`).join(', ')
   return `<link rel="preload" as="image" type="${type}" imagesrcset="${esc(set)}" imagesizes="${esc(sizes)}" fetchpriority="high">`
 }
 

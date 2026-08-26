@@ -34,6 +34,7 @@ STAGING=1 npm run build
 | תיקייה | מה יש בה |
 |---|---|
 | `_source/` | ה-HTML הגולמי שנשאב מהאתר החי + מפת ה-URL-ים. נקודת האמת להשוואה. |
+| `content/projects.json` | תיק העבודות — שם, תיאור, תגית, תמונה וצבע אריח לכל פרוייקט. עריכה כאן משנה את הסקשן בעמוד הבית. |
 | `content/` | שכבת התוכן המובנית — `pages.json`, `nav.json`, `links.json`, `media-manifest.json`, `audit.json`, `url-map.csv` |
 | `assets/images/` | 569 קבצי מדיה (82MB) — כל ספריית המדיה של וורדפרס, כולל כל הגדלים |
 | `assets/brand/` | לוגו וקטורי, סמליל ב-5 גרסאות צבע, פורטרט מחותך רקע, favicon |

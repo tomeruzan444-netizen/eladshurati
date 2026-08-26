@@ -10,6 +10,7 @@ result in content/image-derivatives.json for the build to turn into srcset.
 
 Originals under assets/images/ are never modified.
 """
+import hashlib
 import io
 import json
 import os
@@ -57,20 +58,34 @@ def collect():
                 wanted.add(b["src"])
     for extra in ("/assets/brand/portrait-cutout.png",
                   "/assets/brand/wordmark-dark.png",
+                  "/assets/brand/wordmark-navy.png",
                   "/assets/brand/wordmark-white.png"):
         wanted.add(extra)
+
+    # Portfolio screenshots — they live outside pages.json, so pick them up here.
+    proj = os.path.join(ROOT, "content", "projects.json")
+    if os.path.exists(proj):
+        with io.open(proj, encoding="utf-8") as fh:
+            for item in json.load(fh):
+                if item.get("image"):
+                    wanted.add(item["image"])
     return sorted(wanted)
 
 
 def derive(src_path, rel_key):
+    """rel_key doubles as the output filename stem: short, ASCII, collision-free."""
     im = Image.open(src_path)
     im.load()
     ow, oh = im.size
     has_alpha = im.mode in ("RGBA", "LA") or (im.mode == "P" and "transparency" in im.info)
     im = im.convert("RGBA" if has_alpha else "RGB")
 
-    stem = os.path.splitext(os.path.basename(src_path))[0]
-    folder = os.path.join(DERIV, rel_key)
+    # Short ASCII names rather than the source filename. Hebrew names with
+    # spaces percent-encode to ~150 characters each and appeared a dozen times
+    # per <picture>, which pushed the home page HTML up by 20KB — and a space
+    # in a srcset URL is unparseable, so it also broke two of them outright.
+    stem = rel_key
+    folder = DERIV
     os.makedirs(folder, exist_ok=True)
 
     entry = {"width": ow, "height": oh, "webp": [], "avif": [], "fallback": None}
@@ -112,14 +127,17 @@ def main():
     before = after = 0
     skipped = []
 
-    for i, src in enumerate(collect()):
+    for src in collect():
         p = local_path(src)
         if not p or not os.path.exists(p):
             skipped.append(src)
             continue
         if os.path.splitext(p)[1].lower() in (".svg", ".gif"):
             continue
-        key = str(i)
+        # Folder keyed by a hash of the source path, not its position in the
+        # list: adding an image used to shift every index after it, so two
+        # different pictures ended up sharing a folder.
+        key = hashlib.sha1(src.encode("utf-8")).hexdigest()[:8]
         try:
             entry = derive(p, key)
         except Exception as err:
