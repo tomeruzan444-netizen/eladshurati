@@ -76,13 +76,13 @@
 }
 
 .btn--primary {
-  --btn-bg: var(--lime-500);
-  --btn-fg: var(--navy);
-  --btn-border: var(--lime-500);
-  box-shadow: 0 10px 24px -12px rgb(8 12 41 / 0.45);
+  --btn-bg: var(--orange-500);
+  --btn-fg: var(--plum);
+  --btn-border: var(--orange-500);
+  box-shadow: 0 10px 24px -12px rgb(43 0 56 / 0.45);
 }
 .btn--ghost {
-  --btn-fg: var(--navy);
+  --btn-fg: var(--plum);
 }
 .btn--ghost {
   --btn-bg: transparent;
@@ -117,14 +117,14 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background: color-mix(in srgb, var(--cream) 90%, transparent);
+  background: color-mix(in srgb, var(--mist) 90%, transparent);
   backdrop-filter: saturate(180%) blur(14px);
   border-bottom: 1px solid transparent;
   transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
 .header[data-scrolled='true'] {
   border-bottom-color: var(--line);
-  box-shadow: 0 6px 24px -18px rgb(8 12 41 / 0.5);
+  box-shadow: 0 6px 24px -18px rgb(43 0 56 / 0.5);
 }
 .header__inner {
   display: flex;
@@ -375,7 +375,7 @@
 
 .hero {
   position: relative;
-  background: var(--cream);
+  background: var(--mist);
   overflow: hidden;
   isolation: isolate;
   min-height: clamp(540px, 76vh, 720px);
@@ -434,7 +434,7 @@
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  color: var(--turq-deep);
+  color: var(--purple-ink);
   font-size: var(--step--1);
   font-weight: 700;
   letter-spacing: 0.02em;
@@ -445,20 +445,20 @@
   max-width: 170px;
   height: 2px;
   border-radius: 2px;
-  background: linear-gradient(90deg, var(--lime-500), transparent);
+  background: linear-gradient(90deg, var(--orange-500), transparent);
 }
 .hero__eyebrow svg {
   width: 16px;
   height: 16px;
   flex: none;
-  color: var(--lime-deep);
+  color: var(--orange-ink);
 }
 
 .hero__title {
   font-size: clamp(2.35rem, 1.4rem + 4.2vw, 4.25rem);
   line-height: 1.05;
   letter-spacing: -0.03em;
-  color: var(--navy);
+  color: var(--plum);
 }
 
 .hero__lead {
@@ -466,7 +466,7 @@
   color: var(--ink-soft);
   max-width: 42ch;
   padding-block-end: 0.9rem;
-  border-block-end: 2px solid var(--turq-300);
+  border-block-end: 2px solid var(--purple-300);
   width: fit-content;
 }
 
@@ -497,7 +497,7 @@
   width: auto;
   max-width: 100%;
   margin-inline: auto;
-  filter: drop-shadow(0 26px 44px rgb(8 12 41 / 0.18));
+  filter: drop-shadow(0 26px 44px rgb(43 0 56 / 0.18));
 }
 .hero__spark {
   position: absolute;
@@ -506,7 +506,7 @@
   height: 55px;
   inset-block-start: 4%;
   inset-inline-start: -4%;
-  filter: drop-shadow(0 8px 18px rgb(8 12 41 / 0.22));
+  filter: drop-shadow(0 8px 18px rgb(43 0 56 / 0.22));
 }
 
 /* --- lime band with the service labels ---------------------- */
@@ -516,8 +516,8 @@
   z-index: 3;
   inset-inline: -6%;
   inset-block-end: clamp(2rem, 7vh, 5rem);
-  background: var(--lime-500);
-  box-shadow: 0 14px 30px -16px rgb(8 12 41 / 0.4);
+  background: var(--orange-500);
+  box-shadow: 0 14px 30px -16px rgb(43 0 56 / 0.4);
   /* Rotation lives here and in the keyframes below. It must not be handed to
      the generic .reveal system, whose transform would overwrite it. */
   transform: rotate(-4deg);
@@ -536,13 +536,13 @@
   align-items: center;
   gap: 0.55rem;
   margin: 0;
-  color: var(--navy);
+  color: var(--plum);
   font-size: var(--step--1);
   font-weight: 700;
   line-height: 1.3;
 }
 .hero__strip li + li {
-  border-inline-start: 1px solid rgb(8 12 41 / 0.25);
+  border-inline-start: 1px solid rgb(43 0 56 / 0.25);
   padding-inline-start: clamp(1rem, 4vw, 3.5rem);
 }
 .hero__strip svg {
@@ -599,7 +599,7 @@
     order: 0;
     width: auto;
     margin-block-start: clamp(1.75rem, 6vw, 2.5rem);
-    background: linear-gradient(165deg, var(--turq-300), var(--turq-500) 55%, var(--turq-600));
+    background: linear-gradient(165deg, var(--purple-300), var(--purple-500) 55%, var(--purple-600));
     border-radius: var(--r-lg) var(--r-lg) 0 0;
     display: flex;
     justify-content: center;
@@ -643,7 +643,7 @@
     line-height: 1.25;
   }
   .hero__strip li + li {
-    border-inline-start: 1px solid rgb(8 12 41 / 0.2);
+    border-inline-start: 1px solid rgb(43 0 56 / 0.2);
     padding-inline-start: 0.5rem;
   }
   .hero__strip svg {
@@ -676,7 +676,7 @@
   .hero__strip li + li {
     border-inline-start: 0;
     padding-inline-start: 0;
-    border-block-start: 1px solid rgb(8 12 41 / 0.18);
+    border-block-start: 1px solid rgb(43 0 56 / 0.18);
   }
 }
 
@@ -1400,7 +1400,7 @@
   position: relative;
   border-radius: var(--r-xl);
   padding: clamp(2.5rem, 5vw, 4.25rem);
-  background: linear-gradient(140deg, var(--navy-900), var(--navy-700) 58%, #14494a);
+  background: linear-gradient(140deg, var(--plum-900), var(--plum-700) 58%, #5c1a7a);
   color: rgb(255 255 255 / 0.8);
   overflow: hidden;
   text-align: center;
@@ -1718,7 +1718,7 @@
     border-color: transparent;
     text-decoration: underline;
     text-underline-offset: 0.35em;
-    text-decoration-color: var(--turq-500);
+    text-decoration-color: var(--purple-500);
     text-decoration-thickness: 2px;
     padding-block: 0.5rem;
   }
@@ -1752,7 +1752,7 @@
     margin-block-start: -1.1rem;
     border-radius: var(--r-md);
     width: min(100% - (var(--gutter) * 2) - 1.5rem, var(--container));
-    box-shadow: 0 12px 26px -14px rgb(8 12 41 / 0.45);
+    box-shadow: 0 12px 26px -14px rgb(43 0 56 / 0.45);
   }
 
   /* --- rhythm: closer together, less template-like ---------- */
@@ -1814,7 +1814,7 @@
     display: flex;
     gap: 0.6rem;
     padding: 0.6rem var(--gutter) calc(0.6rem + env(safe-area-inset-bottom));
-    background: color-mix(in srgb, var(--cream) 92%, transparent);
+    background: color-mix(in srgb, var(--mist) 92%, transparent);
     backdrop-filter: saturate(180%) blur(14px);
     border-block-start: 1px solid var(--line);
   }
@@ -1852,7 +1852,7 @@
     max-height: none;
     height: 100dvh;
     padding: 5.5rem var(--gutter) 2.5rem;
-    background: var(--navy);
+    background: var(--plum);
     border-bottom: 0;
     transform: none;
     opacity: 0;
@@ -1869,15 +1869,15 @@
   /* the current-page link is teal by default, which is unreadable on navy */
   .nav__link[aria-current='page'],
   .nav__link[aria-current='page']:hover {
-    color: var(--lime-500);
+    color: var(--orange-500);
   }
   .nav__link[aria-current='page']::before {
-    background: var(--lime-500);
+    background: var(--orange-500);
   }
   .header[data-menu='open'] .header__toggle span,
   .header[data-menu='open'] .header__toggle span::before,
   .header[data-menu='open'] .header__toggle span::after {
-    background: var(--cream);
+    background: var(--mist);
   }
   .header[data-menu='open'] .header__toggle {
     background: transparent;
@@ -1886,7 +1886,7 @@
     z-index: 101;
   }
   .nav__link {
-    color: var(--cream);
+    color: var(--mist);
     font-size: clamp(1.25rem, 6vw, 1.75rem);
     font-weight: 700;
     letter-spacing: -0.02em;
@@ -1895,7 +1895,7 @@
   .nav__link:hover,
   .nav__item[data-open='true'] > .nav__link {
     background: transparent;
-    color: var(--lime-500);
+    color: var(--orange-500);
   }
   .nav__list {
     gap: 0.1rem;
@@ -1907,7 +1907,7 @@
   }
   .nav__panel a:hover {
     background: transparent;
-    color: var(--lime-500);
+    color: var(--orange-500);
   }
   .nav__caret {
     width: 12px;
@@ -1938,8 +1938,8 @@
   flex-direction: column;
   border-radius: var(--r-lg);
   overflow: hidden;
-  background: var(--tile, var(--navy));
-  color: var(--tile-fg, var(--cream));
+  background: var(--tile, var(--plum));
+  color: var(--tile-fg, var(--mist));
   transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
 .work-card:hover {
@@ -1947,35 +1947,38 @@
   box-shadow: var(--shadow-lg);
 }
 
-.work-card[data-tone='navy'] {
-  --tile: var(--navy-800);
-  --tile-fg: var(--cream);
-  --tile-dim: rgb(248 245 238 / 0.66);
+.work-card[data-tone='plum'] {
+  --tile: var(--plum-800);
+  --tile-fg: var(--mist);
+  --tile-dim: rgb(245 244 248 / 0.68);
 }
-.work-card[data-tone='deep'] {
-  --tile: var(--navy-700);
-  --tile-fg: var(--cream);
-  --tile-dim: rgb(248 245 238 / 0.66);
+.work-card[data-tone='plum-deep'] {
+  --tile: var(--plum-900);
+  --tile-fg: var(--mist);
+  --tile-dim: rgb(245 244 248 / 0.68);
 }
-.work-card[data-tone='turq'] {
-  --tile: var(--turq-500);
-  --tile-fg: var(--navy);
-  --tile-dim: rgb(8 12 41 / 0.72);
+/* The two vivid tiles keep their summary text at full strength: plum on
+   purple is 5.0:1 and plum on orange 6.9:1 at full opacity, but the softer
+   alpha used on the dark tiles pushed both under 4.5:1. */
+.work-card[data-tone='purple'] {
+  --tile: var(--purple-500);
+  --tile-fg: var(--plum);
+  --tile-dim: var(--plum-900);
 }
-.work-card[data-tone='teal'] {
-  --tile: var(--turq-600);
-  --tile-fg: var(--navy);
-  --tile-dim: rgb(8 12 41 / 0.72);
+.work-card[data-tone='purple-deep'] {
+  --tile: var(--purple-ink);
+  --tile-fg: var(--white);
+  --tile-dim: rgb(255 255 255 / 0.76);
 }
-.work-card[data-tone='lime'] {
-  --tile: var(--lime-500);
-  --tile-fg: var(--navy);
-  --tile-dim: rgb(8 12 41 / 0.72);
+.work-card[data-tone='orange'] {
+  --tile: var(--orange-500);
+  --tile-fg: var(--plum);
+  --tile-dim: rgb(43 0 56 / 0.9);
 }
-.work-card[data-tone='sand'] {
-  --tile: #e6ded0;
-  --tile-fg: var(--navy);
-  --tile-dim: rgb(8 12 41 / 0.7);
+.work-card[data-tone='mist'] {
+  --tile: #e8e4f0;
+  --tile-fg: var(--plum);
+  --tile-dim: rgb(43 0 56 / 0.7);
 }
 
 /* --- the browser frame ------------------------------------ */
@@ -1984,7 +1987,7 @@
   margin: clamp(1.1rem, 2.4vw, 1.75rem) clamp(1.1rem, 2.4vw, 1.75rem) 0;
   border-radius: 12px 12px 0 0;
   background: #fff;
-  box-shadow: 0 18px 34px -18px rgb(8 12 41 / 0.55);
+  box-shadow: 0 18px 34px -18px rgb(43 0 56 / 0.55);
   overflow: hidden;
 }
 .work-card__bar {

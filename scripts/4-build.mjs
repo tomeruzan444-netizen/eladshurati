@@ -70,10 +70,16 @@ function homePage(page, ctx) {
     <main id="main">
       <section class="hero">
         <svg class="hero__ribbons" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-          <path class="ribbon" d="M40 100 L74 0 L100 0 L100 100 Z" fill="#60DADB"/>
+          <defs>
+            <linearGradient id="wedge" x1="0" y1="0" x2="0.35" y2="1">
+              <stop offset="0" stop-color="#AE5DFF"/>
+              <stop offset="1" stop-color="#2B0038"/>
+            </linearGradient>
+          </defs>
+          <path class="ribbon" d="M40 100 L74 0 L100 0 L100 100 Z" fill="url(#wedge)"/>
         </svg>
         <svg class="hero__hairlines" viewBox="0 0 200 200" preserveAspectRatio="xMaxYMin meet" aria-hidden="true" focusable="false">
-          <g stroke="#0B1024" stroke-opacity=".18" stroke-width="1">
+          <g stroke="#2B0038" stroke-opacity=".18" stroke-width="1">
             <path d="M150 14 V96"/><path d="M158 14 V96"/><path d="M166 14 V96"/>
             <path d="M174 14 V96"/><path d="M182 14 V96"/><path d="M190 14 V96"/>
           </g>
@@ -96,7 +102,7 @@ function homePage(page, ctx) {
               priority: true,
               derivatives: ctx.derivatives,
             })}
-            <img class="hero__spark" src="/assets/brand/mark-navy.svg" alt="" aria-hidden="true" width="62" height="59">
+            <img class="hero__spark" src="/assets/brand/mark-duotone.svg" alt="" aria-hidden="true" width="62" height="59">
           </figure>
         </div>
         <div class="hero__strip">

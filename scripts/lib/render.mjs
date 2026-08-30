@@ -74,7 +74,7 @@ export function head({ seo, extraCss = '', bodyClass = '', preload = '', cssUrl 
     <link rel="preload" href="/assets/fonts/plex-hebrew-400-hebrew.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/assets/fonts/plex-hebrew-700-hebrew.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="${cssUrl}">
-    <meta name="theme-color" content="#f8f5ee">
+    <meta name="theme-color" content="#f5f4f8">
     <script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js')</script>
     ${extraCss}
     ${jsonld}
@@ -112,8 +112,8 @@ export function header(nav, currentPath) {
     <header class="header" data-menu="closed">
       <div class="container header__inner">
         <a class="brand" href="/" aria-label="${esc(site.name)} — לעמוד הבית">
-          <img class="brand__mark" src="/assets/brand/mark-navy.svg" alt="" width="42" height="40">
-          <img class="brand__word" src="/assets/brand/wordmark-navy.png" alt="${esc(site.name)}" width="240" height="34">
+          <img class="brand__mark" src="/assets/brand/mark-duotone.svg" alt="" width="42" height="40">
+          <img class="brand__word" src="/assets/brand/wordmark-dark.png" alt="${esc(site.name)}" width="240" height="34">
         </a>
         <button class="header__toggle" type="button" aria-label="תפריט" aria-expanded="false" aria-controls="site-nav"><span></span></button>
         <nav class="nav" id="site-nav" aria-label="ניווט ראשי">

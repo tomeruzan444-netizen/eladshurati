@@ -70,47 +70,62 @@
    rather than leaving half the site on the previous scheme.
    ============================================================ */
 
+/* ============================================================
+   Palette — the brand book colours.
+
+     #FE7A1D  orange    #AE5DFF  purple    #2B0038  plum
+     #F5F4F8  mist      #FFFFFF  white
+
+   Roles: mist is the page, white is the cards, plum is the text and
+   the dark panels. Purple carries the large shapes (the hero wedge,
+   fills, section rules) and orange carries the things meant to be
+   acted on — the primary button and the hero's service band.
+
+   Purple and orange are display colours: on mist they land at 2.6:1
+   and 2.4:1, so they never carry small text. The -ink steps below are
+   the readable versions for links and accented words.
+
+   Every colour lives here. Re-skinning the site is this block.
+   ============================================================ */
+
 :root {
-  /* --- the four brand colours ------------------------------ */
-  --cream: #f8f5ee;
-  --lime: #d9f650;
-  --turq: #60dadb;
-  --navy: #080c29;
+  /* --- the brand colours ----------------------------------- */
+  --orange: #fe7a1d;
+  --purple: #ae5dff;
+  --plum: #2b0038;
+  --mist: #f5f4f8;
   --white: #ffffff;
 
-  /* --- steps derived from them -----------------------------
-     Lime and turquoise are display colours: on cream they land near
-     1.4:1 and 1.8:1, so they carry fills, ribbons and underlines and
-     never small text. Text is navy; the -deep variants below are the
-     readable versions of each accent when one is unavoidable. */
-  --navy-900: #05081b;
-  --navy-800: #080c29;
-  --navy-700: #131a3b;
-  --navy-600: #1f2950;
-  --navy-500: #333e69;
+  /* --- derived steps ---------------------------------------- */
+  --plum-900: #1c0024;
+  --plum-800: #2b0038;
+  --plum-700: #3d0b4f;
+  --plum-600: #521769;
+  --plum-500: #6b2a85;
 
-  --ink: #0b1024;
-  --ink-soft: #39405a;
-  --ink-muted: #646b83;
+  --ink: #1f0b29;
+  --ink-soft: #4a3a54;
+  --ink-muted: #6d5f77;
 
-  --turq-deep: #0f7f80;
-  --turq-600: #35c3c4;
-  --turq-500: #60dadb;
-  --turq-300: #a5eced;
-  --turq-100: #ddf7f7;
-  --turq-050: #eefbfb;
+  --purple-ink: #7326cf;
+  --purple-600: #9647f0;
+  --purple-500: #ae5dff;
+  --purple-300: #d3aaff;
+  --purple-100: #f1e6ff;
+  --purple-050: #f9f4ff;
 
-  --lime-deep: #5d7a00;
-  --lime-500: #d9f650;
-  --lime-300: #e9fa96;
-  --lime-100: #f5fdd2;
+  --orange-ink: #c04f00;
+  --orange-600: #e96a10;
+  --orange-500: #fe7a1d;
+  --orange-300: #ffb87a;
+  --orange-100: #ffeadb;
 
-  --line: #e6e1d6;
-  --line-strong: #d3ccbc;
+  --line: #e9e3ef;
+  --line-strong: #d8cfe2;
   --surface: #ffffff;
-  --surface-page: #f8f5ee;
-  --surface-mist: #f2eee4;
-  --surface-tint: #fbf9f4;
+  --surface-page: #f5f4f8;
+  --surface-mist: #efedf4;
+  --surface-tint: #faf8fc;
 
   /* --- type ------------------------------------------------ */
   --font: 'Plex Hebrew', 'IBM Plex Sans Hebrew', 'Assistant', 'Heebo', 'Segoe UI', system-ui, sans-serif;
@@ -136,30 +151,11 @@
   --r-xl: 34px;
   --r-pill: 999px;
 
-  --shadow-sm: 0 1px 2px rgb(8 12 41 / 0.05), 0 2px 8px rgb(8 12 41 / 0.04);
-  --shadow-md: 0 4px 12px rgb(8 12 41 / 0.06), 0 16px 40px -12px rgb(8 12 41 / 0.16);
-  --shadow-lg: 0 8px 24px rgb(8 12 41 / 0.09), 0 32px 72px -20px rgb(8 12 41 / 0.24);
-  --shadow-accent: 0 12px 30px -12px rgb(8 12 41 / 0.4);
+  --shadow-sm: 0 1px 2px rgb(43 0 56 / 0.05), 0 2px 8px rgb(43 0 56 / 0.04);
+  --shadow-md: 0 4px 12px rgb(43 0 56 / 0.06), 0 16px 40px -12px rgb(43 0 56 / 0.16);
+  --shadow-lg: 0 8px 24px rgb(43 0 56 / 0.09), 0 32px 72px -20px rgb(43 0 56 / 0.24);
+  --shadow-accent: 0 12px 30px -12px rgb(43 0 56 / 0.4);
+  --shadow-purple: var(--shadow-accent);
 
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
-
-  /* --- legacy aliases --------------------------------------
-     Referenced by components.css from the previous scheme. Mapped so
-     the whole site follows the new palette in one move. */
-  --plum-900: var(--navy-900);
-  --plum-800: var(--navy-800);
-  --plum-700: var(--navy-700);
-  --plum-600: var(--navy-600);
-  --plum-500: var(--navy-500);
-  --purple-ink: var(--turq-deep);
-  --purple-600: var(--turq-600);
-  --purple-500: var(--turq-500);
-  --purple-300: var(--turq-300);
-  --purple-100: var(--turq-100);
-  --purple-050: var(--turq-050);
-  --orange-ink: var(--lime-deep);
-  --orange-500: var(--lime-500);
-  --orange-300: var(--lime-300);
-  --orange-100: var(--lime-100);
-  --shadow-purple: var(--shadow-accent);
 }
