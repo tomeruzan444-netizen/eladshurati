@@ -26,8 +26,14 @@ const esc = (s = '') =>
 const clean = (v, max = 500) => String(v ?? '').trim().slice(0, max)
 
 export default async function handler(req, res) {
+  // Health probe for the go-live sweep. Reports only whether delivery is
+  // wired up — never the key itself. Without this the sweep cannot tell a
+  // working endpoint from one that will drop every enquiry.
+  if (req.method === 'GET') {
+    return res.status(200).json({ ok: true, configured: Boolean(process.env.RESEND_API_KEY) })
+  }
   if (req.method !== 'POST') {
-    res.setHeader('Allow', 'POST')
+    res.setHeader('Allow', 'POST, GET')
     return res.status(405).json({ ok: false, error: 'method_not_allowed' })
   }
 
