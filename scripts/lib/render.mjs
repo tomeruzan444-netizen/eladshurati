@@ -16,7 +16,29 @@ export const site = {
   whatsapp: 'https://wa.me/972527075029?text=%D7%94%D7%99%D7%99%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%91%D7%A9%D7%99%D7%97%D7%AA%20%D7%99%D7%99%D7%A2%D7%95%D7%A5%20%D7%9C%D7%A2%D7%A1%D7%A7%20%D7%A9%D7%9C%D7%99',
   instagram: 'https://www.instagram.com/elad_shurati',
   facebook: 'https://www.facebook.com/eladshurati/',
+  // Search Console ownership is verified by this tag on every live page. Drop
+  // it at cutover and the property loses verification exactly when it is
+  // needed to watch the migration. Never change this value.
+  googleSiteVerification: 'NGCwNLVGyLUXcdOKdMMrTdEfvKlhY8ei2Wmhcvmmbic',
 }
+
+/**
+ * Whether this build may be crawled.
+ *
+ * One decision shared by the page-level robots meta and robots.txt. Keeping
+ * them in sync matters in both directions: a staging copy that invites
+ * crawlers competes with the ranked live site, and a production build that
+ * still carries the staging noindex would deindex the whole site.
+ *
+ * VERCEL_PROJECT_PRODUCTION_URL only becomes the real host once the domain is
+ * attached, so this flips itself at cutover.
+ */
+export const indexable =
+  process.env.RAW === '1' ||
+  process.env.LIVE === '1' ||
+  (process.env.VERCEL_ENV === 'production' &&
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL || '').endsWith('elad-digital.co.il')) ||
+  (!process.env.VERCEL && process.env.STAGING !== '1')
 
 export const esc = (s = '') =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
@@ -35,15 +57,16 @@ export function head({ seo, extraCss = '', bodyClass = '', preload = '', cssUrl 
     .map((b) => `<script type="application/ld+json">${JSON.stringify(b)}</script>`)
     .join('\n    ')
 
-  // On a staging host the whole build must stay out of the index; the live
-  // robots value is only emitted for the real deploy.
-  const staging = process.env.STAGING === '1'
+  // The live robots value is only emitted once this build is allowed to be
+  // crawled; anywhere else every page carries an explicit noindex.
 
   const metas = [
     seo.description && `<meta name="description" content="${esc(seo.description)}">`,
-    staging
-      ? '<meta name="robots" content="noindex, nofollow">'
-      : seo.robots && `<meta name="robots" content="${esc(seo.robots)}">`,
+    indexable
+      ? seo.robots && `<meta name="robots" content="${esc(seo.robots)}">`
+      : '<meta name="robots" content="noindex, nofollow">',
+    site.googleSiteVerification &&
+      `<meta name="google-site-verification" content="${esc(site.googleSiteVerification)}">`,
     seo.canonical && `<link rel="canonical" href="${esc(seo.canonical)}">`,
     seo.og.locale && `<meta property="og:locale" content="${esc(seo.og.locale)}">`,
     seo.og.type && `<meta property="og:type" content="${esc(seo.og.type)}">`,
