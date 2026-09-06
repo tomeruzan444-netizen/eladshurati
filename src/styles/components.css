@@ -2103,3 +2103,31 @@
     height: 15px;
   }
 }
+
+/* An odd number of projects leaves a lone tile on the last row. The last one
+   spans the full width instead and lays out side by side, which reads as a
+   featured project rather than a gap. */
+@media (min-width: 1081px) {
+  .work-card--wide {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: stretch;
+  }
+  .work-card--wide .work-card__screen {
+    flex: 1 1 60%;
+    min-width: 0;
+    margin: clamp(1.1rem, 2.4vw, 1.75rem);
+    border-radius: 12px;
+  }
+  .work-card--wide .work-card__body {
+    flex: 1 1 40%;
+    justify-content: center;
+    padding-inline-end: clamp(1.5rem, 3vw, 2.5rem);
+  }
+  .work-card--wide .work-card__name {
+    font-size: var(--step-2);
+  }
+  .work-card--wide .work-card__text {
+    font-size: var(--step-0);
+  }
+}

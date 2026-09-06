@@ -397,14 +397,17 @@ const main = async () => {
     /** Portfolio: brand-coloured tiles, each holding a browser frame. */
     work() {
       if (!ctx.projects.length) return ''
+      const odd = ctx.projects.length % 2 === 1
       const cards = ctx.projects
         .map(
-          (p) => `<article class="work-card" data-tone="${esc(p.tone)}">
+          (p, i) => `<article class="work-card${odd && i === ctx.projects.length - 1 ? ' work-card--wide' : ''}" data-tone="${esc(p.tone)}">
               <div class="work-card__screen">
                 <div class="work-card__bar" aria-hidden="true"><i></i><i></i><i></i><span></span></div>
                 ${responsiveImage(p.image, {
                   alt: `אתר ${p.name}`,
-                  sizes: '(max-width: 760px) 84vw, (max-width: 1080px) 46vw, 30vw',
+                  sizes: odd && i === ctx.projects.length - 1
+                    ? '(max-width: 760px) 84vw, (max-width: 1080px) 46vw, 60vw'
+                    : '(max-width: 760px) 84vw, (max-width: 1080px) 46vw, 30vw',
                   className: 'work-card__shot',
                   derivatives: ctx.derivatives,
                 })}
@@ -422,7 +425,7 @@ const main = async () => {
         <div class="container">
           <div class="sec-head reveal">
             <span class="eyebrow">תיק עבודות</span>
-            <h2>פרוייקטים שיצאו לדרך</h2>
+            <h2>אצל אלעד הלקוחות תמיד מרוצים</h2>
           </div>
           <div class="work" style="margin-block-start:2.25rem">
             ${cards}

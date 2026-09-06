@@ -509,6 +509,69 @@
    "bytes": 360339
   }
  },
+ "/assets/images/פרוייקטים ולקוחות/פרוייקט 7 - אלה טולמס.png": {
+  "width": 1900,
+  "height": 900,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/d2956d31-400.webp",
+    "bytes": 7286
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/d2956d31-700.webp",
+    "bytes": 15184
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/d2956d31-1000.webp",
+    "bytes": 24408
+   },
+   {
+    "w": 1400,
+    "url": "/assets/derived/d2956d31-1400.webp",
+    "bytes": 37244
+   },
+   {
+    "w": 1900,
+    "url": "/assets/derived/d2956d31-1900.webp",
+    "bytes": 53142
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/d2956d31-400.avif",
+    "bytes": 5724
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/d2956d31-700.avif",
+    "bytes": 12413
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/d2956d31-1000.avif",
+    "bytes": 21128
+   },
+   {
+    "w": 1400,
+    "url": "/assets/derived/d2956d31-1400.avif",
+    "bytes": 33454
+   },
+   {
+    "w": 1900,
+    "url": "/assets/derived/d2956d31-1900.avif",
+    "bytes": 45339
+   }
+  ],
+  "fallback": {
+   "w": 1400,
+   "url": "/assets/derived/d2956d31-1400.jpg",
+   "bytes": 89570
+  }
+ },
  "https://elad-digital.co.il/wp-content/uploads/2023/07/CTA-contact-us-new.png": {
   "width": 539,
   "height": 539,
