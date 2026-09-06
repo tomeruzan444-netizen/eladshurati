@@ -494,7 +494,7 @@ const main = async () => {
       // the browser navigates and the handler answers — and site.js upgrades it
       // to an inline submit. The honeypot is hidden from people, never from bots.
       return `<div class="form-card reveal">
-            <form class="form" method="post" action="/api/lead" novalidate>
+            <form class="form" method="post" action="/api/lead/" novalidate>
               <div class="form__row">${row}</div>
               ${area ? `<div class="field">
                 <label for="f-msg">${esc(area.label || 'הודעה')}</label>
