@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>https://elad-digital.co.il/page-sitemap.xml</loc>
+    <lastmod>2026-05-26T08:39:19+00:00</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://elad-digital.co.il/post-sitemap.xml</loc>
+    <lastmod>2025-06-20T12:01:47+00:00</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://elad-digital.co.il/category-sitemap.xml</loc>
+    <lastmod>2025-06-20T12:01:47+00:00</lastmod>
+  </sitemap>
+</sitemapindex>

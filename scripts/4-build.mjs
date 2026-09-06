@@ -559,6 +559,17 @@ const main = async () => {
       }
     }
   }
+  // og:image and the JSON-LD images intentionally keep the original
+  // WordPress URLs — that is what a 1:1 migration means, and Google Images has
+  // them indexed. A rewrite in vercel.json maps /wp-content/uploads onto
+  // /assets/images, so the originals behind them have to ship as well.
+  for (const page of pages) {
+    const html = await readFile(outFile(page.seo.path), 'utf8')
+    for (const m of html.matchAll(/\/wp-content\/uploads\/([^"'\ )]+)/g)) {
+      referenced.add(decodeURIComponent('/assets/images/' + m[1]))
+    }
+  }
+
   // fonts are pulled in by CSS, not markup
   for (const f of await readdir(path.join(ROOT, 'assets', 'fonts'))) {
     referenced.add(`/assets/fonts/${f}`)
@@ -630,26 +641,80 @@ async function buildAssets() {
 }
 
 async function writeSitemapAndMap(pages) {
-  // sitemap — same URL set as the live Rank Math sitemaps
-  const urls = pages
-    .map(
-      (p) => `  <url>
-    <loc>${site.origin}${encodeURI(p.seo.path)}</loc>${p.lastmod ? `\n    <lastmod>${p.lastmod}</lastmod>` : ''}
-  </url>`
-    )
-    .join('\n')
+  // Rank Math published an index plus one child sitemap per post type, and
+  // Search Console has been polling those exact URLs for years. Reproduce the
+  // whole set — dropping them would retire URLs Google still asks for.
+  const NL = '\n'
+  const entry = (p) =>
+    // seo.url is the live URL captured byte-for-byte — percent-escape casing
+    // included. Re-encoding from the decoded path would emit %D7 where Google
+    // has %d7 on file.
+    `  <url>${NL}    <loc>${p.seo.url}</loc>` +
+    (p.lastmod ? `${NL}    <lastmod>${p.lastmod}</lastmod>` : '') +
+    `${NL}  </url>`
+  const urlset = (list) =>
+    `<?xml version="1.0" encoding="UTF-8"?>${NL}<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${NL}` +
+    list.map(entry).join(NL) +
+    `${NL}</urlset>${NL}`
+
+  // Rank Math names each child after the post type: page / post / category.
+  const groups = [
+    ['page-sitemap.xml', pages.filter((p) => p.type === 'page')],
+    ['post-sitemap.xml', pages.filter((p) => p.type === 'post')],
+    ['category-sitemap.xml', pages.filter((p) => p.type === 'category')],
+  ].filter(([, list]) => list.length)
+
+  const newest = (list) => list.map((p) => p.lastmod).filter(Boolean).sort().at(-1)
+
+  for (const [name, list] of groups) {
+    await writeFile(path.join(OUT, name), urlset(list), 'utf8')
+  }
+
+  const children = groups
+    .map(([name, list]) => {
+      const last = newest(list)
+      return (
+        `  <sitemap>${NL}    <loc>${site.origin}/${name}</loc>` +
+        (last ? `${NL}    <lastmod>${last}</lastmod>` : '') +
+        `${NL}  </sitemap>`
+      )
+    })
+    .join(NL)
   await writeFile(
-    path.join(OUT, 'sitemap.xml'),
-    `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`,
+    path.join(OUT, 'sitemap_index.xml'),
+    `<?xml version="1.0" encoding="UTF-8"?>${NL}<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${NL}${children}${NL}</sitemapindex>${NL}`,
     'utf8'
   )
-  // A staging build must not invite crawlers: the live site is still up at the
-  // same content, and an indexed copy would compete with it.
+  // Keep the flat one as well — it is what our own tooling links to.
+  await writeFile(path.join(OUT, 'sitemap.xml'), urlset(pages), 'utf8')
+
+  // Preview deployments must never be indexed: the live site serves the same
+  // copy and a second indexed copy would compete with it. Production is
+  // detected from Vercel's own env var so nobody has to remember a flag.
+  const indexable = RAW || process.env.VERCEL_ENV === 'production' || process.env.STAGING !== '1'
+  const disallow = [
+    '/wp-admin/',
+    '/wp-content/plugins/',
+    '/wp-login.php',
+    '/feed',
+    '/search/',
+    '/?s=',
+    '/?p=',
+    '/&p=',
+    '/&preview=',
+    '/tag/',
+    '/author/',
+  ]
+  // The live robots.txt grants the AI crawlers explicit access — that is how
+  // the site earns citations in AI answers. Carry the blocks over as they are.
+  const blocks = ['OAI-SearchBot', 'ChatGPT-User', 'GPTBot', '*'].map(
+    (ua) => `User-agent: ${ua}${NL}Allow: /${NL}` + disallow.map((d) => `Disallow: ${d}`).join(NL) + NL
+  )
   await writeFile(
     path.join(OUT, 'robots.txt'),
-    RAW || process.env.STAGING !== '1'
-      ? `User-agent: *\nAllow: /\n\nSitemap: ${site.origin}/sitemap.xml\n`
-      : `User-agent: *\nDisallow: /\n`,
+    indexable
+      ? blocks.join(NL) + `${NL}Sitemap: ${site.origin}/sitemap_index.xml${NL}`
+      : `User-agent: *${NL}Disallow: /${NL}`,
     'utf8'
   )
 

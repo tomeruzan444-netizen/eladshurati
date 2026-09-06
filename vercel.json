@@ -4,6 +4,16 @@
   "outputDirectory": "site",
   "cleanUrls": false,
   "trailingSlash": true,
+  "redirects": [
+    { "source": "/index.php", "destination": "/", "permanent": true },
+    { "source": "/feed", "destination": "/category/blog/", "permanent": true },
+    { "source": "/comments/feed", "destination": "/category/blog/", "permanent": true },
+    { "source": "/wp-login.php", "destination": "/", "permanent": true },
+    { "source": "/wp-admin/:path*", "destination": "/", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/wp-content/uploads/:path*", "destination": "/assets/images/:path*" }
+  ],
   "headers": [
     {
       "source": "/assets/css/(.*)",
@@ -27,6 +37,10 @@
     },
     {
       "source": "/assets/images/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }]
+    },
+    {
+      "source": "/wp-content/uploads/(.*)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }]
     },
     {
