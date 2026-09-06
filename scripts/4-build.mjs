@@ -688,10 +688,18 @@ async function writeSitemapAndMap(pages) {
   // Keep the flat one as well — it is what our own tooling links to.
   await writeFile(path.join(OUT, 'sitemap.xml'), urlset(pages), 'utf8')
 
-  // Preview deployments must never be indexed: the live site serves the same
-  // copy and a second indexed copy would compete with it. Production is
-  // detected from Vercel's own env var so nobody has to remember a flag.
-  const indexable = RAW || process.env.VERCEL_ENV === 'production' || process.env.STAGING !== '1'
+  // Only the real domain may invite crawlers. VERCEL_ENV alone is not enough:
+  // a push to main is a *production* deploy of the staging project too, which
+  // would open a second crawlable copy of a site that is already ranked.
+  // VERCEL_PROJECT_PRODUCTION_URL only becomes the real host once the domain is
+  // attached, so this flips itself at cutover with nothing to remember.
+  const productionHost = process.env.VERCEL_PROJECT_PRODUCTION_URL || ''
+  const onRealDomain = productionHost.endsWith('elad-digital.co.il')
+  const indexable =
+    RAW ||
+    process.env.LIVE === '1' ||
+    (process.env.VERCEL_ENV === 'production' && onRealDomain) ||
+    (!process.env.VERCEL && process.env.STAGING !== '1')
   const disallow = [
     '/wp-admin/',
     '/wp-content/plugins/',
