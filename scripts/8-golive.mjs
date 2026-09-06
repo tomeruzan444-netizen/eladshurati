@@ -20,13 +20,19 @@ if (!base) {
 
 const pages = JSON.parse(await readFile(path.join(ROOT, 'content', 'pages.json'), 'utf8'))
 
-const hit = async (url, method = 'GET') => {
+const hit = async (url, method = 'GET', wantBody = false) => {
   try {
     const r = await fetch(url, { method, redirect: 'manual' })
-    return { status: r.status, location: r.headers.get('location'), type: r.headers.get('content-type') }
+    const body = wantBody && r.status === 200 ? await r.text() : ''
+    return { status: r.status, location: r.headers.get('location'), type: r.headers.get('content-type'), body }
   } catch (e) {
     return { status: 0, error: e.message }
   }
+}
+
+const titleOf = (html) => {
+  const m = html.match(/<title>([\s\S]*?)<\/title>/i)
+  return m ? m[1].trim() : ''
 }
 
 const pool = async (items, n, fn) => {
@@ -48,18 +54,34 @@ const bad = (msg) => {
 
 console.log(`\nsweeping ${base}\n`)
 
-/* ---- every indexed URL must be a straight 200 ---- */
+/* ---- every indexed URL must be a straight 200 *serving its own page* ----
+   Status alone is not enough. A catch-all rewrite, or a host that falls back to
+   the index, answers 200 everywhere while serving one page over and over — the
+   whole site reachable and every URL wrong. Compare the title Google has on
+   file against the title actually served. */
 const results = await pool(pages, 8, async (p) => {
-  const url = base + p.seo.path
-  const r = await hit(url)
+  const r = await hit(base + p.seo.path, 'GET', true)
   return { p, r }
 })
 let ok200 = 0
+let okTitle = 0
 for (const { p, r } of results) {
-  if (r.status === 200) ok200++
-  else bad(`${r.status}${r.location ? ' -> ' + r.location : ''}  ${decodeURIComponent(p.seo.path)}`)
+  const where = decodeURIComponent(p.seo.path)
+  if (r.status !== 200) {
+    bad(`${r.status}${r.location ? ' -> ' + r.location : ''}  ${where}`)
+    continue
+  }
+  ok200++
+  const served = titleOf(r.body)
+  const expected = (p.seo.title || '').trim()
+  if (expected && served !== expected) {
+    bad(`wrong page served at ${where}
+          expected: ${expected}
+          served  : ${served || '(no title)'}`)
+  } else okTitle++
 }
 console.log(`  ${ok200}/${pages.length} indexed URLs return 200`)
+console.log(`  ${okTitle}/${pages.length} serve their own title (not a fallback page)`)
 
 /* ---- the files Search Console polls ---- */
 for (const f of ['/sitemap_index.xml', '/page-sitemap.xml', '/post-sitemap.xml', '/category-sitemap.xml', '/robots.txt']) {
