@@ -18,6 +18,10 @@ if (!base) {
   process.exit(2)
 }
 
+// Whether we are pointed at the production domain. Several checks invert on
+// this: staging must be closed to crawlers, the real domain must be open.
+const real = base.includes('elad-digital.co.il')
+
 const pages = JSON.parse(await readFile(path.join(ROOT, 'content', 'pages.json'), 'utf8'))
 
 const hit = async (url, method = 'GET', wantBody = false) => {
@@ -93,7 +97,7 @@ console.log('  sitemaps + robots.txt reachable')
 /* ---- robots.txt must actually invite crawlers on the real domain ---- */
 const robots = await fetch(base + '/robots.txt').then((r) => r.text()).catch(() => '')
 const open = /Allow: \//.test(robots) && !/^\s*Disallow: \/\s*$/m.test(robots)
-const real = base.includes('elad-digital.co.il')
+
 if (real && !open) bad('robots.txt is still closed on the real domain — the site will not be crawled')
 if (!real && open) bad('robots.txt is OPEN on a staging host — it will compete with the live site')
 console.log(`  robots.txt is ${open ? 'open' : 'closed'} (${real ? 'real domain' : 'staging host'}) — correct`)
@@ -104,6 +108,38 @@ const noindex = /<meta name="robots" content="noindex/.test(home)
 if (real && noindex) bad('pages carry noindex on the real domain — this would deindex the site')
 if (!real && !noindex) bad('pages are missing noindex on a staging host')
 console.log(`  page robots meta says ${noindex ? 'noindex' : 'index'} — correct`)
+
+/* ---- every page must point at the original domain ----
+   The two things a migration silently gets wrong: a canonical that drifts to
+   the host the site happens to be served from, and a page that ships the
+   staging noindex. Both are invisible in a browser and both cost rankings, so
+   check them on every page rather than spot-checking the home page. */
+const ORIGIN = 'https://elad-digital.co.il'
+let canonOk = 0
+let indexOk = 0
+for (const { p, r } of results) {
+  if (r.status !== 200) continue
+  const where = decodeURIComponent(p.seo.path)
+
+  const canon = (r.body.match(/<link rel="canonical" href="([^"]+)"/) || [])[1]
+  if (!canon) bad(`no canonical at ${where}`)
+  else if (!canon.startsWith(ORIGIN + '/')) bad(`canonical points off-domain at ${where}
+          ${canon}`)
+  else canonOk++
+
+  // On a staging host noindex is the correct answer, so only the real domain
+  // is held to index, follow.
+  const robots = (r.body.match(/<meta name="robots" content="([^"]*)"/) || [])[1] || ''
+  const blocked = /noindex|nofollow|none/i.test(robots)
+  if (real && blocked) bad(`page is not indexable at ${where}
+          ${robots}`)
+  else if (!real && !blocked) bad(`staging page is missing noindex at ${where}`)
+  else indexOk++
+}
+console.log(`  ${canonOk}/${pages.length} canonicals point at ${ORIGIN}`)
+console.log(
+  `  ${indexOk}/${pages.length} pages are ${real ? 'index, follow' : 'noindex (correct for staging)'}`
+)
 
 /* ---- Search Console ownership ---- */
 if (!home.includes('google-site-verification')) bad('google-site-verification tag is missing from the home page')
