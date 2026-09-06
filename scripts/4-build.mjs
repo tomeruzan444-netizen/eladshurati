@@ -490,15 +490,22 @@ const main = async () => {
         )
         .join('\n            ')
       const area = fields.find((f) => f.type === 'textarea')
+      // Posts to the serverless handler in /api. It still works without JS —
+      // the browser navigates and the handler answers — and site.js upgrades it
+      // to an inline submit. The honeypot is hidden from people, never from bots.
       return `<div class="form-card reveal">
-            <form class="form" method="post" action="#" novalidate>
+            <form class="form" method="post" action="/api/lead" novalidate>
               <div class="form__row">${row}</div>
               ${area ? `<div class="field">
                 <label for="f-msg">${esc(area.label || 'הודעה')}</label>
                 <textarea id="f-msg" name="${esc(area.name)}" placeholder="${esc(area.placeholder || '')}"></textarea>
               </div>` : ''}
+              <div class="form__trap" aria-hidden="true">
+                <label for="f-company">אל תמלאו שדה זה</label>
+                <input id="f-company" name="company" type="text" tabindex="-1" autocomplete="off">
+              </div>
               <button class="btn btn--primary" type="submit">${esc(form?.submit || 'שליחה')}</button>
-              <p class="form__note">הטופס אינו מחובר עדיין — יחובר בעת העלייה לאוויר.</p>
+              <p class="form__status" role="status" aria-live="polite"></p>
             </form>
           </div>`
     },

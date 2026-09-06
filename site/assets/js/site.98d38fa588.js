@@ -283,6 +283,69 @@
     })
   }
 
+  /* ============================================ lead form */
+
+  // The form posts to /api/lead on its own if this never runs. All this adds
+  // is staying on the page, plus the two fields the handler uses to spot bots.
+  Array.prototype.forEach.call(document.querySelectorAll('form.form'), function (form) {
+    var status = form.querySelector('.form__status')
+    var button = form.querySelector('button[type="submit"]')
+
+    var ts = document.createElement('input')
+    ts.type = 'hidden'
+    ts.name = 'ts'
+    ts.value = String(Date.now())
+    form.appendChild(ts)
+
+    var where = document.createElement('input')
+    where.type = 'hidden'
+    where.name = 'page'
+    where.value = location.pathname
+    form.appendChild(where)
+
+    form.addEventListener('submit', function (e) {
+      if (!form.reportValidity()) return
+      e.preventDefault()
+      form.classList.add('is-sending')
+      if (status) {
+        status.removeAttribute('data-state')
+        status.textContent = 'שולח…'
+      }
+      if (button) button.disabled = true
+
+      fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form))),
+      })
+        .then(function (r) {
+          return r.json().catch(function () {
+            return { ok: r.ok }
+          })
+        })
+        .then(function (data) {
+          if (!data.ok) throw new Error(data.error || 'failed')
+          form.reset()
+          ts.value = String(Date.now())
+          if (status) {
+            status.setAttribute('data-state', 'ok')
+            status.textContent = 'תודה! ההודעה נשלחה, נחזור אליכם בהקדם.'
+          }
+        })
+        .catch(function () {
+          if (status) {
+            status.setAttribute('data-state', 'error')
+            // Never leave someone with a dead end — give them a way through.
+            status.textContent = 'השליחה נכשלה. אפשר להתקשר 052-707-5029 או לכתוב לוואטסאפ.'
+          }
+        })
+        .then(function () {
+          form.classList.remove('is-sending')
+          if (button) button.disabled = false
+        })
+    })
+  })
+
   /* ============================================ card sheen */
 
   if (window.matchMedia('(hover: hover)').matches) {
