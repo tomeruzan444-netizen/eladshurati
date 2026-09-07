@@ -4,7 +4,7 @@
  * Rule for this file: anything under seo.* is reproduced byte-for-byte from the
  * live site. Design decides how content is arranged, never what it says.
  */
-import { icons, social } from './icons.mjs'
+import { icons, social, arrowChip } from './icons.mjs'
 
 export const site = {
   name: 'אלעד שורתי',
@@ -451,4 +451,4 @@ export function ctaSection({ title, text, primary = 'לשיחת ייעוץ חי�
     </section>`
 }
 
-export { icons, social }
+export { icons, social, arrowChip }

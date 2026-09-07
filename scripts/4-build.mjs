@@ -10,7 +10,7 @@ import { existsSync } from 'node:fs'
 import path from 'node:path'
 import {
   site, indexable, esc, head, header, footer, renderBlock, renderFlow, renderFaq, renderCard,
-  crumbs, ctaSection, hrefFor, rewriteHtml, slugify, responsiveImage, preloadImage, icons, social,
+  crumbs, ctaSection, hrefFor, rewriteHtml, slugify, responsiveImage, preloadImage, icons, social, arrowChip,
 } from './lib/render.mjs'
 import {
   clientPath, clientPage, clientsIndexPage, clientSeo, clientsIndexSeo,
@@ -420,7 +420,7 @@ const main = async () => {
                 <span class="work-card__tag">${esc(p.tag)}</span>
                 <h3 class="work-card__name"><a href="${esc(clientPath(p))}">${esc(p.name)}</a></h3>
                 <p class="work-card__text">${esc(p.summary)}</p>
-                <span class="work-card__more">לעמוד הלקוח${icons.arrow}</span>
+                <span class="work-card__more">לעמוד הלקוח${arrowChip}</span>
               </div>
             </article>`
         )
@@ -431,7 +431,7 @@ const main = async () => {
           <div class="sec-head reveal">
             <span class="eyebrow">תיק עבודות</span>
             <h2>אצל אלעד הלקוחות תמיד מרוצים</h2>
-            <a class="sec-head__link" href="/לקוחות/">לכל הלקוחות${icons.arrow}</a>
+            <a class="sec-head__link" href="/לקוחות/">לכל הלקוחות${arrowChip}</a>
           </div>
           <div class="work" style="margin-block-start:2.25rem">
             ${cards}

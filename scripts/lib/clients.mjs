@@ -15,7 +15,7 @@
  * /פרוייקטים/ carousel already publishes. When Elad supplies the real story per
  * client, `story` on each entry in content/projects.json is where it goes.
  */
-import { site, esc, icons } from './render.mjs'
+import { site, esc, icons, arrowChip } from './render.mjs'
 
 export const clientPath = (p) => `/לקוחות/${p.slug}/`
 
@@ -55,7 +55,7 @@ export function clientsIndexPage(projects, ctx) {
                 <span class="client-card__tag">${esc(p.tag)}</span>
                 <span class="client-card__name">${esc(p.name)}</span>
                 <span class="client-card__text">${esc(p.summary)}</span>
-                <span class="client-card__more">לעמוד הלקוח${icons.arrow}</span>
+                <span class="client-card__more">לעמוד הלקוח${arrowChip}</span>
               </span>
             </a>
           </article>`

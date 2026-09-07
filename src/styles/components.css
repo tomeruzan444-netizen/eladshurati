@@ -2197,8 +2197,7 @@
   white-space: nowrap;
 }
 .sec-head__link:hover { text-decoration: underline; text-underline-offset: 0.3em; }
-.sec-head__link svg { transition: transform 0.25s var(--ease); }
-.sec-head__link:hover svg { transform: translateX(-3px); }
+
 
 .work-card__more,
 .client-card__more {
@@ -2342,4 +2341,59 @@
 }
 @media (max-width: 760px) {
   .clients { grid-template-columns: 1fr; }
+}
+
+
+/* ---------------------------------------------------- the arrow chip */
+
+/* The "read on" affordance. Sized entirely in `em` so it tracks whatever type
+   scale it sits in — the fluid scale already handles mobile, so this needs no
+   breakpoints of its own. currentColor keeps it legible on the light index and
+   on the dark client tiles alike, where the tile sets --tile-fg. */
+.ico {
+  display: inline-grid;
+  place-items: center;
+  inline-size: 1.5em;
+  block-size: 1.5em;
+  flex: none;
+  border-radius: 50%;
+  /* Plain currentColor first so a browser without color-mix still draws a
+     ring rather than dropping the declaration and leaving a bare arrow. */
+  border: 1px solid currentColor;
+  border-color: color-mix(in srgb, currentColor 28%, transparent);
+  background: color-mix(in srgb, currentColor 7%, transparent);
+  transition: background-color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.ico svg {
+  inline-size: 0.88em;
+  block-size: 0.88em;
+  /* Thicker than the 1.6 the icon set draws at: at this size the default
+     stroke thins out to almost nothing. */
+  stroke-width: 2.1;
+  transition: transform 0.25s var(--ease);
+}
+
+/* Leftward is forward in RTL, matching the .card__more nudge already on site. */
+a:hover > .ico,
+a:hover .ico,
+.work-card:hover .ico,
+.client-card:hover .ico {
+  background: color-mix(in srgb, currentColor 16%, transparent);
+  border-color: color-mix(in srgb, currentColor 52%, transparent);
+}
+a:hover > .ico svg,
+a:hover .ico svg,
+.work-card:hover .ico svg,
+.client-card:hover .ico svg {
+  transform: translateX(-2px);
+}
+a:focus-visible .ico {
+  border-color: currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ico,
+  .ico svg {
+    transition: none;
+  }
 }

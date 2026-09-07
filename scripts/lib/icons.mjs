@@ -23,7 +23,17 @@ export const icons = {
   pin: s('<path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/>'),
   clock: s('<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 1.8"/>'),
   arrowDown: s('<path d="M12 5v14"/><path d="M6 13l6 6 6-6"/>'),
+  // Shorter shaft than `arrow`. A full-width 24px arrow scaled down to sit in
+  // a small chip reads as a shrunk icon; this one is drawn for the size.
+  arrowMini: s('<path d="M16 12H8.4"/><path d="M12.2 8.2 8.4 12l3.8 3.8"/>'),
 }
+
+/**
+ * The inline "read on" affordance: the compact arrow inside a round chip.
+ * Everything about it is sized in `em`, so it tracks whatever type scale the
+ * component sits in rather than needing its own breakpoints.
+ */
+export const arrowChip = `<span class="ico" aria-hidden="true">${icons.arrowMini}</span>`
 
 /** Brand-coloured social glyphs (solid, 24px). */
 export const social = {
