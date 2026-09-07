@@ -33,7 +33,7 @@ export const icons = {
  * Everything about it is sized in `em`, so it tracks whatever type scale the
  * component sits in rather than needing its own breakpoints.
  */
-export const arrowChip = `<span class="ico" aria-hidden="true">${icons.arrowMini}</span>`
+export const arrowChip = `<span class="arrow-chip" aria-hidden="true">${icons.arrowMini}</span>`
 
 /** Brand-coloured social glyphs (solid, 24px). */
 export const social = {
