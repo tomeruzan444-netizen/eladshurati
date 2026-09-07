@@ -12,6 +12,9 @@ import {
   site, indexable, esc, head, header, footer, renderBlock, renderFlow, renderFaq, renderCard,
   crumbs, ctaSection, hrefFor, rewriteHtml, slugify, responsiveImage, preloadImage, icons, social,
 } from './lib/render.mjs'
+import {
+  clientPath, clientPage, clientsIndexPage, clientSeo, clientsIndexSeo,
+} from './lib/clients.mjs'
 import { minifyCss, minifyHtml } from './lib/minify.mjs'
 
 const ROOT = path.resolve(import.meta.dirname, '..')
@@ -342,6 +345,7 @@ const main = async () => {
     manifest,
     altMap,
     derivatives,
+    responsiveImage,
     projects,
     portrait,
     img(src) {
@@ -414,8 +418,9 @@ const main = async () => {
               </div>
               <div class="work-card__body">
                 <span class="work-card__tag">${esc(p.tag)}</span>
-                <h3 class="work-card__name">${esc(p.name)}</h3>
+                <h3 class="work-card__name"><a href="${esc(clientPath(p))}">${esc(p.name)}</a></h3>
                 <p class="work-card__text">${esc(p.summary)}</p>
+                <span class="work-card__more">לעמוד הלקוח${icons.arrow}</span>
               </div>
             </article>`
         )
@@ -426,6 +431,7 @@ const main = async () => {
           <div class="sec-head reveal">
             <span class="eyebrow">תיק עבודות</span>
             <h2>אצל אלעד הלקוחות תמיד מרוצים</h2>
+            <a class="sec-head__link" href="/לקוחות/">לכל הלקוחות${icons.arrow}</a>
           </div>
           <div class="work" style="margin-block-start:2.25rem">
             ${cards}
@@ -528,11 +534,33 @@ const main = async () => {
   // Built before the pages so the hashed asset URLs can go into every <head>.
   const { outCss, jsSource, cssUrl, jsUrl } = await buildAssets()
 
+  // The client pages are the first pages that are not migrated from
+  // WordPress. They join the same list so they get the same <head>, the same
+  // chrome, and a place in the sitemap.
+  const today = new Date().toISOString().replace(/\.\d{3}Z$/, '+00:00')
+  pages.push({
+    type: 'clients-index',
+    seo: clientsIndexSeo(projects),
+    blocks: [],
+    lastmod: today,
+  })
+  for (const project of projects) {
+    pages.push({
+      type: 'client',
+      project,
+      seo: clientSeo(project),
+      blocks: [],
+      lastmod: today,
+    })
+  }
+
   let written = 0
   for (const page of pages) {
     const p = page.seo.path
     let body
     if (p === '/') body = homePage(page, ctx)
+    else if (page.type === 'clients-index') body = clientsIndexPage(projects, ctx)
+    else if (page.type === 'client') body = clientPage(page.project, ctx)
     else if (page.type === 'category') body = archivePage(page, ctx)
     else if (page.type === 'post') body = postPage(page, ctx)
     else body = landingPage(page, ctx)
@@ -666,7 +694,7 @@ async function writeSitemapAndMap(pages) {
 
   // Rank Math names each child after the post type: page / post / category.
   const groups = [
-    ['page-sitemap.xml', pages.filter((p) => p.type === 'page')],
+    ['page-sitemap.xml', pages.filter((p) => ['page', 'clients-index', 'client'].includes(p.type))],
     ['post-sitemap.xml', pages.filter((p) => p.type === 'post')],
     ['category-sitemap.xml', pages.filter((p) => p.type === 'category')],
   ].filter(([, list]) => list.length)

@@ -24,6 +24,30 @@ const real = base.includes('elad-digital.co.il')
 
 const pages = JSON.parse(await readFile(path.join(ROOT, 'content', 'pages.json'), 'utf8'))
 
+// The client pages are generated from projects.json rather than migrated, so
+// they are absent from pages.json. Sweep them too — they are indexed URLs like
+// any other, and a broken one is just as expensive.
+const projects = JSON.parse(await readFile(path.join(ROOT, 'content', 'projects.json'), 'utf8'))
+const ORIGIN_ = 'https://elad-digital.co.il'
+pages.push({
+  type: 'clients-index',
+  seo: {
+    path: '/לקוחות/',
+    url: `${ORIGIN_}/${encodeURI('לקוחות')}/`,
+    title: 'הלקוחות של אלעד שורתי | תיק עבודות',
+  },
+})
+for (const pr of projects) {
+  pages.push({
+    type: 'client',
+    seo: {
+      path: `/לקוחות/${pr.slug}/`,
+      url: `${ORIGIN_}${encodeURI(`/לקוחות/${pr.slug}/`)}`,
+      title: `${pr.name} | לקוחות אלעד שורתי`,
+    },
+  })
+}
+
 const hit = async (url, method = 'GET', wantBody = false) => {
   try {
     const r = await fetch(url, { method, redirect: 'manual' })
