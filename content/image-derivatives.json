@@ -1,35 +1,45 @@
 {
  "/assets/brand/portrait-cutout.png": {
-  "width": 571,
-  "height": 710,
+  "width": 785,
+  "height": 1090,
   "webp": [
    {
     "w": 400,
     "url": "/assets/derived/a43ce81e-400.webp",
-    "bytes": 21444
+    "bytes": 22170
    },
    {
-    "w": 571,
-    "url": "/assets/derived/a43ce81e-571.webp",
-    "bytes": 34134
+    "w": 700,
+    "url": "/assets/derived/a43ce81e-700.webp",
+    "bytes": 45408
+   },
+   {
+    "w": 785,
+    "url": "/assets/derived/a43ce81e-785.webp",
+    "bytes": 50516
    }
   ],
   "avif": [
    {
     "w": 400,
     "url": "/assets/derived/a43ce81e-400.avif",
-    "bytes": 14178
+    "bytes": 15461
    },
    {
-    "w": 571,
-    "url": "/assets/derived/a43ce81e-571.avif",
-    "bytes": 23263
+    "w": 700,
+    "url": "/assets/derived/a43ce81e-700.avif",
+    "bytes": 32079
+   },
+   {
+    "w": 785,
+    "url": "/assets/derived/a43ce81e-785.avif",
+    "bytes": 37114
    }
   ],
   "fallback": {
-   "w": 571,
-   "url": "/assets/derived/a43ce81e-571.png",
-   "bytes": 507584
+   "w": 785,
+   "url": "/assets/derived/a43ce81e-785.png",
+   "bytes": 609224
   }
  },
  "/assets/brand/wordmark-dark.png": {
