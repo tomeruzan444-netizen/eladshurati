@@ -25,7 +25,7 @@ const cta = (label) => `
           <div class="cta-panel reveal">
             <div>
               <h2>${esc(label)}</h2>
-              <p>נדבר על העסק שלכם, על מה שעובד ועל מה שחסר — בלי התחייבות.</p>
+              <p>נדבר על העסק שלכם, על מה שעובד ועל מה שחסר - בלי התחייבות.</p>
             </div>
             <div class="cta-panel__actions">
               <a class="btn btn--primary" href="/צרו-קשר/">לשיחת ייעוץ חינם${icons.arrow}</a>
@@ -70,7 +70,7 @@ export function clientsIndexPage(projects, ctx) {
             <a href="/">עמוד הבית</a><span aria-hidden="true">/</span><span aria-current="page">לקוחות</span>
           </nav>
           <h1>הלקוחות של אלעד שורתי</h1>
-          <p class="page-hero__lead">עסקים שליוויתי — משרדי עורכי דין, מותגי קוסמטיקה, מרפאות וארגונים. לכל לקוח יש עמוד משלו עם התמונה של הפרויקט ומה שנבנה עבורו.</p>
+          <p class="page-hero__lead">עסקים שליוויתי - משרדי עורכי דין, מותגי קוסמטיקה, מרפאות וארגונים. לכל לקוח יש עמוד משלו עם התמונה של הפרויקט ומה שנבנה עבורו.</p>
         </div>
       </section>
 
@@ -130,7 +130,7 @@ export function clientPage(p, ctx) {
             ${p.work ? `<h2>מה נבנה</h2>\n            <p>${esc(p.work)}.</p>` : ''}
 
             <h2>איך אני עובד עם עסקים בתחום הזה</h2>
-            <p>לכל תחום יש את הכללים שלו — מה שמביא פניות למשרד עורכי דין לא בהכרח עובד למרפאה או למותג קוסמטיקה. כתבתי בהרחבה על <a href="${esc(p.sector.href)}">${esc(p.sector.label)}</a>, ושם אפשר לראות איך התהליך נראה מהצד שלי.</p>
+            <p>לכל תחום יש את הכללים שלו - מה שמביא פניות למשרד עורכי דין לא בהכרח עובד למרפאה או למותג קוסמטיקה. כתבתי בהרחבה על <a href="${esc(p.sector.href)}">${esc(p.sector.label)}</a>, ושם אפשר לראות איך התהליך נראה מהצד שלי.</p>
             <p>בפועל, רוב העבודה מתחילה לפני העיצוב: להבין את הלקוח של הלקוח, מה הוא מחפש ואיפה הוא מחפש. רק אחרי שזה ברור, נכנסים ל<a href="${esc(p.also.href)}">${esc(p.also.label)}</a>.</p>
 
             ${visit ? `<div class="client-detail__actions">${visit}</div>` : ''}
@@ -147,8 +147,8 @@ export function clientSeo(p) {
   const url = `${site.origin}${encodeURI(clientPath(p))}`
   const title = `${p.name} | לקוחות אלעד שורתי`
   const description = p.work
-    ? `${p.name} — ${p.work}. ${p.summary}`.slice(0, 158)
-    : `${p.name} — לקוח של אלעד שורתי. ${p.summary}`.slice(0, 158)
+    ? `${p.name} - ${p.work}. ${p.summary}`.slice(0, 158)
+    : `${p.name} - לקוח של אלעד שורתי. ${p.summary}`.slice(0, 158)
   return {
     url,
     path: clientPath(p),
@@ -186,7 +186,7 @@ export function clientsIndexSeo(projects) {
   const url = `${site.origin}/${encodeURI('לקוחות')}/`
   const title = 'הלקוחות של אלעד שורתי | תיק עבודות'
   const description =
-    'עסקים שליוויתי — משרדי עורכי דין, מותגי קוסמטיקה, מרפאות וארגונים. לכל לקוח עמוד משלו עם תמונת הפרויקט ומה שנבנה עבורו.'
+    'עסקים שליוויתי - משרדי עורכי דין, מותגי קוסמטיקה, מרפאות וארגונים. לכל לקוח עמוד משלו עם תמונת הפרויקט ומה שנבנה עבורו.'
   return {
     url,
     path: '/לקוחות/',

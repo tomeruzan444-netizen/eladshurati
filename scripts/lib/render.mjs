@@ -134,7 +134,7 @@ export function header(nav, currentPath) {
   return `
     <header class="header" data-menu="closed">
       <div class="container header__inner">
-        <a class="brand" href="/" aria-label="${esc(site.name)} — לעמוד הבית">
+        <a class="brand" href="/" aria-label="${esc(site.name)} - לעמוד הבית">
           <img class="brand__mark" src="/assets/brand/mark-duotone.svg" alt="" width="42" height="40">
           <img class="brand__word" src="/assets/brand/wordmark-dark.png" alt="${esc(site.name)}" width="240" height="34">
         </a>
@@ -238,7 +238,7 @@ export function responsiveImage(src, opts = {}) {
   return `<picture>${sources.join('')}<img${cls} src="${enc(fb.url)}" alt="${esc(alt)}" width="${fb.w}" height="${ratioH}"${prio}></picture>`
 }
 
-/** Preload hint matching the srcset a <picture> will choose — for the LCP image. */
+/** Preload hint matching the srcset a <picture> will choose - for the LCP image. */
 export function preloadImage(src, { sizes, derivatives = {} }) {
   const d = derivatives[src]
   if (!d) return ''

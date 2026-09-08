@@ -302,7 +302,7 @@ function archivePage(page, ctx) {
       <section class="page-hero">
         <div class="container page-hero__inner">
           ${crumbs([{ label: 'עמוד הבית', href: '/' }, { label: h1?.text || page.seo.title }])}
-          <h1>${esc(h1?.text || 'בלוג עסקי — מקצועי')}</h1>
+          <h1>${esc(h1?.text || 'בלוג עסקי - מקצועי')}</h1>
           ${page.seo.description ? `<p class="page-hero__lead">${esc(page.seo.description)}</p>` : ''}
         </div>
       </section>
