@@ -69,6 +69,14 @@ def collect():
             for item in json.load(fh):
                 if item.get("image"):
                     wanted.add(item["image"])
+
+    # Testimonial video posters — same story.
+    tst = os.path.join(ROOT, "content", "testimonials.json")
+    if os.path.exists(tst):
+        with io.open(tst, encoding="utf-8") as fh:
+            for item in json.load(fh):
+                if item.get("thumb"):
+                    wanted.add(item["thumb"])
     return sorted(wanted)
 
 

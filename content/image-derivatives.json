@@ -141,6 +141,92 @@
    "bytes": 27091
   }
  },
+ "/assets/images/testimonials/3X0VGpzO_34.jpg": {
+  "width": 1080,
+  "height": 1908,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/ad7f19d0-400.webp",
+    "bytes": 15800
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/ad7f19d0-700.webp",
+    "bytes": 29444
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/ad7f19d0-1000.webp",
+    "bytes": 45728
+   },
+   {
+    "w": 1080,
+    "url": "/assets/derived/ad7f19d0-1080.webp",
+    "bytes": 51322
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/ad7f19d0-400.avif",
+    "bytes": 13087
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/ad7f19d0-700.avif",
+    "bytes": 25514
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/ad7f19d0-1000.avif",
+    "bytes": 39448
+   },
+   {
+    "w": 1080,
+    "url": "/assets/derived/ad7f19d0-1080.avif",
+    "bytes": 44567
+   }
+  ],
+  "fallback": {
+   "w": 1080,
+   "url": "/assets/derived/ad7f19d0-1080.jpg",
+   "bytes": 109617
+  }
+ },
+ "/assets/images/testimonials/xD-9ZYnSccI.jpg": {
+  "width": 478,
+  "height": 850,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/90241f38-400.webp",
+    "bytes": 8126
+   },
+   {
+    "w": 478,
+    "url": "/assets/derived/90241f38-478.webp",
+    "bytes": 11328
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/90241f38-400.avif",
+    "bytes": 8286
+   },
+   {
+    "w": 478,
+    "url": "/assets/derived/90241f38-478.avif",
+    "bytes": 11470
+   }
+  ],
+  "fallback": {
+   "w": 478,
+   "url": "/assets/derived/90241f38-478.jpg",
+   "bytes": 22821
+  }
+ },
  "/assets/images/פרוייקטים ולקוחות/פוייקט 6 - עורך דין אסף ברוך .png": {
   "width": 1884,
   "height": 892,

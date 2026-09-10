@@ -283,6 +283,77 @@
     })
   }
 
+  /* ============================================ testimonials rail */
+
+  // Click-to-play. The card ships as a poster; YouTube's player is only
+  // fetched once someone actually asks for the video.
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest && e.target.closest('.tcard__frame[data-yt]')
+    if (!btn || btn.classList.contains('is-playing')) return
+    var id = btn.getAttribute('data-yt')
+    if (!id) return
+    var frame = document.createElement('iframe')
+    frame.src =
+      'https://www.youtube-nocookie.com/embed/' +
+      encodeURIComponent(id) +
+      '?autoplay=1&playsinline=1&rel=0'
+    frame.title = btn.getAttribute('aria-label') || 'המלצת לקוח'
+    frame.allow = 'accelerometer; autoplay; encrypted-media; picture-in-picture'
+    frame.setAttribute('allowfullscreen', '')
+    btn.innerHTML = ''
+    btn.appendChild(frame)
+    btn.classList.add('is-playing')
+    btn.setAttribute('aria-label', 'ההמלצה מתנגנת')
+  })
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-rail]'), function (rail) {
+    var track = rail.querySelector('[data-rail-track]')
+    var prev = rail.querySelector('[data-rail-prev]')
+    var next = rail.querySelector('[data-rail-next]')
+    if (!track || !prev || !next) return
+
+    // In RTL scrollLeft runs from 0 at the right edge down to -max at the left,
+    // so every comparison here is on the absolute value and every scroll is
+    // signed by the reading direction.
+    var rtl = getComputedStyle(track).direction === 'rtl'
+    var sign = rtl ? -1 : 1
+
+    function step() {
+      var card = track.querySelector('.tcard')
+      if (!card) return track.clientWidth * 0.8
+      var gap = parseFloat(getComputedStyle(track).columnGap || '16') || 16
+      return card.getBoundingClientRect().width + gap
+    }
+
+    function sync() {
+      var max = track.scrollWidth - track.clientWidth
+      // Nothing to scroll: no arrows, and the flex centring keeps the few
+      // cards there are in the middle.
+      if (max < 8) {
+        prev.hidden = true
+        next.hidden = true
+        return
+      }
+      var at = Math.abs(track.scrollLeft)
+      prev.hidden = at < 8
+      next.hidden = at >= max - 8
+    }
+
+    prev.addEventListener('click', function () {
+      track.scrollBy({ left: -sign * step(), behavior: 'smooth' })
+    })
+    next.addEventListener('click', function () {
+      track.scrollBy({ left: sign * step(), behavior: 'smooth' })
+    })
+    track.addEventListener('scroll', sync, { passive: true })
+    window.addEventListener('resize', sync)
+    // Posters change the track width as they load.
+    Array.prototype.forEach.call(track.querySelectorAll('img'), function (img) {
+      if (!img.complete) img.addEventListener('load', sync, { once: true })
+    })
+    sync()
+  })
+
   /* ============================================ lead form */
 
   // The form posts to /api/lead on its own if this never runs. All this adds

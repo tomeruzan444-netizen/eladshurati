@@ -2456,3 +2456,182 @@ a:focus-visible .arrow-chip {
     margin-block-start: 1.25rem;
   }
 }
+
+
+/* ======================================================== testimonials */
+
+.testimonials .sec-head {
+  margin-block-end: clamp(1.25rem, 3vw, 2rem);
+}
+
+/* The rail is the scroll container plus two overlaid arrows. It is allowed to
+   bleed past the container on small screens so a card can sit half-visible at
+   the edge — that peek is what tells you there is more to swipe to. */
+.trail {
+  position: relative;
+}
+.trail__track {
+  display: flex;
+  gap: clamp(0.85rem, 2vw, 1.4rem);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding-block-end: 0.5rem;
+  /* Room for the focus ring on the first and last card. */
+  padding-inline: 2px;
+}
+.trail__track::-webkit-scrollbar {
+  display: none;
+}
+/* Fewer cards than fit: centre them instead of stranding them on one side. */
+.trail__track {
+  justify-content: safe center;
+}
+.trail__track:focus-visible {
+  outline: 3px solid var(--purple-500);
+  outline-offset: 4px;
+  border-radius: var(--r-md);
+}
+@media (prefers-reduced-motion: reduce) {
+  .trail__track {
+    scroll-behavior: auto;
+  }
+}
+
+.tcard {
+  flex: 0 0 auto;
+  inline-size: 260px;
+  scroll-snap-align: center;
+}
+.tcard__frame {
+  display: block;
+  position: relative;
+  inline-size: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--plum-900);
+  /* Shorts are vertical; hold the shape before the poster decodes so the rail
+     does not jump as images arrive. */
+  aspect-ratio: 9 / 16;
+  box-shadow: 0 1px 2px rgb(43 0 56 / 0.08), 0 14px 30px -18px rgb(43 0 56 / 0.5);
+  transition: transform 0.28s var(--ease), box-shadow 0.28s var(--ease);
+}
+.tcard__frame:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 1px 2px rgb(43 0 56 / 0.1), 0 20px 38px -18px rgb(43 0 56 / 0.6);
+}
+.tcard__frame:focus-visible {
+  outline: 3px solid var(--purple-500);
+  outline-offset: 3px;
+}
+.tcard__poster {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  display: block;
+}
+.tcard__play {
+  position: absolute;
+  inset-block-end: 0.85rem;
+  inset-inline-start: 0.85rem;
+  inline-size: 3rem;
+  block-size: 3rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--orange);
+  color: var(--plum);
+  box-shadow: 0 6px 18px -6px rgb(43 0 56 / 0.7);
+  transition: transform 0.25s var(--ease);
+}
+.tcard__play svg {
+  inline-size: 1.4rem;
+  block-size: 1.4rem;
+  /* The glyph's visual centre sits right of its box; nudge it back. */
+  margin-inline-start: 2px;
+}
+.tcard__frame:hover .tcard__play {
+  transform: scale(1.08);
+}
+/* Once playing, the iframe fills the frame and the button stops behaving
+   like one. */
+.tcard__frame iframe {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  border: 0;
+}
+.tcard__frame.is-playing {
+  cursor: default;
+  transform: none;
+}
+.tcard__caption {
+  margin-block-start: 0.75rem;
+  font-size: var(--step--1);
+  line-height: 1.5;
+  color: var(--ink-soft, var(--plum-700));
+}
+
+/* --- arrows: desktop affordance, hidden when there is nothing to scroll --- */
+
+.trail__nav {
+  position: absolute;
+  inset-block-start: calc(50% - 2.5rem);
+  z-index: 2;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  border-radius: 50%;
+  border: 1px solid var(--rule, #ddd7e4);
+  background: var(--white);
+  color: var(--plum);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 2px 10px -2px rgb(43 0 56 / 0.2);
+  transition: background-color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.trail__nav svg {
+  inline-size: 1.15rem;
+  block-size: 1.15rem;
+}
+.trail__nav:hover {
+  background: var(--mist);
+  transform: scale(1.06);
+}
+.trail__nav:focus-visible {
+  outline: 3px solid var(--purple-500);
+  outline-offset: 2px;
+}
+.trail__nav[hidden] {
+  display: none;
+}
+/* Logical insets so the arrows follow the reading direction in RTL. */
+.trail__nav--prev {
+  inset-inline-start: -0.5rem;
+}
+.trail__nav--next {
+  inset-inline-end: -0.5rem;
+}
+
+@media (max-width: 860px) {
+  /* Touch scrolls; the arrows would only cover a card. */
+  .trail__nav {
+    display: none;
+  }
+  .trail__track {
+    /* Bleed to the screen edges so a neighbouring card peeks in. */
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
+    justify-content: flex-start;
+    scroll-snap-type: x proximity;
+  }
+  .tcard {
+    inline-size: min(68vw, 260px);
+  }
+}

@@ -16,6 +16,7 @@ import {
   clientPath, clientPage, clientsIndexPage, clientSeo, clientsIndexSeo,
 } from './lib/clients.mjs'
 import { applyCorrections } from './lib/corrections.mjs'
+import { testimonials } from './lib/testimonials.mjs'
 import { minifyCss, minifyHtml } from './lib/minify.mjs'
 
 const ROOT = path.resolve(import.meta.dirname, '..')
@@ -393,6 +394,9 @@ const main = async () => {
   const altMap = existsSync(path.join(ROOT, 'content', 'media-alt.json')) ? await read('media-alt.json') : {}
 
   const manifest = Object.fromEntries(manifestList.filter((m) => m.local).map((m) => [m.url, m.local]))
+  const testimonialItems = existsSync(path.join(ROOT, 'content', 'testimonials.json'))
+    ? await read('testimonials.json')
+    : []
   const derivatives = existsSync(path.join(ROOT, 'content', 'image-derivatives.json'))
     ? await read('image-derivatives.json')
     : {}
@@ -641,7 +645,10 @@ const main = async () => {
           derivatives,
         })
       : ''
-    let html = head({ seo: page.seo, preload, cssUrl }) + header(nav, p) + body + footer(nav, groups, jsUrl)
+    // Above the footer on every page — the footer is site-wide, and so is this.
+    const saying = testimonials(testimonialItems, ctx)
+    let html =
+      head({ seo: page.seo, preload, cssUrl }) + header(nav, p) + body + saying + footer(nav, groups, jsUrl)
     if (!RAW) html = minifyHtml(html)
     const file = outFile(p)
     await mkdir(path.dirname(file), { recursive: true })
