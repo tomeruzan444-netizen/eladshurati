@@ -250,6 +250,71 @@ function landingPage(page, ctx) {
     </main>`
 }
 
+/* ---------------------------------------------------------------- contact */
+
+/*
+ * The contact page gets its own layout. Everywhere else the form belongs at
+ * the end — you read the page, then you convert. Here the form IS the page:
+ * the CTA that sends people here says "לשיחת ייעוץ חינם", so landing them
+ * above a wall of text with the form somewhere below the fold breaks the
+ * promise the button just made.
+ *
+ * Same blocks, same words, different order.
+ */
+function contactPage(page, ctx) {
+  const b = [...page.blocks]
+  const h1 = b.find((x) => x.type === 'heading' && x.level === 1)
+  const eyebrow = b.find((x) => x.type === 'heading' && x.level === 6)
+  const sub = b.find((x) => x.type === 'heading' && x.level === 2)
+  const rich = b.find((x) => x.type === 'richtext')
+  const form = b.find((x) => x.type === 'form')
+  const lead = rich ? stripTags(rich.html) : ''
+
+  const used = new Set([h1, eyebrow, sub, rich, form].filter(Boolean))
+  const rest = b.filter(
+    (x) => !used.has(x) && x.type !== 'template' && x.type !== 'postlist'
+  )
+  const related = b.filter((x) => x.type === 'template').flatMap((x) => x.links || [])
+
+  return `
+    <div class="progress" aria-hidden="true"></div>
+    <main id="main">
+      <section class="page-hero page-hero--contact" id="contact">
+        <div class="container contact-hero">
+          <div class="contact-hero__copy">
+            ${crumbs([{ label: 'עמוד הבית', href: '/' }, { label: h1?.text || page.seo.title }])}
+            ${eyebrow ? `<span class="eyebrow">${esc(eyebrow.text)}</span>` : ''}
+            <h1>${esc(h1?.text || page.seo.title)}</h1>
+            ${lead ? `<p class="page-hero__lead">${esc(lead)}</p>` : ''}
+            ${sub ? `<h2 class="contact-hero__sub">${esc(sub.text)}</h2>` : ''}
+            ${ctx.contactList()}
+          </div>
+          <div class="contact-hero__form">
+            ${form ? ctx.formCard(form) : ''}
+          </div>
+        </div>
+      </section>
+
+      ${rest.length ? `<section class="section">
+        <div class="container">
+          <div class="article"><div class="article__main">${renderFlow(rest, ctx)}</div></div>
+        </div>
+      </section>` : ''}
+
+      ${related.length ? `<section class="section section--tight section--mist">
+        <div class="container">
+          <div class="sec-head reveal"><span class="eyebrow">להמשך קריאה</span><h2 style="font-size:var(--step-3)">מאמרים נוספים</h2></div>
+          <ul class="linklist" style="margin-block-start:1.5rem">
+            ${[...new Map(related.map((l) => [l.href, l])).values()]
+              .map((l) => `<li><a href="${esc(hrefFor(l.href))}">${esc(ctx.titleFor(l.href) || l.text)}</a></li>`)
+              .filter(Boolean)
+              .join('')}
+          </ul>
+        </div>
+      </section>` : ''}
+    </main>`
+}
+
 /* ------------------------------------------------------------------- post */
 
 function postPage(page, ctx) {
@@ -561,6 +626,7 @@ const main = async () => {
     if (p === '/') body = homePage(page, ctx)
     else if (page.type === 'clients-index') body = clientsIndexPage(projects, ctx)
     else if (page.type === 'client') body = clientPage(page.project, ctx)
+    else if (decodeURIComponent(p) === '/צרו-קשר/') body = contactPage(page, ctx)
     else if (page.type === 'category') body = archivePage(page, ctx)
     else if (page.type === 'post') body = postPage(page, ctx)
     else body = landingPage(page, ctx)

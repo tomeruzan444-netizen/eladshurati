@@ -1289,8 +1289,19 @@
 }
 .form__row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  /* Two explicit columns rather than auto-fit: with three fields, auto-fit
+     left the last one stranded beside a gap. */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
+}
+/* An odd field at the end takes the whole row instead of half of one. */
+.form__row > .field:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+@media (max-width: 520px) {
+  .form__row {
+    grid-template-columns: 1fr;
+  }
 }
 .field {
   display: grid;
@@ -2395,5 +2406,53 @@ a:focus-visible .arrow-chip {
   .arrow-chip,
   .arrow-chip svg {
     transition: none;
+  }
+}
+
+
+/* ------------------------------------------------- contact page hero */
+
+/* The form sits in the hero rather than at the foot of the page, so the
+   button that promises a free consultation lands on the thing it promised. */
+.page-hero--contact {
+  padding-block-end: clamp(2.5rem, 6vw, 4.5rem);
+}
+.contact-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(1.75rem, 4vw, 3.5rem);
+  align-items: start;
+}
+.contact-hero__copy .crumbs {
+  margin-block-end: 1rem;
+}
+.contact-hero__copy h1 {
+  margin-block: 0.6rem 0;
+}
+.contact-hero__sub {
+  font-size: var(--step-1);
+  margin-block: 1.75rem 0;
+}
+.contact-hero__copy .contact-list {
+  margin-block-start: 1.5rem;
+}
+/* The card carries itself here — it is the first thing on the page, so it
+   gets a little more presence than it does at the foot of a landing page. */
+.contact-hero__form .form-card {
+  position: sticky;
+  inset-block-start: calc(var(--header-h, 72px) + 1rem);
+}
+
+@media (max-width: 900px) {
+  .contact-hero {
+    grid-template-columns: 1fr;
+    gap: clamp(1.5rem, 5vw, 2.25rem);
+  }
+  /* Sticky would fight the single column and pin the card mid-scroll. */
+  .contact-hero__form .form-card {
+    position: static;
+  }
+  .contact-hero__sub {
+    margin-block-start: 1.25rem;
   }
 }
