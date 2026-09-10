@@ -15,6 +15,7 @@ import {
 import {
   clientPath, clientPage, clientsIndexPage, clientSeo, clientsIndexSeo,
 } from './lib/clients.mjs'
+import { applyCorrections } from './lib/corrections.mjs'
 import { minifyCss, minifyHtml } from './lib/minify.mjs'
 
 const ROOT = path.resolve(import.meta.dirname, '..')
@@ -383,7 +384,10 @@ function archivePage(page, ctx) {
 /* ------------------------------------------------------------------ build */
 
 const main = async () => {
-  const pages = await read('pages.json')
+  // The capture stays untouched on disk; the fixes are a named, counted layer
+  // on top of it — see lib/corrections.mjs.
+  const captured = await read('pages.json')
+  const { pages, report: fixReport } = applyCorrections(captured)
   const nav = await read('nav.json')
   const manifestList = await read('media-manifest.json')
   const altMap = existsSync(path.join(ROOT, 'content', 'media-alt.json')) ? await read('media-alt.json') : {}
@@ -695,6 +699,10 @@ const main = async () => {
 
   await writeSitemapAndMap(pages)
 
+  const fixedText = Object.values(fixReport.text).reduce((a, b) => a + b, 0)
+  console.log(
+    `       corrections: ${fixedText} text, ${fixReport.seo} metadata, ${fixReport.faq} faq, ${fixReport.joins} list`
+  )
   console.log(`built ${written} pages -> site/`)
   console.log(`       ${copied} assets copied (${(bytes / 1048576).toFixed(1)} MB), sitemap.xml, robots.txt, url-map.csv`)
   console.log(`       ${cssUrl}  ${jsUrl}`)
