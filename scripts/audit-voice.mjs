@@ -10,6 +10,71 @@ import path from 'node:path'
 import { applyCorrections } from './lib/corrections.mjs'
 
 const ROOT = path.resolve(import.meta.dirname, '..')
+
+/*
+ * With no argument this measures the whole site, which is where the figures in
+ * docs/voice-guide.md come from. With a file it measures one draft against
+ * those same figures, so a new page can be checked before it is built.
+ */
+const draftPath = process.argv[2]
+
+if (draftPath) {
+  const md = await readFile(path.resolve(draftPath), 'utf8')
+  // A draft carries a meta package and working notes; only the page body counts.
+  const from = md.indexOf('### H1:')
+  const to = md.indexOf('## מה חסר')
+  const body = md.slice(from > -1 ? from : 0, to > -1 ? to : md.length)
+  const plain = body.replace(/<[^>]*>/g, ' ').replace(/[#*|>`_]/g, ' ').replace(/\s+/g, ' ').trim()
+  const words = plain.split(' ').filter(Boolean).length
+
+  // Prose paragraphs only — the basis the site figures were measured on.
+  // Counting list items and bold labels as sentences deflates the median.
+  const paras = body
+    .split(/\n\s*\n/)
+    .map((b) => b.trim())
+    .filter(
+      (b) =>
+        b &&
+        !b.startsWith('#') &&
+        !b.startsWith('|') &&
+        !b.startsWith('-') &&
+        !b.startsWith('*') &&
+        !/^\d+\./.test(b)
+    )
+  const prose = paras.join(' ').replace(/<[^>]*>/g, '').replace(/[*`]/g, '').replace(/\s+/g, ' ')
+  const sents = prose
+    .split(/(?<=[.!?])\s+/)
+    .map((x) => x.trim())
+    .filter((x) => x.length > 15)
+  const lens = sents.map((x) => x.split(/\s+/).length).sort((a, b) => a - b)
+  const mid = lens[Math.floor(lens.length / 2)]
+  const short = Math.round((lens.filter((l) => l < 12).length / lens.length) * 100)
+  const hits = (re) => (prose.match(re) || []).length
+  const plural = hits(/(?:^|\s)(אתם|שלכם|לכם|אצלכם)(?=\s|[.,!?])/g)
+  const singular = hits(/(?:^|\s)(אתה|שלך|לך)(?=\s|[.,!?])/g)
+  const feminine = hits(/(?:^|\s)(אתן|שלכן|לכן)(?=\s|[.,!?])/g)
+
+  let failed = 0
+  const line = (label, value, ok, note) => {
+    if (!ok) failed++
+    console.log(`  ${ok ? 'ok  ' : 'FAIL'}  ${label.padEnd(24)} ${String(value).padEnd(9)} ${note}`)
+  }
+
+  console.log(`\n${path.basename(draftPath)}\n`)
+  line('words', words, words >= 800 && words <= 1100, 'rule 17: 800-1,100')
+  line('median sentence', mid, Math.abs(mid - 12) <= 2, 'site: 12 words')
+  line('under 12 words', short + '%', Math.abs(short - 44) <= 12, 'site: 44%')
+  line('longest sentence', lens[lens.length - 1], lens[lens.length - 1] <= 39, 'site ceiling: 39')
+  line(
+    'address plural/sg/fem',
+    `${plural}/${singular}/${feminine}`,
+    !(plural >= 3 && singular >= 3),
+    'never mixed in one page'
+  )
+  console.log()
+  process.exit(failed ? 1 : 0)
+}
+
 const raw = JSON.parse(await readFile(path.join(ROOT, 'content', 'pages.json'), 'utf8'))
 const { pages } = applyCorrections(raw)
 

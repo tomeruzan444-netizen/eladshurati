@@ -83,7 +83,14 @@
 ## כלים
 
 ```
-node scripts/audit-voice.mjs      מודד מחדש את המספרים ב-voice-guide.md
-node scripts/5-audit.mjs          אודיט SEO ותוכן
-node scripts/6-linkcheck.mjs      קישורים פנימיים ותמונות
+node scripts/audit-voice.mjs <קובץ>   בודק טיוטה: אורך, קצב משפטים, פנייה
+node scripts/audit-voice.mjs          מודד מחדש את המספרים ב-voice-guide.md
+node scripts/9-inbound.mjs            קישורי תוכן נכנסים לכל עמוד (כלל 9א)
+node scripts/5-audit.mjs              אודיט SEO ותוכן
+node scripts/6-linkcheck.mjs          קישורים פנימיים ותמונות
 ```
+
+## שני כללים שנוספו אחרי כתיבת ההנחיה
+
+- **9א** - כל עמוד חדש מקבל 1-3 קישורי תוכן נכנסים מהעמודים הרלוונטיים (12.9.2026)
+- **17** - כל עמוד חדש עולה ב-800 עד 1,100 מילה, בלי מילוי (12.9.2026)
