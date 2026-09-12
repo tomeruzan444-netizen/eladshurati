@@ -85,10 +85,15 @@ const findings = []
 const add = (kind, page, detail) => findings.push({ kind, page, detail })
 
 // Repeated word: "את את". Only within one line, so two paragraphs cannot fake it.
+//
+// Hebrew doubles a handful of words for emphasis on purpose - "כן כן" reads as
+// "yes, really", "לאט לאט" as "gradually". Those are writing, not typos, and
+// flagging them buries the real ones under noise.
+const DELIBERATE = /^(כן|לא|לאט|מהר|טוב|רגע|ממש|הרבה|עוד|שוב)$/
 for (const p of pages) {
   for (const line of p.lines) {
     const m = line.match(/(?:^|\s)([֐-׿]{2,})\s+\1(?=\s|$|[.,!?])/)
-    if (m) add('repeated word', p.path, `«${m[1]} ${m[1]}» in: ${line.slice(0, 90)}`)
+    if (m && !DELIBERATE.test(m[1])) add('repeated word', p.path, `«${m[1]} ${m[1]}» in: ${line.slice(0, 90)}`)
   }
 }
 
@@ -145,8 +150,13 @@ for (const p of pages) {
   const m = (p.h1 + ' ' + p.title).match(/(\d+)\s*(סוגי|טיפים|טעויות|שלבים|דרכים|עקרונות|צעדים|כללים|סיבות|שאלות)/)
   if (!m) continue
   const want = Number(m[1])
-  const numbered = p.lines.filter((l) => /^(\d+)[.)]\s/.test(l) || /^(טעות|שלב|טיפ|כלל|סיבה|דרך)\s*(מספר)?\s*\d/.test(l)).length
-  if (numbered && numbered !== want) add('count mismatch', p.path, `promises ${want} ${m[2]}, found ${numbered} numbered items`)
+  // A page usually lists its items twice - once as a table of contents, once as
+  // the headings themselves. Count distinct items, or every such page looks
+  // like it delivers double what it promised.
+  const numbered = new Set(
+    p.lines.filter((l) => /^(\d+)[.)]\s/.test(l) || /^(טעות|שלב|טיפ|כלל|סיבה|דרך)\s*(מספר)?\s*\d/.test(l))
+  ).size
+  if (numbered && numbered !== want) add('count mismatch', p.path, `promises ${want} ${m[2]}, found ${numbered} distinct items`)
 }
 
 // Metadata hygiene.

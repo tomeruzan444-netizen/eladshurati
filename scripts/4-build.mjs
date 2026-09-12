@@ -11,6 +11,7 @@ import path from 'node:path'
 import {
   site, indexable, esc, head, header, footer, renderBlock, renderFlow, renderFaq, renderCard,
   crumbs, ctaSection, hrefFor, rewriteHtml, slugify, responsiveImage, preloadImage, icons, social, arrowChip,
+  altFor,
 } from './lib/render.mjs'
 import {
   clientPath, clientPage, clientsIndexPage, clientSeo, clientsIndexSeo,
@@ -449,7 +450,9 @@ const main = async () => {
           const d = p.lastmod ? new Date(p.lastmod).toLocaleDateString('he-IL', { year: 'numeric', month: 'long' }) : ''
           return `<article class="post-card reveal">
             ${img ? `<div class="post-card__media">${responsiveImage(img.src, {
-              alt: img.alt || '',
+              // altFor, not img.alt - the block often carries no alt of its own
+              // and the text lives in the media library record instead.
+              alt: altFor(img, { altMap }),
               sizes: '(max-width: 700px) 92vw, 380px',
               derivatives: ctx.derivatives,
             })}</div>` : ''}
@@ -722,7 +725,7 @@ const main = async () => {
 
   const fixedText = Object.values(fixReport.text).reduce((a, b) => a + b, 0)
   console.log(
-    `       corrections: ${fixedText} text, ${fixReport.seo} metadata, ${fixReport.faq} faq, ${fixReport.joins} list`
+    `       corrections: ${fixedText} text, ${fixReport.seo} metadata, ${fixReport.faq} faq, ${fixReport.joins} list, ${fixReport.blocks} blocks, ${fixReport.alts} alt`
   )
   console.log(`built ${written} pages -> site/`)
   console.log(`       ${copied} assets copied (${(bytes / 1048576).toFixed(1)} MB), sitemap.xml, robots.txt, url-map.csv`)

@@ -8,7 +8,7 @@ import { icons, social, arrowChip } from './icons.mjs'
 
 export const site = {
   name: 'אלעד שורתי',
-  tagline: 'יעוץ עסקי • שיווק • אסטרטגיה',
+  tagline: 'ייעוץ עסקי • שיווק • אסטרטגיה',
   origin: 'https://elad-digital.co.il',
   phone: '052-707-5029',
   phoneHref: 'tel:0527075029',
@@ -252,8 +252,10 @@ export function preloadImage(src, { sizes, derivatives = {} }) {
 /* ---------------------------------------------------------------- blocks */
 
 /**
- * Alt text, in order: what the page markup had, then whatever the WordPress
- * media library still holds for that file. Never invented here.
+ * Alt text, in order: what the block carries, then whatever the WordPress
+ * media library still holds for that file. Never invented here — an image that
+ * arrived with no alt anywhere gets one from `imageAlts` in the corrections
+ * layer, where it is a reviewed line someone wrote after looking at the image.
  */
 export function altFor(b, ctx = {}) {
   if (b.alt && b.alt.trim()) return b.alt

@@ -10,6 +10,7 @@
  */
 import { readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
+import { applyCorrections } from './lib/corrections.mjs'
 
 const ROOT = path.resolve(import.meta.dirname, '..')
 const CONTENT = path.join(ROOT, 'content')
@@ -39,7 +40,11 @@ const textOf = (block) => {
 }
 
 const main = async () => {
-  const pages = await read('pages.json')
+  // Audit what ships, not what was captured. pages.json is the untouched
+  // WordPress record on purpose; the corrections layer sits on top of it. An
+  // audit that skips it keeps reporting problems that were fixed weeks ago,
+  // which is how a report stops being read.
+  const { pages } = applyCorrections(await read('pages.json'))
   const links = await read('links.json')
   const manifest = await read('media-manifest.json')
 
