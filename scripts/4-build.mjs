@@ -26,7 +26,21 @@ const RAW = process.env.RAW === '1'   // skip minification when debugging output
 
 /* ---------------------------------------------------------------- helpers */
 
-const stripTags = (h = '') => h.replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim()
+/*
+ * Flatten HTML to the text a reader sees.
+ *
+ * Block elements end a line, so they leave a space behind. Inline elements do
+ * not — a link inside a sentence contributes nothing of its own. Replacing
+ * every tag with a space, which this used to do, published "לייעוץ" as
+ * "ל ייעוץ" and put a space before the comma that followed the link.
+ */
+const stripTags = (h = '') =>
+  h
+    .replace(/<[/]?(p|div|br|li|ul|ol|h[1-6]|tr|td|th|section|article|blockquote)(?=[ />])[^>]*>/gi, ' ')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
 
 /** site path -> output file */
 function outFile(p) {
