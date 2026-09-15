@@ -18,14 +18,44 @@ const ROOT = path.resolve(import.meta.dirname, '..')
  */
 const draftPath = process.argv[2]
 
+/**
+ * An authored page (content/authored/*.mjs) laid out the way a markdown draft
+ * is, so both run through the one set of rules below. Lists and FAQ answers go
+ * in as list lines, which the sentence measures skip - same as in a draft.
+ */
+function asDraft(page) {
+  const strip = (h) => String(h).replace(/<[^>]*>/g, '').trim()
+  const out = []
+  for (const b of page.blocks) {
+    if (b.type === 'heading') out.push(`### H${b.level}: ${b.text}`)
+    else if (b.type === 'richtext') out.push(...String(b.html).split('</p>').map(strip).filter(Boolean))
+    else if (b.type === 'list') out.push(b.items.map((i) => `- ${strip(i)}`).join('\n'))
+    else if (b.type === 'table') out.push('| table |')
+    else if (b.type === 'faq') out.push(b.items.map((i) => `- ${i.q} ${strip(i.a)}`).join('\n'))
+  }
+  if (page.cta) out.push(page.cta.text)
+  return out.join('\n\n')
+}
+
 if (draftPath) {
-  const md = await readFile(path.resolve(draftPath), 'utf8')
+  let md
+  let exactWords
+  if (draftPath.endsWith('.mjs')) {
+    const { pathToFileURL } = await import('node:url')
+    const { countWords } = await import('./lib/authored.mjs')
+    const { default: page } = await import(pathToFileURL(path.resolve(draftPath)).href)
+    md = asDraft(page)
+    // The count the build enforces, not an approximation of it.
+    exactWords = countWords(page)
+  } else {
+    md = await readFile(path.resolve(draftPath), 'utf8')
+  }
   // A draft carries a meta package and working notes; only the page body counts.
   const from = md.indexOf('### H1:')
   const to = md.indexOf('## מה חסר')
   const body = md.slice(from > -1 ? from : 0, to > -1 ? to : md.length)
   const plain = body.replace(/<[^>]*>/g, ' ').replace(/[#*|>`_]/g, ' ').replace(/\s+/g, ' ').trim()
-  const words = plain.split(' ').filter(Boolean).length
+  const words = exactWords ?? plain.split(' ').filter(Boolean).length
 
   // Prose paragraphs only — the basis the site figures were measured on.
   // Counting list items and bold labels as sentences deflates the median.

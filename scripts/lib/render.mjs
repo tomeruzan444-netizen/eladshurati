@@ -321,6 +321,10 @@ export function renderBlock(b, ctx) {
       })
       return b.caption ? `<figure>${img}<figcaption>${esc(b.caption)}</figcaption></figure>` : img
     }
+    case 'figure':
+      // A diagram drawn for an authored page: inline SVG, labelled for screen
+      // readers inside the SVG itself, with a visible caption underneath.
+      return `<figure class="diagram">${b.html}${b.caption ? `<figcaption>${esc(b.caption)}</figcaption>` : ''}</figure>`
     case 'faq':
       return renderFaq(b, ctx)
     case 'iconlist':

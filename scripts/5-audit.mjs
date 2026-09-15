@@ -45,6 +45,9 @@ const main = async () => {
   // audit that skips it keeps reporting problems that were fixed weeks ago,
   // which is how a report stops being read.
   const { pages } = applyCorrections(await read('pages.json'))
+  // Authored pages ship too, so they are audited too.
+  const { loadAuthored } = await import('./lib/authored.mjs')
+  pages.push(...(await loadAuthored(pages)))
   const links = await read('links.json')
   const manifest = await read('media-manifest.json')
 

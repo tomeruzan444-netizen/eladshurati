@@ -1010,6 +1010,55 @@
   color: var(--ink-muted);
   text-align: center;
 }
+
+/* Diagrams drawn for authored pages. Inline SVG coloured from the tokens, so a
+   re-skin reaches them too. Label sizes are in viewBox units: at phone width
+   the 600-wide drawing scales to ~60%, which keeps the names near 20px. */
+.prose .diagram {
+  margin: 2.25rem 0;
+  padding: clamp(1rem, 3vw, 1.75rem);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+}
+.diagram__svg {
+  display: block;
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  margin-inline: auto;
+}
+.diagram__ring {
+  stroke-width: 3;
+}
+.diagram__ring--family {
+  fill: var(--purple-500);
+  fill-opacity: 0.16;
+  stroke: var(--purple-ink);
+}
+.diagram__ring--ownership {
+  fill: var(--orange-500);
+  fill-opacity: 0.16;
+  stroke: var(--orange-ink);
+}
+.diagram__ring--management {
+  fill: var(--plum-500);
+  fill-opacity: 0.12;
+  stroke: var(--plum-700);
+}
+.diagram__core {
+  fill: var(--orange-500);
+  stroke: var(--white);
+  stroke-width: 5;
+}
+.diagram__name {
+  font: 700 34px var(--font);
+  fill: var(--ink);
+}
+.diagram__logic {
+  font: 400 24px var(--font);
+  fill: var(--ink-soft);
+}
 .prose blockquote {
   padding: 1.35rem 1.6rem;
   border-inline-start: 3px solid var(--purple-500);

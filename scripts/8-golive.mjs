@@ -48,6 +48,12 @@ for (const pr of projects) {
   })
 }
 
+// Pages written for the site are missing from pages.json for the same reason.
+const { loadAuthored } = await import('./lib/authored.mjs')
+for (const a of await loadAuthored(pages.filter((p) => p.type !== 'clients-index' && p.type !== 'client'))) {
+  pages.push({ type: a.type, seo: { path: a.seo.path, url: a.seo.url, title: a.seo.title } })
+}
+
 const hit = async (url, method = 'GET', wantBody = false) => {
   try {
     const r = await fetch(url, { method, redirect: 'manual' })

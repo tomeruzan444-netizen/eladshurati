@@ -263,7 +263,7 @@ function landingPage(page, ctx) {
           </div>
           ${ctx.formCard(form)}
         </div>
-      </section>` : ctaSection()}
+      </section>` : ctaSection(page.cta)}
     </main>`
 }
 
@@ -404,6 +404,12 @@ const main = async () => {
   // on top of it — see lib/corrections.mjs.
   const captured = await read('pages.json')
   const { pages, report: fixReport } = applyCorrections(captured)
+  // Pages written for the site join here, before anything reads the list, so
+  // titles, links and the sitemap all see them. They skip the corrections
+  // layer: that layer exists to fix the capture, and these were never in it.
+  const { loadAuthored } = await import('./lib/authored.mjs')
+  const authored = await loadAuthored(pages)
+  pages.push(...authored)
   const nav = await read('nav.json')
   const manifestList = await read('media-manifest.json')
   const altMap = existsSync(path.join(ROOT, 'content', 'media-alt.json')) ? await read('media-alt.json') : {}
@@ -727,7 +733,7 @@ const main = async () => {
   console.log(
     `       corrections: ${fixedText} text, ${fixReport.seo} metadata, ${fixReport.faq} faq, ${fixReport.joins} list, ${fixReport.blocks} blocks, ${fixReport.alts} alt`
   )
-  console.log(`built ${written} pages -> site/`)
+  console.log(`built ${written} pages -> site/ (${authored.length} authored)`)
   console.log(`       ${copied} assets copied (${(bytes / 1048576).toFixed(1)} MB), sitemap.xml, robots.txt, url-map.csv`)
   console.log(`       ${cssUrl}  ${jsUrl}`)
 }

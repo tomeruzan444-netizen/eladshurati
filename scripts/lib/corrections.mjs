@@ -68,6 +68,21 @@ export const textRules = [
     expect: 1,
     why: 'אותו נתון הופיע פעמיים עם שני מספרים. הסרתי את החזרה הלא ממוקרת ושמרתי את הנתון עם המקור.',
   },
+  /* ------------------------------ inbound links to authored pages (9א) */
+  {
+    id: 'inbound-family-business-from-brokerage',
+    /*
+     * The one migrated page that talks about a family keeping its business.
+     * Its summary names "משפחה שרוצה להמשיך מורשת" as one of the people behind
+     * a deal - exactly the reader /ייעוץ-עסקי-לעסק-משפחתי/ is written for. No
+     * other page touches the subject, so this is the only link, not a quota.
+     */
+    find: /משפחה שרוצה להמשיך מורשת/g,
+    replace: '<a href="/ייעוץ-עסקי-לעסק-משפחתי/">משפחה שרוצה להמשיך מורשת</a>',
+    expect: 1,
+    why: 'קישור נכנס לעמוד החדש על ייעוץ עסקי לעסק משפחתי (כלל 9א), מתוך המשפט היחיד באתר שמדבר על משפחה שממשיכה את העסק',
+  },
+
   /* ---------------------------------------- audit of 12.9.2026: spelling */
   {
     id: 'about-binoniim',
