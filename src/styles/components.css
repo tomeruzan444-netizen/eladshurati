@@ -1664,6 +1664,13 @@
   top: 108px;
   display: grid;
   gap: 1rem;
+  /* A sticky box taller than the window hides its own bottom until the article
+     ends - on a 768px laptop that was the FAQ link and the CTA. Cap it to the
+     window and let it scroll on its own instead. */
+  max-height: calc(100vh - 124px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
 }
 @media (max-width: 1000px) {
   .article {
@@ -1671,6 +1678,8 @@
   }
   .article__rail {
     position: static;
+    max-height: none;
+    overflow: visible;
     order: 0;   /* after the article, not before: on one column the rail was
                    two screens of chrome between the reader and the content */
     margin-block-start: clamp(2rem, 6vw, 3rem);

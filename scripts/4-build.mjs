@@ -545,7 +545,9 @@ const main = async () => {
         ? `<nav class="toc" aria-label="בעמוד הזה">
               <h2>בעמוד הזה</h2>
               <ol>${h2s
-                .slice(0, 9)
+                // 12, not 9: at 9 a page that gained a section silently lost
+                // the link to an existing one (the FAQ on the cosmetics page).
+                .slice(0, 12)
                 .map((h) => `<li><a href="#${esc(slugify(h.text))}">${esc(h.text)}</a></li>`)
                 .join('')}</ol>
             </nav>`
@@ -731,7 +733,7 @@ const main = async () => {
 
   const fixedText = Object.values(fixReport.text).reduce((a, b) => a + b, 0)
   console.log(
-    `       corrections: ${fixedText} text, ${fixReport.seo} metadata, ${fixReport.faq} faq, ${fixReport.joins} list, ${fixReport.blocks} blocks, ${fixReport.alts} alt`
+    `       corrections: ${fixedText} text, ${fixReport.seo} metadata, ${fixReport.faq} faq, ${fixReport.joins} list, ${fixReport.blocks} blocks, ${fixReport.alts} alt, ${fixReport.inserts} inserted`
   )
   console.log(`built ${written} pages -> site/ (${authored.length} authored)`)
   console.log(`       ${copied} assets copied (${(bytes / 1048576).toFixed(1)} MB), sitemap.xml, robots.txt, url-map.csv`)

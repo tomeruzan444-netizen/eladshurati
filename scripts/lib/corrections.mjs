@@ -533,6 +533,87 @@ export const blockDrops = [
   },
 ]
 
+/* ------------------------------------------------ blocks to insert */
+
+/*
+ * New content added between existing blocks of a migrated page. Nothing that
+ * was captured is edited or removed: each insert names the block it follows,
+ * and that block must be found exactly once or the build stops - so a
+ * re-crawl that rewrites the anchor cannot drop new copy in the wrong place.
+ */
+export const blockInserts = [
+  /* /ייעוץ-עסקי-לקוסמטיקאיות/ - six search phrases requested by Tomer
+   * (15.9.2026), added as new sections with angles the page does not already
+   * cover: marketing from the calendar, the brand side of the market, and
+   * one-off consulting versus ongoing guidance. */
+  {
+    id: 'cosmetics-marketing-from-the-calendar',
+    page: '/ייעוץ-עסקי-לקוסמטיקאיות/',
+    after: /^מה לעשות, היום אי אפשר בלי זה/,
+    why: 'הביטוי "שיווק לקוסמטיקאיות", בזווית שהעמוד לא מכסה: שיווק שנבנה מהשעות הריקות ביומן ולא מכמות הפוסטים',
+    blocks: [
+      { type: 'heading', level: 3, text: 'שיווק לקוסמטיקאיות מתחיל ביומן, לא באינסטגרם' },
+      {
+        type: 'richtext',
+        html: '<p>מה שאני פוגש שוב ושוב זו קוסמטיקאית שמעלה פוסט כל יום, ועדיין יש לה חורים ביומן בימי שלישי בבוקר. הבעיה היא לא כמות התוכן. הבעיה היא שהשיווק נבנה הפוך: קודם מפרסמים, ורק אחר כך בודקים מה בכלל צריך למלא.</p><p>לפני הפוסט הבא, תענו לעצמכן על שלוש שאלות:</p>',
+      },
+      {
+        type: 'list',
+        ordered: false,
+        items: [
+          '<strong>איזה טיפול</strong> אתן רוצות למכור יותר - לא איזה טיפול הכי יפה לצלם.',
+          '<strong>אילו שעות</strong> ריקות אצלכן באופן קבוע, ומי הלקוחה שפנויה דווקא אז.',
+          '<strong>מאיפה הגיעה</strong> כל לקוחה חדשה. פשוט שואלים בזמן קביעת התור, ורושמים.',
+        ],
+      },
+      {
+        type: 'richtext',
+        html: '<p>התשובות האלה הופכות את השיווק ממשהו שעושים כי צריך, לכלי שממלא את היומן. אחרי כמה שבועות של רישום כבר רואים לאן שווה להשקיע ומה אפשר להפסיק.</p>',
+      },
+    ],
+  },
+  {
+    id: 'cosmetics-companies-side',
+    page: '/ייעוץ-עסקי-לקוסמטיקאיות/',
+    after: /^זוהי דוגמה מצוינת לאסטרטגיית צמיחה אורגנית/,
+    why: 'הביטוי "ייעוץ לחברות קוסמטיקה", מעוגן בלקוח אמיתי מ-projects.json (Odem-care, אתר חנות למותג קוסמטיקה) - וגם קישור התוכן הראשון לעמוד הלקוח (כלל 9א)',
+    blocks: [
+      { type: 'heading', level: 2, text: 'הצד השני של המדף: ייעוץ לחברות קוסמטיקה' },
+      {
+        type: 'richtext',
+        html: '<p>קוסמטיקאיות הן רק צד אחד של התעשייה. עבדתי גם עם הצד שמייצר את המוצרים עצמם - <a href="/לקוחות/odem-care/">Odem-care</a>, מותג קוסמטיקה ישראלי שמבוסס על מיקרו-אצות, שעבורו בניתי את אתר החנות.</p><p>העבודה עם מותג שונה מהעבודה עם קליניקה. קליניקה מוכרת שעות של טיפול, ומותג מוכר מוצר שצריך לעבור מהמדף לבית של הלקוחה. לכן השאלות אחרות: האם מוכרים ישירות ללקוחה או דרך קוסמטיקאיות, ואיך מסבירים רכיב שאף אחד לא שמע עליו בלי להישמע כמו עלון פרסומי.</p><p>וזה נוגע גם לכן. בחירת סדרת מוצרים לקליניקה היא החלטה עסקית, לא רק מקצועית. כדאי לבדוק כמה נשאר לכן ממכירה של מוצר ללקוחה הביתה, האם יש בלעדיות באזור, ומה החברה נותנת מעבר למוצר - הדרכות, חומרים שיווקיים או הפניות.</p>',
+      },
+    ],
+  },
+  {
+    id: 'cosmetics-consulting-or-guidance',
+    page: '/ייעוץ-עסקי-לקוסמטיקאיות/',
+    after: /^ומשהו אחרון לסיכום - תשקיעו בלקוחות הקיימים שלכן/,
+    why: 'הביטויים "ליווי עסקי לקוסמטיקאית", "ליווי עסקי לקוסמטיקאיות", "יועץ עסקי לקוסמטיקאית" ו"יועץ עסקי לקוסמטיקאיות", בזווית של החלטה: ייעוץ נקודתי מול ליווי, ואיך בוחרים יועץ',
+    blocks: [
+      { type: 'heading', level: 2, text: 'ייעוץ נקודתי או ליווי עסקי לקוסמטיקאית?' },
+      {
+        type: 'richtext',
+        html: '<p>כדאי להבין את ההבדל לפני שמרימים טלפון. ייעוץ נקודתי מתאים כשיש שאלה אחת ברורה, כמו מחירון חדש או ההחלטה אם לשכור חדר נוסף. ליווי מתמשך מתאים כשהבעיה היא לא החלטה אחת אלא הרגלים: יומן שמתמלא בלי תכנון, מחירים שלא עודכנו, שיווק שקורה רק כשיש זמן.</p><p>הרגלים לא משתנים בפגישה אחת. לכן ליווי עסקי לקוסמטיקאיות בנוי על מעקב: בכל מפגש בודקים מה בוצע, מה עבד ומה מתקנים. זה מה שמחזיק את השינוי גם אחרי ההתלהבות של השבוע הראשון.</p>',
+      },
+      { type: 'heading', level: 3, text: 'איך בוחרים יועץ עסקי לקוסמטיקאית?' },
+      {
+        type: 'richtext',
+        html: '<p>לא כל יועץ עסקי לקוסמטיקאיות מכיר באמת את העולם הזה. שלוש שאלות שיעזרו לכן לבדוק כבר בשיחה הראשונה:</p>',
+      },
+      {
+        type: 'list',
+        ordered: false,
+        items: [
+          'האם הוא שואל כמה אתן מרוויחות על כל טיפול, ולא רק מה המחזור החודשי?',
+          'האם הוא מבין איך נראה יומן של קליניקה - טיפולים באורכים שונים, ביטולים של הרגע האחרון ועונות חזקות וחלשות?',
+          'האם יוצאים מהפגישה עם משימות ותאריכים, או רק עם השראה?',
+        ],
+      },
+    ],
+  },
+]
+
 /* ------------------------------------------------------ alt text */
 
 /**
@@ -712,6 +793,29 @@ export function applyCorrections(pages) {
     return { ...p, blocks }
   })
 
+  // New blocks between existing ones. The captured blocks are left exactly as
+  // they were; an anchor that is missing or ambiguous stops the build.
+  const insertApplied = []
+  corrected = corrected.map((p) => {
+    const key = decodeURIComponent(p.seo.path)
+    const inserts = blockInserts.filter((ins) => ins.page === key)
+    if (!inserts.length) return p
+    const textOf = (b) =>
+      b.type === 'heading' ? b.text || ''
+      : b.type === 'richtext' ? String(b.html || '').replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').trim()
+      : ''
+    let blocks = [...p.blocks]
+    for (const ins of inserts) {
+      const at = blocks.flatMap((b, i) => (ins.after.test(textOf(b)) ? [i] : []))
+      if (at.length !== 1) {
+        throw new Error(`Block insert "${ins.id}" on ${key} needs exactly one anchor block, found ${at.length}`)
+      }
+      blocks = [...blocks.slice(0, at[0] + 1), ...ins.blocks, ...blocks.slice(at[0] + 1)]
+      insertApplied.push(ins.id)
+    }
+    return { ...p, blocks }
+  })
+
   // Alt text for images that reached us with none. A block that already has
   // alt keeps it; the media library is consulted later, by altFor, and every
   // entry in imageAlts was checked to have nothing in either place.
@@ -767,6 +871,10 @@ export function applyCorrections(pages) {
   if (missingBlock.length) {
     throw new Error('Block corrections matched nothing: ' + missingBlock.map((d) => d.page).join(', '))
   }
+  const missingInsert = blockInserts.filter((ins) => !insertApplied.includes(ins.id))
+  if (missingInsert.length) {
+    throw new Error('Block inserts matched no page: ' + missingInsert.map((i) => `${i.id} (${i.page})`).join(', '))
+  }
   const missingAlt = Object.keys(imageAlts).filter((k) => !altApplied.includes(k))
   if (missingAlt.length) {
     throw new Error('Alt-text corrections matched no image: ' + missingAlt.join(', '))
@@ -778,6 +886,6 @@ export function applyCorrections(pages) {
 
   return {
     pages: corrected,
-    report: { text: counts, seo: seoApplied.length, faq: faqApplied.length, joins: joinApplied.length, blocks: blockApplied.length, alts: new Set(altApplied).size },
+    report: { text: counts, seo: seoApplied.length, faq: faqApplied.length, joins: joinApplied.length, blocks: blockApplied.length, alts: new Set(altApplied).size, inserts: insertApplied.length },
   }
 }
