@@ -1059,6 +1059,26 @@
   font: 400 24px var(--font);
   fill: var(--ink-soft);
 }
+/* Funnel bands: the stages a reader passes through, top to bottom. */
+.diagram__band {
+  fill: var(--purple-100);
+  stroke: var(--purple-300);
+  stroke-width: 2;
+}
+.diagram__band--end {
+  fill: var(--orange-100);
+  stroke: var(--orange-300);
+}
+/* Sized for the phone: the funnel scales to roughly half at 390px, so 26
+   viewBox units is what keeps the lever line near 12.5px. */
+.diagram__step {
+  font: 700 32px var(--font);
+  fill: var(--ink);
+}
+.diagram__lever {
+  font: 400 26px var(--font);
+  fill: var(--ink-soft);
+}
 .prose blockquote {
   padding: 1.35rem 1.6rem;
   border-inline-start: 3px solid var(--purple-500);

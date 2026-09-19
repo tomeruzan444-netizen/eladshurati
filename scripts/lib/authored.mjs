@@ -11,7 +11,7 @@
  * rules that need judgement - voice, uniqueness, real value - stay with the
  * writer and with scripts/audit-voice.mjs.
  */
-import { readdir } from 'node:fs/promises'
+import { readdir, readFile } from 'node:fs/promises'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { site } from './render.mjs'
@@ -185,7 +185,16 @@ export async function loadAuthored(pages) {
     if (own.has(page.path)) throw new Error(`content/authored/${file}: another authored page already uses ${page.path}`)
     own.add(page.path)
   }
-  const resolvable = new Set([...migrated, ...own])
+  // Client pages are generated from projects.json later in the build, but they
+  // are real addresses a page may point at - rule 9א wants exactly that.
+  let clients = []
+  try {
+    const projects = JSON.parse(await readFile(path.join(ROOT, 'content', 'projects.json'), 'utf8'))
+    clients = ['/לקוחות/', ...projects.map((p) => `/לקוחות/${p.slug}/`)]
+  } catch {
+    /* no client pages */
+  }
+  const resolvable = new Set([...migrated, ...own, ...clients])
 
   return loaded.map(({ file, page }) => ({
     key: page.path.replace(/^\/|\/$/g, ''),

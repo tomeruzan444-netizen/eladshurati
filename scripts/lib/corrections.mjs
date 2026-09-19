@@ -83,6 +83,19 @@ export const textRules = [
     why: 'קישור נכנס לעמוד החדש על ייעוץ עסקי לעסק משפחתי (כלל 9א), מתוך המשפט היחיד באתר שמדבר על משפחה שממשיכה את העסק',
   },
 
+  {
+    id: 'inbound-beauty-marketing-from-strategy-types',
+    /*
+     * The storytelling section of /סוגי-אסטרטגיות-שיווקיות/ already says a good
+     * story helps beauticians too. The words stay exactly as they are; only a
+     * link to /שיווק-לקוסמטיקאיות/ goes around them (rule 9א, 19.9.2026).
+     */
+    find: /לגמרי עוזר גם לקוסמטיקאיות עם סיפור טוב/g,
+    replace: 'לגמרי עוזר גם <a href="/שיווק-לקוסמטיקאיות/">לקוסמטיקאיות עם סיפור טוב</a>',
+    expect: 1,
+    why: 'קישור נכנס לעמוד החדש על שיווק לקוסמטיקאיות (כלל 9א), מתוך הפסקה על שיווק בסיפור שכבר מדברת על קוסמטיקאיות',
+  },
+
   /* ---------------------------------------- audit of 12.9.2026: spelling */
   {
     id: 'about-binoniim',
@@ -568,7 +581,10 @@ export const blockInserts = [
       },
       {
         type: 'richtext',
-        html: '<p>התשובות האלה הופכות את השיווק ממשהו שעושים כי צריך, לכלי שממלא את היומן. אחרי כמה שבועות של רישום כבר רואים לאן שווה להשקיע ומה אפשר להפסיק.</p>',
+        // The last sentence is the inbound link to /שיווק-לקוסמטיקאיות/ (rule
+        // 9א), added 19.9.2026. This section and that page share a search
+        // phrase; pointing from here tells Google which one leads.
+        html: '<p>התשובות האלה הופכות את השיווק ממשהו שעושים כי צריך, לכלי שממלא את היומן. אחרי כמה שבועות של רישום כבר רואים לאן שווה להשקיע ומה אפשר להפסיק. את כל הדרך של לקוחה חדשה, מהחיפוש בגוגל ועד ההמלצה, פירטתי ב<a href="/שיווק-לקוסמטיקאיות/">מדריך השיווק המלא לקליניקה</a>.</p>',
       },
     ],
   },
