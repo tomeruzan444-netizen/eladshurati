@@ -84,6 +84,19 @@ export const textRules = [
   },
 
   {
+    id: 'inbound-accountants-from-insurance',
+    /*
+     * The insurance page lists accountants among the complementary
+     * professionals an agent should partner with - the one place on the site
+     * where accountants appear in their own right. The words are untouched;
+     * only a link to /שיווק-רואי-חשבון/ goes around them (rule 9א, 22.9.2026).
+     */
+    find: /\(רואי חשבון, עורכי דין/g,
+    replace: '(<a href="/שיווק-רואי-חשבון/">רואי חשבון</a>, עורכי דין',
+    expect: 1,
+    why: 'קישור נכנס לעמוד החדש על שיווק רואי חשבון (כלל 9א), מהמקום היחיד באתר שמדבר על רואי חשבון כאנשי מקצוע משלימים',
+  },
+  {
     id: 'inbound-beauty-marketing-from-strategy-types',
     /*
      * The storytelling section of /סוגי-אסטרטגיות-שיווקיות/ already says a good

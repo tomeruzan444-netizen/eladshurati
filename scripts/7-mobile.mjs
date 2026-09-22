@@ -25,7 +25,7 @@ const BASE = process.env.PREVIEW || 'http://localhost:4471'
 
 // The authored family-business page is here for its diagram and two-column
 // table - the widest things on any page at phone width.
-const PAGES = ['/', '/פיתוח-עסקי/', '/צרו-קשר/', '/רווח-תפעולי/', '/category/בלוג-עסקי-מקצועי/', '/ייעוץ-עסקי-לעסק-משפחתי/', '/שיווק-לקוסמטיקאיות/']
+const PAGES = ['/', '/פיתוח-עסקי/', '/צרו-קשר/', '/רווח-תפעולי/', '/category/בלוג-עסקי-מקצועי/', '/ייעוץ-עסקי-לעסק-משפחתי/', '/שיווק-לקוסמטיקאיות/', '/שיווק-רואי-חשבון/']
 const WIDTHS = [320, 360, 390, 430]
 
 const CHROME_CANDIDATES = [

@@ -1069,8 +1069,21 @@
   fill: var(--orange-100);
   stroke: var(--orange-300);
 }
-/* Sized for the phone: the funnel scales to roughly half at 390px, so 26
-   viewBox units is what keeps the lever line near 12.5px. */
+/* Timeline: a vertical axis with a node per phase. */
+.diagram__axis {
+  stroke: var(--purple-300);
+  stroke-width: 3;
+}
+.diagram__node {
+  fill: var(--purple-500);
+  stroke: var(--white);
+  stroke-width: 4;
+}
+.diagram__node--end {
+  fill: var(--orange-500);
+}
+/* Sized for the phone: a 600-unit drawing scales to roughly half at 390px, so
+   26 viewBox units is what keeps the second line near 12.5px. */
 .diagram__step {
   font: 700 32px var(--font);
   fill: var(--ink);
