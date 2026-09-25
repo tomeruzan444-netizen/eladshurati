@@ -84,6 +84,19 @@ export const textRules = [
   },
 
   {
+    id: 'inbound-lawyer-advertising-from-consulting',
+    /*
+     * The lawyers consulting page already tells firms to build "תכנים אתיים" -
+     * the one phrase on the site that points at the Bar's advertising rules,
+     * which is what /פרסום-ושיווק-לעורכי-דין/ is about. The words stay as they
+     * are; only the link goes around them (rule 9א, 25.9.2026).
+     */
+    find: /לבנות תכנים אתיים/g,
+    replace: 'לבנות <a href="/פרסום-ושיווק-לעורכי-דין/">תכנים אתיים</a>',
+    expect: 1,
+    why: 'קישור נכנס לעמוד החדש על פרסום ושיווק לעורכי דין (כלל 9א), מתוך המשפט שכבר מדבר על תוכן אתי במשרד עורכי דין',
+  },
+  {
     id: 'inbound-accountants-from-insurance',
     /*
      * The insurance page lists accountants among the complementary

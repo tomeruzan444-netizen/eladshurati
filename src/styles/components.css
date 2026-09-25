@@ -1069,6 +1069,28 @@
   fill: var(--orange-100);
   stroke: var(--orange-300);
 }
+/* Quadrant: four cells, one decision each. */
+.diagram__cell {
+  fill: var(--purple-050);
+  stroke: var(--purple-300);
+  stroke-width: 2;
+}
+.diagram__cell--best {
+  fill: var(--orange-100);
+  stroke: var(--orange-300);
+}
+.diagram__cell--off {
+  fill: var(--surface-mist);
+  stroke: var(--line);
+}
+.diagram__head {
+  font: 700 24px var(--font);
+  fill: var(--ink-soft);
+}
+.diagram__note {
+  font: 400 21px var(--font);
+  fill: var(--ink-muted);
+}
 /* Timeline: a vertical axis with a node per phase. */
 .diagram__axis {
   stroke: var(--purple-300);
