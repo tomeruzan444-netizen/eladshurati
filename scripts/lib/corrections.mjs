@@ -84,6 +84,19 @@ export const textRules = [
   },
 
   {
+    id: 'inbound-doctors-digital-from-consulting',
+    /*
+     * The doctors consulting page already names SEO strategy as one of the
+     * ways a clinic reaches patients. That is the sentence /שיווק-דיגיטלי-
+     * לרופאים/ continues, so the link goes around the existing words
+     * (rule 9א, 30.9.2026).
+     */
+    find: /אסטרטגיית ה SEO/g,
+    replace: '<a href="/שיווק-דיגיטלי-לרופאים/">אסטרטגיית ה SEO</a>',
+    expect: 1,
+    why: 'קישור נכנס לעמוד החדש על שיווק דיגיטלי לרופאים (כלל 9א), מתוך המשפט שכבר מדבר על ערוצי השיווק ו-SEO של מרפאה',
+  },
+  {
     id: 'inbound-lawyer-advertising-from-consulting',
     /*
      * The lawyers consulting page already tells firms to build "תכנים אתיים" -
