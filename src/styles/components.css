@@ -1069,6 +1069,18 @@
   fill: var(--orange-100);
   stroke: var(--orange-300);
 }
+/* Wireframe: a browser frame holding the blocks of a page. */
+.diagram__frame {
+  fill: var(--surface);
+  stroke: var(--line-strong);
+  stroke-width: 2;
+}
+.diagram__chrome {
+  fill: var(--surface-mist);
+}
+.diagram__dot {
+  fill: var(--line-strong);
+}
 /* Two-track flow: boxes joined by arrows, ending in a dark summary bar. */
 .diagram__box {
   fill: var(--purple-050);

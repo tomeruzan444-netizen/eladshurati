@@ -84,6 +84,19 @@ export const textRules = [
   },
 
   {
+    id: 'inbound-architect-sites-from-consulting',
+    /*
+     * The architects consulting page already answers "how do I get more
+     * clients" with "invest in a professional website with an impressive
+     * portfolio". That is the sentence /בניית-אתרים-לאדריכלים/ continues, so
+     * the link goes around the existing words (rule 9א, 6.10.2026).
+     */
+    find: /אתר אינטרנט מקצועי עם תיק עבודות מרשים/g,
+    replace: '<a href="/בניית-אתרים-לאדריכלים/">אתר אינטרנט מקצועי עם תיק עבודות מרשים</a>',
+    expect: 1,
+    why: 'קישור נכנס לעמוד החדש על בניית אתרים לאדריכלים (כלל 9א), מתוך התשובה שכבר ממליצה על אתר עם תיק עבודות',
+  },
+  {
     id: 'inbound-doctors-digital-from-consulting',
     /*
      * The doctors consulting page already names SEO strategy as one of the
