@@ -681,6 +681,23 @@ export const blockInserts = [
     ],
   },
 
+  /* /בניית-אתרים/ - the service page linked to none of the field-specific
+   * website pages, which left them with almost no inbound links (rule 9א,
+   * 18.10.2026). One paragraph at the end of the body, before the FAQ. */
+  {
+    id: 'website-service-links-to-field-pages',
+    page: '/בניית-אתרים/',
+    after: /^שאלות ותשובות$/,
+    before: true,
+    why: 'עמוד השירות הראשי לא קישר לאף עמוד תחום. פסקה אחת שמקשרת לאדריכלים ולאירועים, ונותנת לשניהם קישור נכנס מהעמוד הרלוונטי ביותר',
+    blocks: [
+      {
+        type: 'richtext',
+        html: '<p>ויש תחומים שבהם לאתר יש חוקים משלו. במשרד אדריכלות האתר הוא תיק העבודות עצמו, ובעסק אירועים הוא בעיקר כלי שמוכר תאריכים. על שניהם כתבתי בנפרד: <a href="/בניית-אתרים-לאדריכלים/">בניית אתרים לאדריכלים</a> ו<a href="/בניית-אתרים-לאירועים/">בניית אתרים לאירועים</a>.</p>',
+      },
+    ],
+  },
+
   /* /ייעוץ-עסקי-לאדריכלים/ - "ייעוץ עסקי לאדריכלי נוף", requested by Tomer
    * (15.9.2026). Nothing on the site mentions landscape architecture, so the
    * section covers what is specific to it as a business rather than restating
@@ -909,7 +926,11 @@ export function applyCorrections(pages) {
       if (at.length !== 1) {
         throw new Error(`Block insert "${ins.id}" on ${key} needs exactly one anchor block, found ${at.length}`)
       }
-      blocks = [...blocks.slice(0, at[0] + 1), ...ins.blocks, ...blocks.slice(at[0] + 1)]
+      // `before: true` puts the new blocks ahead of the anchor instead of after
+      // it - the way to land copy at the end of a body whose last block is a
+      // list, since only headings and paragraphs can be matched on.
+      const cut = ins.before ? at[0] : at[0] + 1
+      blocks = [...blocks.slice(0, cut), ...ins.blocks, ...blocks.slice(cut)]
       insertApplied.push(ins.id)
     }
     return { ...p, blocks }
