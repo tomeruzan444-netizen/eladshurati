@@ -729,10 +729,6 @@ const main = async () => {
   await writeFile(path.join(OUT, cssUrl.replace(/^\//, '')), outCss, 'utf8')
   await writeFile(path.join(OUT, jsUrl.replace(/^\//, '')), jsSource, 'utf8')
 
-  // Browsers and crawlers ask for /favicon.ico by name whatever the <head>
-  // says, so the icon sits at the root as well as under /assets.
-  await cp(path.join(ROOT, 'assets', 'brand', 'favicon.ico'), path.join(OUT, 'favicon.ico'))
-
   await writeSitemapAndMap(pages)
 
   const fixedText = Object.values(fixReport.text).reduce((a, b) => a + b, 0)
