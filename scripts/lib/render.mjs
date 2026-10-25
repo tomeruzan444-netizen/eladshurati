@@ -92,7 +92,10 @@ export function head({ seo, extraCss = '', bodyClass = '', preload = '', cssUrl 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>${esc(seo.title)}</title>
     ${metas}
-    <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/assets/brand/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/brand/favicon-192.png">
+    <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
     ${preload}
     <link rel="preload" href="/assets/fonts/plex-hebrew-400-hebrew.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/assets/fonts/plex-hebrew-700-hebrew.woff2" as="font" type="font/woff2" crossorigin>
