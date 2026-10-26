@@ -194,6 +194,59 @@
    "bytes": 109617
   }
  },
+ "/assets/images/testimonials/HC2DiDGCH5M.jpg": {
+  "width": 1080,
+  "height": 1920,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/e8175df4-400.webp",
+    "bytes": 16794
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/e8175df4-700.webp",
+    "bytes": 32176
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/e8175df4-1000.webp",
+    "bytes": 50160
+   },
+   {
+    "w": 1080,
+    "url": "/assets/derived/e8175df4-1080.webp",
+    "bytes": 57020
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/e8175df4-400.avif",
+    "bytes": 13758
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/e8175df4-700.avif",
+    "bytes": 27469
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/e8175df4-1000.avif",
+    "bytes": 43168
+   },
+   {
+    "w": 1080,
+    "url": "/assets/derived/e8175df4-1080.avif",
+    "bytes": 48333
+   }
+  ],
+  "fallback": {
+   "w": 1080,
+   "url": "/assets/derived/e8175df4-1080.jpg",
+   "bytes": 111142
+  }
+ },
  "/assets/images/testimonials/xD-9ZYnSccI.jpg": {
   "width": 478,
   "height": 850,

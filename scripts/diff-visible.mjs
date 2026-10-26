@@ -30,8 +30,11 @@ const BLOCK =
   /<\/?(p|div|h[1-6]|li|ul|ol|section|article|tr|td|th|br|figure|figcaption|blockquote|main|header|footer|nav)\b[^>]*>/gi
 
 const visibleText = (html) => {
-  const start = html.indexOf('<main')
-  const end = html.indexOf('</main>')
+  // The whole body, not just <main>. The testimonials rail, the header and the
+  // footer all live outside it, so a <main>-only read reported "no change"
+  // when a testimonial was added to all 80 pages.
+  const start = html.indexOf('<body')
+  const end = html.indexOf('</body>')
   let body = start > -1 && end > -1 ? html.slice(start, end) : html
   body = body.replace(/<script[\s\S]*?<\/script>/gi, '').replace(/<style[\s\S]*?<\/style>/gi, '')
   body = body.replace(BLOCK, '\n').replace(/<[^>]*>/g, '')
