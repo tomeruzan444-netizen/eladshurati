@@ -428,6 +428,27 @@ export function renderFlow(blocks, ctx) {
   return out.filter(Boolean).join('\n')
 }
 
+/* ---------------------------------------------------------------- byline */
+
+/**
+ * Who wrote this page.
+ *
+ * Google asks twice - in the helpful-content page and in the practical guide -
+ * whether a reader can tell who wrote something, and whether the byline leads
+ * somewhere that gives background on them. Before this, one page of eighty
+ * carried a byline.
+ *
+ * It points at /אודות/ rather than a separate author page: the site is one
+ * person, and a second page about him would compete with that one for the same
+ * search. rel="author" marks the relationship for machines.
+ *
+ * Deliberately not on every page. A privacy policy or a contact form is not
+ * authored opinion, and Google's wording is "where one might be expected".
+ */
+export function byline() {
+  return `<p class="byline">מאת <a class="byline__name" href="/אודות/" rel="author">אלעד שורתי</a> <span class="byline__role">יועץ עסקי ומומחה שיווק, דיגיטל ובינה מלאכותית</span></p>`
+}
+
 /* ------------------------------------------------------------ crumbs/cta */
 
 export function crumbs(trail) {

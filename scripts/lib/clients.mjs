@@ -15,7 +15,7 @@
  * /פרוייקטים/ carousel already publishes. When Elad supplies the real story per
  * client, `story` on each entry in content/projects.json is where it goes.
  */
-import { site, esc, icons, arrowChip } from './render.mjs'
+import { site, esc, icons, arrowChip, byline } from './render.mjs'
 
 export const clientPath = (p) => `/לקוחות/${p.slug}/`
 
@@ -108,6 +108,7 @@ export function clientPage(p, ctx) {
           <span class="eyebrow">${esc(p.tag)}</span>
           <h1>${esc(p.name)}</h1>
           <p class="page-hero__lead">${esc(quick)}</p>
+          ${byline()}
         </div>
       </section>
 
@@ -167,6 +168,23 @@ export function clientSeo(p) {
     },
     twitter: { card: 'summary_large_image', title, description },
     jsonld: [
+      // The page carries a visible byline, so the structured data says the same
+      // thing and points at the same place the byline links to.
+      {
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        '@id': url,
+        url,
+        name: title,
+        description,
+        inLanguage: 'he-IL',
+        author: {
+          '@type': 'Person',
+          '@id': `${site.origin}/${encodeURI('אודות')}/`,
+          name: 'אלעד שורתי',
+          url: `${site.origin}/${encodeURI('אודות')}/`,
+        },
+      },
       {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',

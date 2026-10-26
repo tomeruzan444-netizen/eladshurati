@@ -1069,6 +1069,41 @@
   fill: var(--orange-100);
   stroke: var(--orange-300);
 }
+/* ---------- byline ---------------------------------------- */
+
+.byline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.5rem;
+  margin-block-start: 1.1rem;
+  font-size: var(--step--1);
+  color: var(--ink-muted);
+}
+.byline__name {
+  color: var(--purple-ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+.byline__name:hover {
+  text-decoration: underline;
+}
+/* The role sits on its own line on a phone, where the pair would otherwise
+   wrap mid-sentence. */
+.byline__role::before {
+  content: '·';
+  margin-inline-end: 0.5rem;
+  color: var(--line-strong);
+}
+@media (max-width: 520px) {
+  .byline__role {
+    flex-basis: 100%;
+  }
+  .byline__role::before {
+    content: none;
+  }
+}
+
 /* Wireframe: a browser frame holding the blocks of a page. */
 .diagram__frame {
   fill: var(--surface);

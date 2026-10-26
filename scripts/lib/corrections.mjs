@@ -681,6 +681,39 @@ export const blockInserts = [
     ],
   },
 
+  /* /אודות/ - the page every byline now points at, so it has to do what Google
+   * asks an author page to do: say what the person writes about. It was also
+   * one of the twelve pages under 300 words. The links double as editorial
+   * links to two pages that had none (26.10.2026). */
+  {
+    id: 'about-page-what-i-write-about',
+    page: '/אודות/',
+    after: /^הראיה השיווקית לצד קידום המכירות/,
+    why: 'עמוד אודות הוא עמוד המחבר של האתר. הוספת "על מה אני כותב" נותנת לקורא ולגוגל את הרקע שחסר, ומחברת שני עמודים מנותקים',
+    blocks: [
+      { type: 'heading', level: 2, text: 'על מה אני כותב כאן' },
+      {
+        type: 'richtext',
+        html: '<p>רוב מה שכתוב באתר הזה לא נולד מול מסך, אלא בפגישות עם בעלי עסקים. אלה התחומים שאני עוסק בהם, וגם אלה שעליהם אני כותב:</p>',
+      },
+      {
+        type: 'list',
+        ordered: false,
+        items: [
+          '<strong>ייעוץ וליווי עסקי</strong> - <a href="/ייעוץ-לעסקים-קטנים/">לעסקים קטנים</a> ולחברות, מאסטרטגיה ועד ביצוע.',
+          '<strong>שיווק ופרסום</strong> - <a href="/בניית-אסטרטגיה-שיווקית/">בניית אסטרטגיה שיווקית</a> ו<a href="/שיווק-ממומן/">שיווק ממומן</a>.',
+          '<strong>דיגיטל</strong> - <a href="/בניית-אתרים/">בניית אתרים</a>, ומה שצריך לקרות אחרי שהאתר עולה לאוויר.',
+          '<strong>בינה מלאכותית</strong> - <a href="/סוכני-ai/">סוכני AI</a> ומה הם באמת משנים בעסק.',
+          '<strong>אימון ומנטורינג</strong> - <a href="/אימון-עסקי/">אימון עסקי</a> מול ייעוץ, ומתי כל אחד מהם מתאים.',
+        ],
+      },
+      {
+        type: 'richtext',
+        html: '<p>כל עמוד באתר נושא את שמי, ואפשר להגיע ממנו לכאן. זה מכוון: מי שקורא עצה עסקית ראוי שידע מי נתן אותה ועל סמך מה.</p>',
+      },
+    ],
+  },
+
   /* /בניית-אתרים/ - the service page linked to none of the field-specific
    * website pages, which left them with almost no inbound links (rule 9א,
    * 18.10.2026). One paragraph at the end of the body, before the FAQ. */
@@ -968,6 +1001,67 @@ export function applyCorrections(pages) {
     return { ...p, blocks }
   })
 
+  /**
+   * Who wrote the page, in the structured data.
+   *
+   * WordPress wrote a Person node into the graph of every post, with `@id` and
+   * `url` pointing at /author/elad/ — its author archive. That archive was
+   * never part of the migration, so the one machine-readable statement of
+   * authorship on the site led to a 404. Two smaller faults travelled with it:
+   * the name read "elad shurati" in lowercase English while every other node in
+   * the same graph says אלעד שורתי, and the Gravatar URL arrived with its
+   * ampersands HTML-escaped (&amp;), which is not a URL that loads.
+   *
+   * All three are repointed at /אודות/ — the page the visible byline links to —
+   * so a reader and a crawler are told the same thing about the same person.
+   */
+  const AUTHOR_ARCHIVE = 'https://elad-digital.co.il/author/elad/'
+  const AUTHOR_PAGE = `https://elad-digital.co.il/${encodeURI('אודות')}/`
+  const AUTHOR_IMAGE = `https://elad-digital.co.il/assets/images/2025/01/${encodeURI('אלעד')}.jpg`
+  const AUTHOR_NAME = 'אלעד שורתי'
+  // 60 pages, each with the Person node and the post's reference to it.
+  const AUTHOR_NODES_EXPECTED = 120
+
+  let authorFixed = 0
+  corrected = corrected.map((p) => {
+    const fixNode = (node) => {
+      if (Array.isArray(node)) return node.map(fixNode)
+      if (!node || typeof node !== 'object') return node
+      if (node['@id'] === AUTHOR_ARCHIVE || node.url === AUTHOR_ARCHIVE) {
+        authorFixed++
+        const out = { ...node, '@id': AUTHOR_PAGE, name: AUTHOR_NAME }
+        if (node.url) out.url = AUTHOR_PAGE
+        // Only the Person node carries a picture; the reference inside the
+        // post does not, and nothing is invented for it.
+        if (node.image) {
+          out.image = {
+            '@type': 'ImageObject',
+            '@id': AUTHOR_IMAGE,
+            url: AUTHOR_IMAGE,
+            contentUrl: AUTHOR_IMAGE,
+            caption: AUTHOR_NAME,
+            inLanguage: 'he-IL',
+          }
+        }
+        return out
+      }
+      const out = {}
+      for (const [k, v] of Object.entries(node)) out[k] = fixNode(v)
+      return out
+    }
+    const seen = authorFixed
+    const jsonld = fixNode(p.seo.jsonld)
+    return seen === authorFixed ? p : { ...p, seo: { ...p.seo, jsonld } }
+  })
+
+  if (authorFixed !== AUTHOR_NODES_EXPECTED) {
+    throw new Error(
+      `Author nodes: expected ${AUTHOR_NODES_EXPECTED} references to the old author archive, found ${authorFixed}.
+` +
+        'The capture changed. Re-read the graph and update scripts/lib/corrections.mjs.'
+    )
+  }
+
   const drift = textRules
     .filter((r) => counts[r.id] !== r.expect)
     .map((r) => `  ${r.id}: expected ${r.expect}, matched ${counts[r.id]}`)
@@ -1006,6 +1100,6 @@ export function applyCorrections(pages) {
 
   return {
     pages: corrected,
-    report: { text: counts, seo: seoApplied.length, faq: faqApplied.length, joins: joinApplied.length, blocks: blockApplied.length, alts: new Set(altApplied).size, inserts: insertApplied.length },
+    report: { text: counts, seo: seoApplied.length, faq: faqApplied.length, joins: joinApplied.length, blocks: blockApplied.length, alts: new Set(altApplied).size, inserts: insertApplied.length, author: authorFixed },
   }
 }

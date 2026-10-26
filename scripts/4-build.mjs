@@ -11,7 +11,7 @@ import path from 'node:path'
 import {
   site, indexable, esc, head, header, footer, renderBlock, renderFlow, renderFaq, renderCard,
   crumbs, ctaSection, hrefFor, rewriteHtml, slugify, responsiveImage, preloadImage, icons, social, arrowChip,
-  altFor,
+  altFor, byline,
 } from './lib/render.mjs'
 import {
   clientPath, clientPage, clientsIndexPage, clientSeo, clientsIndexSeo,
@@ -230,6 +230,7 @@ function landingPage(page, ctx) {
           ${crumbs([{ label: 'עמוד הבית', href: '/' }, { label: h1?.text || page.seo.title }])}
           <h1>${esc(h1?.text || page.seo.title)}</h1>
           ${lead ? `<p class="page-hero__lead">${esc(lead)}</p>` : ''}
+          ${page.noByline ? '' : byline()}
         </div>
       </section>
 
@@ -362,6 +363,7 @@ function postPage(page, ctx) {
           ])}
           <h1>${esc(h1?.text || page.seo.title)}</h1>
           ${dateStr ? `<p class="post-card__meta"><time datetime="${esc(page.lastmod)}">${esc(dateStr)}</time></p>` : ''}
+          ${byline()}
         </div>
       </section>
       <article class="section">
@@ -655,9 +657,15 @@ const main = async () => {
     })
   }
 
+  // Pages that carry no byline. A privacy policy, terms or an accessibility
+  // statement are not authored opinion, and the about page is already about
+  // him - a byline there would point at itself.
+  const NO_BYLINE = new Set(['/מדיניות-פרטיות/', '/תנאי-שימוש/', '/הצהרת-נגישות/', '/אודות/'])
+
   let written = 0
   for (const page of pages) {
     const p = page.seo.path
+    page.noByline = NO_BYLINE.has(decodeURIComponent(p))
     let body
     if (p === '/') body = homePage(page, ctx)
     else if (page.type === 'clients-index') body = clientsIndexPage(projects, ctx)
@@ -736,7 +744,7 @@ const main = async () => {
 
   const fixedText = Object.values(fixReport.text).reduce((a, b) => a + b, 0)
   console.log(
-    `       corrections: ${fixedText} text, ${fixReport.seo} metadata, ${fixReport.faq} faq, ${fixReport.joins} list, ${fixReport.blocks} blocks, ${fixReport.alts} alt, ${fixReport.inserts} inserted`
+    `       corrections: ${fixedText} text, ${fixReport.seo} metadata, ${fixReport.faq} faq, ${fixReport.joins} list, ${fixReport.blocks} blocks, ${fixReport.alts} alt, ${fixReport.inserts} inserted, ${fixReport.author} author`
   )
   console.log(`built ${written} pages -> site/ (${authored.length} authored)`)
   console.log(`       ${copied} assets copied (${(bytes / 1048576).toFixed(1)} MB), sitemap.xml, robots.txt, url-map.csv`)
