@@ -17,7 +17,7 @@ import {
   clientPath, clientPage, clientsIndexPage, clientSeo, clientsIndexSeo,
 } from './lib/clients.mjs'
 import { applyCorrections } from './lib/corrections.mjs'
-import { testimonials } from './lib/testimonials.mjs'
+import { testimonials, clips } from './lib/testimonials.mjs'
 import { minifyCss, minifyHtml } from './lib/minify.mjs'
 
 const ROOT = path.resolve(import.meta.dirname, '..')
@@ -418,6 +418,9 @@ const main = async () => {
   const testimonialItems = existsSync(path.join(ROOT, 'content', 'testimonials.json'))
     ? await read('testimonials.json')
     : []
+  const clipItems = existsSync(path.join(ROOT, 'content', 'videos.json'))
+    ? await read('videos.json')
+    : []
   const derivatives = existsSync(path.join(ROOT, 'content', 'image-derivatives.json'))
     ? await read('image-derivatives.json')
     : {}
@@ -671,7 +674,7 @@ const main = async () => {
         })
       : ''
     // Above the footer on every page — the footer is site-wide, and so is this.
-    const saying = testimonials(testimonialItems, ctx)
+    const saying = testimonials(testimonialItems, ctx) + clips(clipItems, ctx)
     let html =
       head({ seo: page.seo, preload, cssUrl }) + header(nav, p) + body + saying + footer(nav, groups, jsUrl)
     if (!RAW) html = minifyHtml(html)

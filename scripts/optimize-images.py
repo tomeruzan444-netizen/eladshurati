@@ -70,13 +70,14 @@ def collect():
                 if item.get("image"):
                     wanted.add(item["image"])
 
-    # Testimonial video posters — same story.
-    tst = os.path.join(ROOT, "content", "testimonials.json")
-    if os.path.exists(tst):
-        with io.open(tst, encoding="utf-8") as fh:
-            for item in json.load(fh):
-                if item.get("thumb"):
-                    wanted.add(item["thumb"])
+    # Video posters for both rails — testimonials, and Elad's own clips.
+    for name in ("testimonials.json", "videos.json"):
+        src = os.path.join(ROOT, "content", name)
+        if os.path.exists(src):
+            with io.open(src, encoding="utf-8") as fh:
+                for item in json.load(fh):
+                    if item.get("thumb"):
+                        wanted.add(item["thumb"])
     return sorted(wanted)
 
 

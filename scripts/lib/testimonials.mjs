@@ -16,16 +16,47 @@ const play = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><p
 const chev = (d) =>
   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${d}"/></svg>`
 
+/** The client testimonials: Shorts of customers talking about Elad. */
 export function testimonials(items, ctx) {
+  return videoRail(items, ctx, {
+    id: 'testimonials',
+    eyebrow: 'המלצות',
+    title: 'מה הלקוחות מספרים',
+    alt: 'המלצה של לקוח על אלעד שורתי',
+    play_label: 'נגן את ההמלצה',
+    mist: true,
+  })
+}
+
+/** Elad's own clips, in a second rail under the testimonials. */
+export function clips(items, ctx) {
+  return videoRail(items, ctx, {
+    id: 'clips',
+    eyebrow: 'מהערוץ שלי',
+    title: 'סרטונים מאת אלעד',
+    alt: 'אלעד שורתי בסרטון על שיווק וייעוץ עסקי',
+    play_label: 'נגן את הסרטון',
+    mist: false,
+  })
+}
+
+/**
+ * One rail of Shorts. Used twice on every page - the testimonials above and
+ * Elad's own clips below - so the section id, the headings and the background
+ * all come from the caller. The client script already handles any number of
+ * rails: it wires every [data-rail] it finds, and the play handler is
+ * delegated from the document.
+ */
+export function videoRail(items, ctx, { id, eyebrow, title, alt, mist, play_label }) {
   if (!items?.length) return ''
 
   const cards = items
     .map(
       (t) => `<article class="tcard">
               <button type="button" class="tcard__frame" data-yt="${esc(t.id)}"
-                      aria-label="נגן את ההמלצה: ${esc(t.caption)}">
+                      aria-label="${esc(play_label)}: ${esc(t.caption)}">
                 ${ctx.responsiveImage(t.thumb, {
-                  alt: `המלצה של לקוח על אלעד שורתי`,
+                  alt,
                   sizes: '(max-width: 700px) 68vw, 260px',
                   className: 'tcard__poster',
                   derivatives: ctx.derivatives,
@@ -38,18 +69,18 @@ export function testimonials(items, ctx) {
     .join('\n            ')
 
   return `
-      <section class="section section--mist testimonials" aria-labelledby="testimonials-title">
+      <section class="section${mist ? ' section--mist' : ''} testimonials" aria-labelledby="${esc(id)}-title">
         <div class="container">
           <div class="sec-head reveal">
-            <span class="eyebrow">המלצות</span>
-            <h2 id="testimonials-title">מה הלקוחות מספרים</h2>
+            <span class="eyebrow">${esc(eyebrow)}</span>
+            <h2 id="${esc(id)}-title">${esc(title)}</h2>
           </div>
 
           <div class="trail" data-rail>
             <button type="button" class="trail__nav trail__nav--prev" data-rail-prev aria-label="הקודם" hidden>
               ${chev('m9 6 6 6-6 6')}
             </button>
-            <div class="trail__track" data-rail-track tabindex="0" role="group" aria-label="המלצות לקוחות, ניתן לגלול לצדדים">
+            <div class="trail__track" data-rail-track tabindex="0" role="group" aria-label="${esc(title)}, ניתן לגלול לצדדים">
               ${cards}
             </div>
             <button type="button" class="trail__nav trail__nav--next" data-rail-next aria-label="הבא" hidden>

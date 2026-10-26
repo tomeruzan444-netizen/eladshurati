@@ -280,6 +280,165 @@
    "bytes": 22821
   }
  },
+ "/assets/images/videos/8w1sbkKAk7M.jpg": {
+  "width": 1080,
+  "height": 1920,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/c87b8aa8-400.webp",
+    "bytes": 15156
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/c87b8aa8-700.webp",
+    "bytes": 29578
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/c87b8aa8-1000.webp",
+    "bytes": 45958
+   },
+   {
+    "w": 1080,
+    "url": "/assets/derived/c87b8aa8-1080.webp",
+    "bytes": 51662
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/c87b8aa8-400.avif",
+    "bytes": 12147
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/c87b8aa8-700.avif",
+    "bytes": 24948
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/c87b8aa8-1000.avif",
+    "bytes": 39150
+   },
+   {
+    "w": 1080,
+    "url": "/assets/derived/c87b8aa8-1080.avif",
+    "bytes": 44335
+   }
+  ],
+  "fallback": {
+   "w": 1080,
+   "url": "/assets/derived/c87b8aa8-1080.jpg",
+   "bytes": 112458
+  }
+ },
+ "/assets/images/videos/Dc86hmQVnl8.jpg": {
+  "width": 1080,
+  "height": 1920,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/1e2cc280-400.webp",
+    "bytes": 16740
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/1e2cc280-700.webp",
+    "bytes": 36062
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/1e2cc280-1000.webp",
+    "bytes": 57446
+   },
+   {
+    "w": 1080,
+    "url": "/assets/derived/1e2cc280-1080.webp",
+    "bytes": 63892
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/1e2cc280-400.avif",
+    "bytes": 14162
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/1e2cc280-700.avif",
+    "bytes": 31000
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/1e2cc280-1000.avif",
+    "bytes": 49879
+   },
+   {
+    "w": 1080,
+    "url": "/assets/derived/1e2cc280-1080.avif",
+    "bytes": 57530
+   }
+  ],
+  "fallback": {
+   "w": 1080,
+   "url": "/assets/derived/1e2cc280-1080.jpg",
+   "bytes": 124463
+  }
+ },
+ "/assets/images/videos/nwXT3v-6ybg.jpg": {
+  "width": 1080,
+  "height": 1920,
+  "webp": [
+   {
+    "w": 400,
+    "url": "/assets/derived/1ac5a3f1-400.webp",
+    "bytes": 14290
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/1ac5a3f1-700.webp",
+    "bytes": 30770
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/1ac5a3f1-1000.webp",
+    "bytes": 49838
+   },
+   {
+    "w": 1080,
+    "url": "/assets/derived/1ac5a3f1-1080.webp",
+    "bytes": 56668
+   }
+  ],
+  "avif": [
+   {
+    "w": 400,
+    "url": "/assets/derived/1ac5a3f1-400.avif",
+    "bytes": 12307
+   },
+   {
+    "w": 700,
+    "url": "/assets/derived/1ac5a3f1-700.avif",
+    "bytes": 26864
+   },
+   {
+    "w": 1000,
+    "url": "/assets/derived/1ac5a3f1-1000.avif",
+    "bytes": 42530
+   },
+   {
+    "w": 1080,
+    "url": "/assets/derived/1ac5a3f1-1080.avif",
+    "bytes": 48708
+   }
+  ],
+  "fallback": {
+   "w": 1080,
+   "url": "/assets/derived/1ac5a3f1-1080.jpg",
+   "bytes": 108542
+  }
+ },
  "/assets/images/פרוייקטים ולקוחות/פוייקט 6 - עורך דין אסף ברוך .png": {
   "width": 1884,
   "height": 892,
