@@ -10,6 +10,7 @@
     "media": "node scripts/3-media.mjs",
     "build": "node scripts/4-build.mjs",
     "audit": "node scripts/5-audit.mjs",
+    "audit:seo": "node scripts/audit-seo.mjs",
     "serve": "node scripts/serve.mjs",
     "all": "npm run extract && npm run media && npm run build && npm run check",
     "mobile": "node scripts/7-mobile.mjs",
