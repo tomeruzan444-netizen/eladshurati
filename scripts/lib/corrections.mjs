@@ -681,6 +681,24 @@ export const blockInserts = [
     ],
   },
 
+  /* /ייעוץ-עסקי-למטפלים/ - the broad clinic page. /ייעוץ-עסקי-לפסיכולוגים/
+   * was published 28.10.2026 under it, and needs an editorial inbound link
+   * (rule 9א) rather than being born orphaned. The paragraph is short on
+   * purpose: the therapists page is 430 words and the point is to route a
+   * reader, not to pad it. */
+  {
+    id: 'therapists-page-link-to-psychologists',
+    page: '/ייעוץ-עסקי-למטפלים/',
+    after: /^אם אתם מרגישים שאתם מטפלים טוב/,
+    why: 'קישור תוכן נכנס לעמוד הפסיכולוגים, ומיון של הקורא לעמוד הנכון לו',
+    blocks: [
+      {
+        type: 'richtext',
+        html: '<p>ואם אתם פסיכולוגים, יש דברים שנכונים רק לכם. התואר ותארי המומחיות מוגנים בחוק, הפרסום כפוף לסעיף נפרד, ותמהיל השעות נראה אחרת כשיש קופות וועדות בתמונה. כתבתי על זה בנפרד בעמוד על <a href="/ייעוץ-עסקי-לפסיכולוגים/">ייעוץ עסקי לפסיכולוגים</a>.</p>',
+      },
+    ],
+  },
+
   /* /אודות/ - the page every byline now points at, so it has to do what Google
    * asks an author page to do: say what the person writes about. It was also
    * one of the twelve pages under 300 words. The links double as editorial

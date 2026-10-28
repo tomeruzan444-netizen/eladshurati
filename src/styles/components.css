@@ -1150,6 +1150,12 @@
   fill: var(--surface-mist);
   stroke: var(--line);
 }
+/* A slot that was booked and then lost - dashed, because it was once solid. */
+.diagram__cell--lost {
+  fill: var(--orange-100);
+  stroke: var(--orange-300);
+  stroke-dasharray: 5 4;
+}
 .diagram__head {
   font: 700 24px var(--font);
   fill: var(--ink-soft);
