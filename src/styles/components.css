@@ -1174,6 +1174,22 @@
   stroke: var(--white);
   stroke-width: 4;
 }
+/* Divergence chart: two series over time, and the area that opens between
+   them. The gap is the point of the drawing, so it is filled, not implied. */
+.diagram__gap {
+  fill: var(--orange-100);
+  opacity: 0.55;
+}
+.diagram__line {
+  fill: none;
+  stroke: var(--purple-500);
+  stroke-width: 4;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.diagram__line--rising {
+  stroke: var(--orange-500);
+}
 .diagram__node--end {
   fill: var(--orange-500);
 }
