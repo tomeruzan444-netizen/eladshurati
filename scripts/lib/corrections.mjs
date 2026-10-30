@@ -681,6 +681,60 @@ export const blockInserts = [
     ],
   },
 
+  /* /ייעוץ-עסקי-למטפלים/ - the page states its own mechanism in prose:
+   * "כשיש גבולות, תמחור נכון ומבנה ברור: המטפל רגוע יותר, הטיפול מדויק יותר".
+   * That is a causal claim, which is what a drawing can carry and a paragraph
+   * cannot - so the figure goes directly after it and says the same thing from
+   * the other side: what the outer layer fails to hold, the inner one absorbs.
+   *
+   * The shape is nested containment, which no other page on the site uses, and
+   * the orange arrow is the one element the argument turns on (see
+   * .claude/skills/page-visual/reference.md on the colour grammar).
+   *
+   * The page is migrated, so not a word of its copy is touched - the figure is
+   * spliced in between two captured blocks. */
+  {
+    id: 'therapists-page-containment-figure',
+    page: '/ייעוץ-עסקי-למטפלים/',
+    after: /^כשיש גבולות, תמחור נכון ומבנה ברור/,
+    why: 'העמוד מנסח מנגנון סיבתי בפרוזה ואין בו שום ויזואל; התרשים מראה אותו מהצד השני',
+    blocks: [
+      {
+        type: 'figure',
+        caption:
+          'שלוש שכבות בקליניקה. כשהגדרה חסרה בשכבה החיצונית, הלחץ לא נעצר שם - הוא ממשיך פנימה, אל המטפל ואל הטיפול עצמו.',
+        html: `<svg class="diagram__svg" viewBox="0 0 640 560" role="img" aria-labelledby="th-layers-title th-layers-desc">
+  <title id="th-layers-title">מה שהמסגרת העסקית לא מחזיקה, הטיפול סופג</title>
+  <desc id="th-layers-desc">שלוש מסגרות מקוננות. החיצונית היא המסגרת העסקית של הקליניקה, ובתוכה ארבע הגדרות: תמחור, גבולות זמן, מדיניות ביטולים וסינון התאמה. בתוכה נמצא המטפל, ובתוכו הטיפול עצמו. כשאחת ההגדרות חסרה - כאן גבולות הזמן - חץ עובר דרך שתי השכבות הפנימיות, מפני שהלחץ שהמסגרת לא עצרה נספג במטפל ובטיפול.</desc>
+
+  <text class="diagram__head" x="610" y="70" text-anchor="start">שלוש שכבות, וכיוון אחד של לחץ</text>
+
+  <rect class="diagram__box" x="30" y="110" width="580" height="400" rx="28"/>
+  <text class="diagram__step" x="586" y="156" text-anchor="start">המסגרת העסקית</text>
+
+  <rect class="diagram__cell" x="464" y="178" width="126" height="46" rx="12"/>
+  <text class="diagram__note" x="527" y="207" text-anchor="middle">תמחור</text>
+  <rect class="diagram__cell diagram__cell--off" x="326" y="178" width="126" height="46" rx="12"/>
+  <text class="diagram__note" x="389" y="207" text-anchor="middle">גבולות זמן</text>
+  <rect class="diagram__cell" x="188" y="178" width="126" height="46" rx="12"/>
+  <text class="diagram__note" x="251" y="207" text-anchor="middle">ביטולים</text>
+  <rect class="diagram__cell" x="50" y="178" width="126" height="46" rx="12"/>
+  <text class="diagram__note" x="113" y="207" text-anchor="middle">סינון התאמה</text>
+
+  <rect class="diagram__box" x="110" y="262" width="420" height="200" rx="24"/>
+  <text class="diagram__step" x="506" y="300" text-anchor="start">המטפל</text>
+
+  <rect class="diagram__box diagram__box--intent" x="200" y="336" width="240" height="106" rx="18"/>
+  <text class="diagram__step" x="320" y="397" text-anchor="middle">הטיפול</text>
+
+  <line class="diagram__line diagram__line--rising" x1="389" y1="232" x2="389" y2="324"/>
+  <polygon class="diagram__tip diagram__tip--alert" points="389,342 377,318 401,318"/>
+  <text class="diagram__note" x="366" y="292" text-anchor="start">לחץ שלא נעצר</text>
+</svg>`,
+      },
+    ],
+  },
+
   /* /ייעוץ-עסקי-למטפלים/ - the broad clinic page. /ייעוץ-עסקי-לפסיכולוגים/
    * was published 28.10.2026 under it, and needs an editorial inbound link
    * (rule 9א) rather than being born orphaned. The paragraph is short on

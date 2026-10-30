@@ -1129,6 +1129,11 @@
 .diagram__tip {
   fill: var(--purple-ink);
 }
+/* An arrowhead on the one line the argument turns on, so it reads as pressure
+   rather than as another connector. */
+.diagram__tip--alert {
+  fill: var(--orange-600);
+}
 .diagram__bar {
   fill: var(--plum-800);
 }
