@@ -689,44 +689,114 @@ export const blockInserts = [
    * costs nothing to license.
    *
    * It sits under the line "הבעיה כמעט אף פעם לא נמצאת בטיפול עצמו. היא נמצאת
-   * בניהול", and it makes that line visible: the room is calm and complete.
-   * The clock is the only warm element on the canvas, which is the same claim
-   * the figure further down the page makes about time boundaries. */
+   * בניהול", and shows the management itself: a week of slots, some filled, some
+   * never sold, some booked and lost. The settings panel in front carries the
+   * cause - two switches set, two not. Orange marks only the hours that fell. */
   {
     id: 'therapists-page-room-illustration',
     page: '/ייעוץ-עסקי-למטפלים/',
     after: /^הבעיה כמעט אף פעם לא נמצאת בטיפול עצמו/,
-    why: 'העמוד פתח בטענה שהבעיה אינה בחדר; האיור מראה את החדר, ומשאיר את השעון כאלמנט היחיד שמושך את העין',
+    why: 'העמוד פותח בטענה שהבעיה אינה בטיפול אלא בניהול; התמונה מראה את הניהול עצמו - יומן, הגדרות, ושעות שנפלו',
     blocks: [
       {
         type: 'figure',
         caption:
-          'החדר הוא כמעט אף פעם לא הבעיה. מה שמסביבו - היומן, התמחור והגבולות - הוא שקובע אם הקליניקה מחזיקה.',
-        html: `<svg class="diagram__svg" viewBox="0 0 680 360" role="img" aria-labelledby="th-room-title th-room-desc">
-  <title id="th-room-title">כורסה, שולחן קטן ושעון על הקיר</title>
-  <desc id="th-room-desc">איור של פינת טיפול: כורסה רחבה על שטיח, שולחן קטן לצידה ועליו צמח, ושעון על הקיר. הכול בגוני סגול רכים חוץ מהשעון, שהוא האלמנט היחיד בצבע חם - מפני שהזמן הוא הדבר היחיד בפינה הזו שנקבע מחוצה לה.</desc>
+          'היומן של הקליניקה, וההגדרות שמאחוריו. השעות שנפלו לא נולדו בחדר הטיפולים - הן נולדו במה שלא הוגדר מראש.',
+        html: `<svg class="diagram__svg" viewBox="0 0 680 440" role="img" aria-labelledby="th-room-title th-room-desc">
+  <title id="th-room-title">היומן של הקליניקה, וההגדרות שמאחוריו</title>
+  <desc id="th-room-desc">תצוגה סכמטית של מערכת ניהול קליניקה. במרכז חלון עם יומן שבועי: רוב המשבצות מלאות, כמה ריקות, וכמה מסומנות בקו מקווקו כשעות שנקבעו ובוטלו. לפניו צף חלונית הגדרות עם ארבעה מתגים - שניים דלוקים ושניים כבויים. תג כתום אחד מסמן את אחת השעות שאבדו. הציור מראה שהחורים ביומן נולדים בהגדרות, לא בטיפול.</desc>
 
-  <rect class="diagram__scene" x="0" y="0" width="680" height="360" rx="28"/>
+  <defs>
+    <linearGradient id="th-room-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" class="diagram__grad-warm"/>
+      <stop offset="0.5" class="diagram__grad-pale"/>
+      <stop offset="1" class="diagram__grad-cool"/>
+    </linearGradient>
+    <pattern id="th-room-dots" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle class="diagram__dot-grid" cx="10" cy="10" r="1.5"/>
+    </pattern>
+    <filter id="th-room-shadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow class="diagram__shadow-stop" dx="0" dy="12" stdDeviation="16"/>
+    </filter>
+  </defs>
 
-  <ellipse class="diagram__furniture--soft" cx="352" cy="312" rx="262" ry="24"/>
+  <rect x="0" y="0" width="680" height="440" rx="24" fill="url(#th-room-bg)"/>
+  <rect x="0" y="0" width="680" height="440" rx="24" fill="url(#th-room-dots)"/>
 
-  <rect class="diagram__furniture--soft" x="250" y="140" width="180" height="124" rx="30"/>
-  <rect class="diagram__furniture--soft" x="226" y="198" width="38" height="92" rx="17"/>
-  <rect class="diagram__furniture--soft" x="416" y="198" width="38" height="92" rx="17"/>
-  <rect class="diagram__furniture" x="246" y="234" width="188" height="56" rx="24"/>
-  <rect class="diagram__furniture--soft" x="256" y="288" width="15" height="26" rx="7"/>
-  <rect class="diagram__furniture--soft" x="409" y="288" width="15" height="26" rx="7"/>
+  <rect class="diagram__card" x="160" y="44" width="496" height="348" rx="18" filter="url(#th-room-shadow)"/>
+  <circle class="diagram__dot-soft" cx="186" cy="68" r="4.5"/>
+  <circle class="diagram__dot-soft" cx="202" cy="68" r="4.5"/>
+  <circle class="diagram__dot-soft" cx="218" cy="68" r="4.5"/>
+  <rect class="diagram__slot--empty" x="238" y="58" width="400" height="20" rx="10"/>
+  <rect class="diagram__slot--empty" x="160" y="94" width="496" height="2"/>
 
-  <rect class="diagram__furniture" x="478" y="240" width="88" height="13" rx="6"/>
-  <rect class="diagram__furniture--soft" x="487" y="253" width="11" height="58" rx="5"/>
-  <rect class="diagram__furniture--soft" x="546" y="253" width="11" height="58" rx="5"/>
-  <rect class="diagram__furniture--soft" x="504" y="208" width="36" height="32" rx="8"/>
-  <ellipse class="diagram__leaf" cx="511" cy="188" rx="7" ry="17" transform="rotate(-26 511 188)"/>
-  <ellipse class="diagram__leaf" cx="533" cy="188" rx="7" ry="17" transform="rotate(26 533 188)"/>
-  <ellipse class="diagram__leaf" cx="522" cy="179" rx="6" ry="19"/>
+  <rect class="diagram__slot" x="184" y="120" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot" x="184" y="162" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot diagram__slot--lost" x="184" y="204" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot--empty" x="184" y="246" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot" x="184" y="288" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot--empty" x="184" y="330" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot" x="276" y="120" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot diagram__slot--lost" x="276" y="162" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot" x="276" y="204" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot--empty" x="276" y="246" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot" x="276" y="288" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot--empty" x="276" y="330" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot" x="368" y="120" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot" x="368" y="162" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot" x="368" y="204" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot diagram__slot--lost" x="368" y="246" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot" x="368" y="288" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot" x="368" y="330" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot" x="460" y="120" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot" x="460" y="162" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot diagram__slot--lost" x="460" y="204" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot" x="460" y="246" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot" x="460" y="288" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot--empty" x="460" y="330" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot" x="552" y="120" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot" x="552" y="162" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot" x="552" y="204" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot" x="552" y="246" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot" x="552" y="288" width="80" height="34" rx="9"/>
+  <rect class="diagram__slot--empty" x="552" y="330" width="80" height="34" rx="9"/>
 
-  <circle class="diagram__accent" cx="146" cy="110" r="40"/>
-  <polyline class="diagram__accent" points="146,86 146,110 166,121"/>
+  <circle class="diagram__badge" cx="466" cy="208" r="11"/>
+  <rect class="diagram__knob" x="464.8" y="202" width="2.4" height="7" rx="1.2"/>
+  <circle class="diagram__knob" cx="466" cy="213" r="1.6"/>
+
+  <circle class="diagram__badge" cx="374" cy="250" r="11"/>
+  <rect class="diagram__knob" x="372.8" y="244" width="2.4" height="7" rx="1.2"/>
+  <circle class="diagram__knob" cx="374" cy="255" r="1.6"/>
+
+  <rect class="diagram__card" x="40" y="150" width="244" height="200" rx="18" filter="url(#th-room-shadow)"/>
+  <circle class="diagram__chip" cx="256" cy="182" r="15"/>
+  <circle class="diagram__knob" cx="256" cy="182" r="5"/>
+  <rect class="diagram__slot--empty" x="120" y="177" width="116" height="10" rx="5"/>
+
+  <rect class="diagram__slot--empty" x="234" y="203" width="26" height="26" rx="8"/>
+  <rect class="diagram__slot--empty" x="118" y="211" width="104" height="10" rx="5"/>
+  <rect class="diagram__chip" x="58" y="205" width="38" height="22" rx="11"/>
+  <circle class="diagram__knob" cx="86" cy="216" r="8"/>
+
+  <rect class="diagram__slot--empty" x="234" y="237" width="26" height="26" rx="8"/>
+  <rect class="diagram__slot--empty" x="118" y="245" width="88" height="10" rx="5"/>
+  <rect class="diagram__chip" x="58" y="239" width="38" height="22" rx="11"/>
+  <circle class="diagram__knob" cx="86" cy="250" r="8"/>
+
+  <rect class="diagram__slot--empty" x="234" y="271" width="26" height="26" rx="8"/>
+  <rect class="diagram__slot--empty" x="118" y="279" width="104" height="10" rx="5"/>
+  <rect class="diagram__slot--empty" x="58" y="273" width="38" height="22" rx="11"/>
+  <circle class="diagram__knob" cx="68" cy="284" r="8"/>
+
+  <rect class="diagram__slot--empty" x="234" y="305" width="26" height="26" rx="8"/>
+  <rect class="diagram__slot--empty" x="118" y="313" width="76" height="10" rx="5"/>
+  <rect class="diagram__slot--empty" x="58" y="307" width="38" height="22" rx="11"/>
+  <circle class="diagram__knob" cx="68" cy="318" r="8"/>
+
+  <circle class="diagram__chip" cx="88" cy="380" r="28" filter="url(#th-room-shadow)"/>
+  <circle class="diagram__knob" cx="88" cy="372" r="5"/>
+  <path class="diagram__knob" d="M79 390 a9 9 0 0 1 18 0 z"/>
 </svg>`,
       },
     ],

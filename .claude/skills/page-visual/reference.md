@@ -114,19 +114,42 @@ whole grid - zones first, then place into them.
 ## Illustration, as distinct from diagram
 
 A diagram argues. An illustration sets a scene, and a page can carry both -
-`/ייעוץ-עסקי-למטפלים/` now has one of each. What holds:
+`/ייעוץ-עסקי-למטפלים/` has one of each.
 
-- **One recognisable subject, drawn large.** Two attempts at that page's
-  illustration failed the same way: a room with a window, a floor, two
-  side-view chairs, a rug and two plants read as a furniture catalogue. One
-  front-facing armchair, a side table and a clock read immediately. Side views
-  of furniture are far harder than front views; do not start there.
-- **Keep the colour grammar.** Everything in soft purple except one warm
-  element, which is where the eye lands. On the therapists page that is the
-  clock, which is also what the page's argument is about.
-- **No labels inside a scene.** The caption carries the meaning.
-- **It still needs `<title>` and `<desc>`.** An illustration is not decoration
-  to a screen reader: say what is in it and why it is there.
+**The style that works here is the product shot**, not the drawn scene: a soft
+gradient ground with a dot grid, white cards floating on a drop shadow, a
+schematic interface inside them, and one accent colour marking the thing that
+went wrong. It is entirely geometric, which is why it can be hand-authored well,
+and it suits a consultant who sells digital work.
+
+The recipe, all of it classed so it stays on the site's tokens:
+
+- **Ground:** a rounded rect filled with a `linearGradient` running warm to cool
+  (`grad-warm` → `grad-pale` → `grad-cool`), then the same rect again filled
+  with a `pattern` of `dot-grid` circles.
+- **Cards:** `card` plus a `feDropShadow` filter whose `flood-color` comes from
+  `shadow-stop`. Two cards at different depths, one overlapping the other, is
+  what makes it read as a photograph of a screen rather than a drawing of one.
+- **Interface:** `slot` for a filled cell, `slot--empty` for a blank one,
+  `slot--lost` for one that was filled and is not any more. Toggles are a
+  `chip` pill with a `knob` circle; off is `slot--empty` with the knob at the
+  other end.
+- **Accent:** `badge` circles with a `knob`-coloured exclamation, two or three
+  at most, only on what the caption is about.
+
+**Put no text inside it.** The reference pieces this was modelled on use grey
+bars where words would go, and that is what makes the style survive a phone:
+a 680-wide viewBox at 350px turns 15px labels into 7px. The caption carries the
+meaning; the picture carries the feeling.
+
+What failed first, so nobody repeats it: a literal drawn scene. A therapy room
+with a window, a floor, two side-view armchairs, a rug and two plants read as a
+furniture catalogue; a single front-facing armchair read correctly but looked
+like clip art next to the rest of the site. Side views of furniture are far
+harder than front views, and neither belongs here.
+
+An illustration still needs `<title>` and `<desc>`. It is not decoration to a
+screen reader: say what is in it and why it is there.
 
 ## The figure contract
 

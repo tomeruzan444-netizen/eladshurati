@@ -1198,6 +1198,52 @@
 .diagram__leaf {
   fill: var(--purple-300);
 }
+
+/* ---- product-shot style: soft ground, floating cards, schematic UI ----
+   The vocabulary for figures that show a screen rather than an idea. The
+   gradient stops and the shadow colour are classed rather than hard-coded so
+   the whole style stays on the site's tokens. */
+
+.diagram__grad-warm { stop-color: var(--orange-100); }
+.diagram__grad-pale { stop-color: var(--surface); }
+.diagram__grad-cool { stop-color: var(--purple-100); }
+.diagram__shadow-stop {
+  flood-color: var(--plum-800);
+  flood-opacity: 0.13;
+}
+.diagram__dot-grid {
+  fill: var(--line-strong);
+  opacity: 0.5;
+}
+/* A floating white panel. Pair with the drop-shadow filter. */
+.diagram__card {
+  fill: var(--surface);
+}
+/* Filled, empty and lost states of a slot in a schematic interface. */
+.diagram__slot {
+  fill: var(--purple-100);
+}
+.diagram__slot--empty {
+  fill: var(--surface-mist);
+}
+.diagram__slot--lost {
+  fill: var(--surface-mist);
+  stroke: var(--orange-300);
+  stroke-width: 2;
+  stroke-dasharray: 5 4;
+}
+.diagram__chip {
+  fill: var(--purple-600);
+}
+.diagram__badge {
+  fill: var(--orange-500);
+}
+.diagram__knob {
+  fill: var(--surface);
+}
+.diagram__dot-soft {
+  fill: var(--line-strong);
+}
 .diagram__bar {
   fill: var(--plum-800);
 }
