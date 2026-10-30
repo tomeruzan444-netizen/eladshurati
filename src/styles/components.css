@@ -1167,6 +1167,37 @@
   fill: var(--orange-ink);
   letter-spacing: 0.04em;
 }
+
+/* ---- illustration: flat vector scenes, same palette as the diagrams ---- */
+
+.diagram__scene {
+  fill: var(--purple-050);
+}
+.diagram__floor {
+  fill: var(--purple-100);
+}
+.diagram__furniture {
+  fill: var(--surface);
+  stroke: var(--purple-300);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+.diagram__furniture--soft {
+  fill: var(--purple-100);
+  stroke: var(--purple-300);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+/* The one warm element in a scene, so it is looked at first. */
+.diagram__accent {
+  fill: none;
+  stroke: var(--orange-500);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.diagram__leaf {
+  fill: var(--purple-300);
+}
 .diagram__bar {
   fill: var(--plum-800);
 }

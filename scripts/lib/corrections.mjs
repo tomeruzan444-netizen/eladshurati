@@ -681,6 +681,57 @@ export const blockInserts = [
     ],
   },
 
+  /* /ייעוץ-עסקי-למטפלים/ - an illustration, not a diagram and not a photograph.
+   *
+   * A photograph of a therapy room would have to be licensed stock, and stock
+   * is the exact "generic" this was asked to avoid. A flat vector scene built
+   * from the site's own tokens stays on brand, stays sharp at any size, and
+   * costs nothing to license.
+   *
+   * It sits under the line "הבעיה כמעט אף פעם לא נמצאת בטיפול עצמו. היא נמצאת
+   * בניהול", and it makes that line visible: the room is calm and complete.
+   * The clock is the only warm element on the canvas, which is the same claim
+   * the figure further down the page makes about time boundaries. */
+  {
+    id: 'therapists-page-room-illustration',
+    page: '/ייעוץ-עסקי-למטפלים/',
+    after: /^הבעיה כמעט אף פעם לא נמצאת בטיפול עצמו/,
+    why: 'העמוד פתח בטענה שהבעיה אינה בחדר; האיור מראה את החדר, ומשאיר את השעון כאלמנט היחיד שמושך את העין',
+    blocks: [
+      {
+        type: 'figure',
+        caption:
+          'החדר הוא כמעט אף פעם לא הבעיה. מה שמסביבו - היומן, התמחור והגבולות - הוא שקובע אם הקליניקה מחזיקה.',
+        html: `<svg class="diagram__svg" viewBox="0 0 680 360" role="img" aria-labelledby="th-room-title th-room-desc">
+  <title id="th-room-title">כורסה, שולחן קטן ושעון על הקיר</title>
+  <desc id="th-room-desc">איור של פינת טיפול: כורסה רחבה על שטיח, שולחן קטן לצידה ועליו צמח, ושעון על הקיר. הכול בגוני סגול רכים חוץ מהשעון, שהוא האלמנט היחיד בצבע חם - מפני שהזמן הוא הדבר היחיד בפינה הזו שנקבע מחוצה לה.</desc>
+
+  <rect class="diagram__scene" x="0" y="0" width="680" height="360" rx="28"/>
+
+  <ellipse class="diagram__furniture--soft" cx="352" cy="312" rx="262" ry="24"/>
+
+  <rect class="diagram__furniture--soft" x="250" y="140" width="180" height="124" rx="30"/>
+  <rect class="diagram__furniture--soft" x="226" y="198" width="38" height="92" rx="17"/>
+  <rect class="diagram__furniture--soft" x="416" y="198" width="38" height="92" rx="17"/>
+  <rect class="diagram__furniture" x="246" y="234" width="188" height="56" rx="24"/>
+  <rect class="diagram__furniture--soft" x="256" y="288" width="15" height="26" rx="7"/>
+  <rect class="diagram__furniture--soft" x="409" y="288" width="15" height="26" rx="7"/>
+
+  <rect class="diagram__furniture" x="478" y="240" width="88" height="13" rx="6"/>
+  <rect class="diagram__furniture--soft" x="487" y="253" width="11" height="58" rx="5"/>
+  <rect class="diagram__furniture--soft" x="546" y="253" width="11" height="58" rx="5"/>
+  <rect class="diagram__furniture--soft" x="504" y="208" width="36" height="32" rx="8"/>
+  <ellipse class="diagram__leaf" cx="511" cy="188" rx="7" ry="17" transform="rotate(-26 511 188)"/>
+  <ellipse class="diagram__leaf" cx="533" cy="188" rx="7" ry="17" transform="rotate(26 533 188)"/>
+  <ellipse class="diagram__leaf" cx="522" cy="179" rx="6" ry="19"/>
+
+  <circle class="diagram__accent" cx="146" cy="110" r="40"/>
+  <polyline class="diagram__accent" points="146,86 146,110 166,121"/>
+</svg>`,
+      },
+    ],
+  },
+
   /* /ייעוץ-עסקי-למטפלים/ - the page states its own mechanism in prose:
    * "כשיש גבולות, תמחור נכון ומבנה ברור: המטפל רגוע יותר, הטיפול מדויק יותר".
    * That is a causal claim, which is what a drawing can carry and a paragraph

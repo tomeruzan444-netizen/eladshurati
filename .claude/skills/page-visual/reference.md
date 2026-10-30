@@ -57,6 +57,10 @@ In `src/styles/components.css`, all prefixed `diagram__`.
 | `rule` | the short orange accent bar under a figure title |
 | `eyebrow` | the small orange label above a figure title |
 | `tip--alert` | an orange arrowhead, for the one line the argument turns on |
+| `scene` `floor` | the ground of a flat illustration |
+| `furniture` `furniture--soft` | white and tinted shapes for an illustrated object |
+| `accent` | the one warm element in a scene, so the eye lands on it |
+| `leaf` | a solid purple shape, for foliage and other filled detail |
 
 Adding a class is fine when a state genuinely has no representation. Give it a
 comment saying what it means, and keep it in the grammar above.
@@ -106,6 +110,23 @@ What separates the two, in this system:
 And the failure that cost three rounds on the therapists figure: patching label
 positions one at a time never converges. When two labels collide, re-plan the
 whole grid - zones first, then place into them.
+
+## Illustration, as distinct from diagram
+
+A diagram argues. An illustration sets a scene, and a page can carry both -
+`/ייעוץ-עסקי-למטפלים/` now has one of each. What holds:
+
+- **One recognisable subject, drawn large.** Two attempts at that page's
+  illustration failed the same way: a room with a window, a floor, two
+  side-view chairs, a rug and two plants read as a furniture catalogue. One
+  front-facing armchair, a side table and a clock read immediately. Side views
+  of furniture are far harder than front views; do not start there.
+- **Keep the colour grammar.** Everything in soft purple except one warm
+  element, which is where the eye lands. On the therapists page that is the
+  clock, which is also what the page's argument is about.
+- **No labels inside a scene.** The caption carries the meaning.
+- **It still needs `<title>` and `<desc>`.** An illustration is not decoration
+  to a screen reader: say what is in it and why it is there.
 
 ## The figure contract
 
