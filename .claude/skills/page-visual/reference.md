@@ -51,13 +51,20 @@ In `src/styles/components.css`, all prefixed `diagram__`.
 | `ring` `ring--family` `ring--management` `ring--ownership` | the three-circle model |
 | `core` | the centre of that model |
 | `frame` `chrome` | a browser window outline and its bar |
+| `box--surface` | a layer that should read lighter than the one around it |
+| `cell--open` | a gate in a boundary that was never closed: outlined, dashed |
+| `icon` `icon--alert` | line icons, 2.5px stroke, in the figure's own language |
+| `rule` | the short orange accent bar under a figure title |
+| `eyebrow` | the small orange label above a figure title |
+| `tip--alert` | an orange arrowhead, for the one line the argument turns on |
 
 Adding a class is fine when a state genuinely has no representation. Give it a
 comment saying what it means, and keep it in the grammar above.
 
 ## Shapes already taken
 
-Eleven, one per authored page. Do not reuse one.
+Twelve. Eleven are authored pages, one is a migrated page that got its figure
+through a blockInsert. Do not reuse one.
 
 | page | shape | the claim it makes |
 |---|---|---|
@@ -72,6 +79,7 @@ Eleven, one per authored page. Do not reuse one.
 | `/בניית-אתר-לבית-מלון/` | a comparison of two paths | the same booking via an OTA or direct |
 | `/ייעוץ-עסקי-לפסיכולוגים/` | a week grid under a ceiling | capacity is capped, and where the hours go |
 | `/ייעוץ-עסקי-לרואי-חשבון/` | two diverging series | the fee stays flat while the work grows |
+| `/ייעוץ-עסקי-למטפלים/` | nested layers with a gate left open | what the outer layer fails to hold, the inner one absorbs |
 
 Shapes not yet used, as a starting point rather than a menu: a stacked bar that
 sums to a whole, a matrix of two states against two actors, a nested containment
@@ -79,6 +87,25 @@ diagram, a sankey-ish split of one flow into several, a calendar strip, a
 decision tree with real branch labels, a stock-and-flow with an accumulating
 level, a map-like spatial layout, a waterfall from a starting figure to an
 ending one.
+
+## Composition, not only correctness
+
+A figure can be a correct diagram and still look schematic: four rounded
+rectangles and an arrow carry the argument but nobody wants to look at them.
+What separates the two, in this system:
+
+- **An icon on every repeated element,** drawn in the same stroke language. A
+  row of labelled pills becomes a row of gates once each one has a mark.
+- **A title block.** Eyebrow, title, and the short orange `rule` beneath it -
+  the same treatment the page's own h2 headings get, so the figure belongs.
+- **Layers that differ in weight,** not only in size: `box` (light purple) around
+  `box--surface` (white) around `box--intent` (orange) reads as depth.
+- **One marker per layer, in the same corner.** Consistency across three labels
+  does more for the composition than any single ornament.
+
+And the failure that cost three rounds on the therapists figure: patching label
+positions one at a time never converges. When two labels collide, re-plan the
+whole grid - zones first, then place into them.
 
 ## The figure contract
 

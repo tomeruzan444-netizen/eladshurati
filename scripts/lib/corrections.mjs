@@ -703,33 +703,51 @@ export const blockInserts = [
         type: 'figure',
         caption:
           'שלוש שכבות בקליניקה. כשהגדרה חסרה בשכבה החיצונית, הלחץ לא נעצר שם - הוא ממשיך פנימה, אל המטפל ואל הטיפול עצמו.',
-        html: `<svg class="diagram__svg" viewBox="0 0 640 560" role="img" aria-labelledby="th-layers-title th-layers-desc">
-  <title id="th-layers-title">מה שהמסגרת העסקית לא מחזיקה, הטיפול סופג</title>
-  <desc id="th-layers-desc">שלוש מסגרות מקוננות. החיצונית היא המסגרת העסקית של הקליניקה, ובתוכה ארבע הגדרות: תמחור, גבולות זמן, מדיניות ביטולים וסינון התאמה. בתוכה נמצא המטפל, ובתוכו הטיפול עצמו. כשאחת ההגדרות חסרה - כאן גבולות הזמן - חץ עובר דרך שתי השכבות הפנימיות, מפני שהלחץ שהמסגרת לא עצרה נספג במטפל ובטיפול.</desc>
+        html: `<svg class="diagram__svg" viewBox="0 0 680 560" role="img" aria-labelledby="th-layers-title th-layers-desc">
+  <title id="th-layers-title">מה שהמסגרת לא מחזיקה, הטיפול סופג</title>
+  <desc id="th-layers-desc">שלוש שכבות מקוננות של קליניקה. על דופן השכבה החיצונית, המסגרת העסקית, יושבים ארבעה שערים: תמחור, ביטולים, גבולות זמן וסינון התאמה. שלושה מהם סגורים, ואחד - גבולות הזמן - משורטט בקו מקווקו ונשאר פתוח. דרכו יורד חץ כתום שחוצה את שכבת המטפל ומגיע עד לשכבת הטיפול שבמרכז. הציור אומר שלחץ שהמסגרת לא עצרה אינו נעלם, אלא נספג בשכבות הפנימיות.</desc>
 
-  <text class="diagram__head" x="610" y="70" text-anchor="start">שלוש שכבות, וכיוון אחד של לחץ</text>
+  <text class="diagram__eyebrow" x="650" y="54" text-anchor="start">הקליניקה כמערכת</text>
+  <text class="diagram__head" x="650" y="94" text-anchor="start">מה שהמסגרת לא מחזיקה, הטיפול סופג</text>
+  <rect class="diagram__rule" x="584" y="104" width="66" height="5" rx="2.5"/>
 
-  <rect class="diagram__box" x="30" y="110" width="580" height="400" rx="28"/>
-  <text class="diagram__step" x="586" y="156" text-anchor="start">המסגרת העסקית</text>
+  <rect class="diagram__box" x="30" y="160" width="620" height="360" rx="36"/>
 
-  <rect class="diagram__cell" x="464" y="178" width="126" height="46" rx="12"/>
-  <text class="diagram__note" x="527" y="207" text-anchor="middle">תמחור</text>
-  <rect class="diagram__cell diagram__cell--off" x="326" y="178" width="126" height="46" rx="12"/>
-  <text class="diagram__note" x="389" y="207" text-anchor="middle">גבולות זמן</text>
-  <rect class="diagram__cell" x="188" y="178" width="126" height="46" rx="12"/>
-  <text class="diagram__note" x="251" y="207" text-anchor="middle">ביטולים</text>
-  <rect class="diagram__cell" x="50" y="178" width="126" height="46" rx="12"/>
-  <text class="diagram__note" x="113" y="207" text-anchor="middle">סינון התאמה</text>
+  <rect class="diagram__cell" x="510" y="122" width="132" height="76" rx="22"/>
+  <rect class="diagram__icon" x="562" y="136" width="28" height="17" rx="4"/>
+  <circle class="diagram__icon" cx="576" cy="144.5" r="4"/>
+  <text class="diagram__note" x="576" y="188" text-anchor="middle">תמחור</text>
 
-  <rect class="diagram__box" x="110" y="262" width="420" height="200" rx="24"/>
-  <text class="diagram__step" x="506" y="300" text-anchor="start">המטפל</text>
+  <rect class="diagram__cell" x="364" y="122" width="132" height="76" rx="22"/>
+  <rect class="diagram__icon" x="417" y="133" width="26" height="22" rx="4"/>
+  <line class="diagram__icon" x1="417" y1="140" x2="443" y2="140"/>
+  <line class="diagram__icon" x1="424" y1="145" x2="436" y2="152"/>
+  <line class="diagram__icon" x1="436" y1="145" x2="424" y2="152"/>
+  <text class="diagram__note" x="430" y="188" text-anchor="middle">ביטולים</text>
 
-  <rect class="diagram__box diagram__box--intent" x="200" y="336" width="240" height="106" rx="18"/>
-  <text class="diagram__step" x="320" y="397" text-anchor="middle">הטיפול</text>
+  <rect class="diagram__cell diagram__cell--open" x="218" y="122" width="132" height="76" rx="22"/>
+  <circle class="diagram__icon diagram__icon--alert" cx="284" cy="144" r="13"/>
+  <polyline class="diagram__icon diagram__icon--alert" points="284,136 284,144 291,148"/>
+  <text class="diagram__note" x="284" y="188" text-anchor="middle">גבולות זמן</text>
 
-  <line class="diagram__line diagram__line--rising" x1="389" y1="232" x2="389" y2="324"/>
-  <polygon class="diagram__tip diagram__tip--alert" points="389,342 377,318 401,318"/>
-  <text class="diagram__note" x="366" y="292" text-anchor="start">לחץ שלא נעצר</text>
+  <rect class="diagram__cell" x="72" y="122" width="132" height="76" rx="22"/>
+  <polygon class="diagram__icon" points="125,134 151,134 141,146 141,157 135,153 135,146"/>
+  <text class="diagram__note" x="138" y="188" text-anchor="middle">סינון התאמה</text>
+
+  <polygon class="diagram__icon" points="618,220 629,225 629,234 618,241 607,234 607,225"/>
+  <text class="diagram__step" x="592" y="238" text-anchor="start">המסגרת העסקית</text>
+
+  <rect class="diagram__box diagram__box--surface" x="130" y="272" width="420" height="198" rx="30"/>
+  <circle class="diagram__icon" cx="518" cy="298" r="6"/>
+  <path class="diagram__icon" d="M507 314 a11 11 0 0 1 22 0"/>
+  <text class="diagram__step" x="492" y="312" text-anchor="start">המטפל</text>
+
+  <rect class="diagram__box diagram__box--intent" x="226" y="348" width="228" height="104" rx="24"/>
+  <text class="diagram__step" x="340" y="408" text-anchor="middle">הטיפול</text>
+
+  <line class="diagram__line diagram__line--rising" x1="284" y1="206" x2="284" y2="326"/>
+  <polygon class="diagram__tip diagram__tip--alert" points="284,350 271,324 297,324"/>
+  <text class="diagram__note" x="262" y="252" text-anchor="start">הלחץ עובר</text>
 </svg>`,
       },
     ],

@@ -1134,6 +1134,39 @@
 .diagram__tip--alert {
   fill: var(--orange-600);
 }
+
+/* ---- primitives a figure needs to look composed rather than schematic ---- */
+
+/* A layer that should read as lighter than the one around it. */
+.diagram__box--surface {
+  fill: var(--surface);
+}
+/* A gate in a boundary that was never closed: outlined, not filled. */
+.diagram__cell--open {
+  fill: var(--surface);
+  stroke: var(--orange-300);
+  stroke-dasharray: 6 5;
+}
+/* Line icons, drawn in the same stroke language as the rest of the figure. */
+.diagram__icon {
+  fill: none;
+  stroke: var(--purple-ink);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.diagram__icon--alert {
+  stroke: var(--orange-600);
+}
+/* The short accent rule under a figure's title, echoing the h2 treatment. */
+.diagram__rule {
+  fill: var(--orange-500);
+}
+.diagram__eyebrow {
+  font: 700 16px var(--font);
+  fill: var(--orange-ink);
+  letter-spacing: 0.04em;
+}
 .diagram__bar {
   fill: var(--plum-800);
 }
