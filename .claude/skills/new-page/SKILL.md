@@ -96,7 +96,11 @@ and reword what collides. Rewording can introduce a *new* collision; re-run.
 
 ## 6. A diagram that belongs to this topic
 
-Every authored page has a visual nobody else has — circles, a funnel, a
+**Load the `page-visual` skill for this step.** It holds the colour tokens, the
+class inventory, the shapes already taken, the RTL traps and how to check the
+result.
+
+In short: every authored page has a visual nobody else has — circles, a funnel, a
 timeline, a quadrant, a two-track flow, a wireframe, a branching tree, a
 lifecycle loop, comparison bars. Pick the shape from the argument the page is
 making. Inline SVG, `role="img"`, a `<title>`, a caption.
