@@ -640,6 +640,49 @@ export const blockInserts = [
       },
     ],
   },
+  /* /ייעוץ-עסקי-לקוסמטיקאיות/ - the phrase "ייעוץ עסקי לקליניקות אסתטיקה",
+   * requested 5.11.2026. It sits after the time-management section because
+   * that section raises the hours ceiling and stops there; the step up to a
+   * clinic is the other answer to it, and the natural home for the phrase.
+   *
+   * Kept clear of what the page already owns (branding, pricing, time,
+   * marketing, retention) and of the cosmetics-companies insert, which is about
+   * brands and products rather than rooms. Also kept clear of the authored
+   * sector pages: the economics here are utilisation and someone else's hands,
+   * not the hours ceiling of /ייעוץ-עסקי-לפסיכולוגים/.
+   *
+   * Voice follows the host page: אתן, direct, concrete. No invented numbers. */
+  {
+    id: 'cosmetics-aesthetic-clinics',
+    page: '/ייעוץ-עסקי-לקוסמטיקאיות/',
+    after: /^יאללה, בואו נדבר/,
+    why: 'הביטוי "ייעוץ עסקי לקליניקות אסתטיקה", בזווית של נקודת המעבר מקליניקה של אדם אחד לקליניקה עם חדרים ועובדות',
+    blocks: [
+      { type: 'heading', level: 2, text: 'מתי הקליניקה מפסיקה להיות רק אתן' },
+      {
+        type: 'richtext',
+        html: '<p>יש רגע בכל קליניקה שעובדת טוב שבו היומן פשוט נגמר. כל השעות תפוסות, אין לאן להכניס עוד לקוחה, ומכאן יש שתי דרכים בלבד: להעלות מחיר, או להפסיק להיות הידיים היחידות. הדרך השנייה נשמעת טבעית, והיא משנה את העסק מהיסוד.</p><p>ייעוץ עסקי לקליניקות אסתטיקה עוסק בדיוק בנקודת המעבר הזו. ברגע שיש חדר שני ועובדת, הכלכלה של העסק מפסיקה להיות השעות שלכן כפול המחיר שלכן והופכת לתפוסה. חדר ריק עולה בדיוק כמו חדר מלא, והציוד שקניתן ממשיך להיות מוחזר גם בשבוע חלש.</p><p>והקוסמטיקאית הראשונה שתעסיקו היא לא עוד זוג ידיים. היא המוניטין שלכן, בידיים של מישהי אחרת.</p>',
+      },
+      {
+        type: 'richtext',
+        html: '<p>שלושה דברים ששווה לבדוק לפני הצעד:</p>',
+      },
+      {
+        type: 'list',
+        ordered: false,
+        items: [
+          'האם המחיר מכסה שעה של עובדת ולא רק שעה שלכן. זה חישוב אחר לגמרי, ורוב המחירונים לא עברו אותו.',
+          'מה זמן ההחזר של הציוד בטיפולים, לא בחודשים. מספר חודשים לא אומר כלום בלי לדעת כמה טיפולים באמת נכנסים בחודש.',
+          'מי עונה לטלפון כששתיכן בתוך טיפול. כאן קליניקות מאבדות את רוב הפניות, והן אפילו לא יודעות שזה קרה.',
+        ],
+      },
+      {
+        type: 'richtext',
+        html: '<p>ואם התשובות לא ברורות - זה סימן טוב לעצור ולא לדחוף. צמיחה היא לא תמיד הכיוון הנכון, ולפעמים מחיר גבוה יותר בחדר אחד עדיף על שני חדרים בינוניים.</p>',
+      },
+    ],
+  },
+
   {
     id: 'cosmetics-companies-side',
     page: '/ייעוץ-עסקי-לקוסמטיקאיות/',
