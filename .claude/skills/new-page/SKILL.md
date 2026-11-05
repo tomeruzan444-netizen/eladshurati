@@ -91,8 +91,14 @@ node scripts/audit-voice.mjs
 ## 5. Repetition against the rest of the site
 
 New pages here have repeatedly echoed each other — transition sentences,
-framings, whole scaffolds. Check the draft against all 80 pages before building,
+framings, whole scaffolds. Check the draft against all pages before building,
 and reword what collides. Rewording can introduce a *new* collision; re-run.
+
+**The closing disclaimer section is where my own template lives.** Three pages
+in a row reached for "מה ייעוץ עסקי לא עושה כאן" / "שני דברים שהייעוץ הזה לא
+עושה" / "מה הייעוץ הזה לא עושה", and the paragraphs under them rhymed too. A
+boundary section is worth writing, but write it as this page's argument rather
+than as a disclaimer — name the specific fear this reader has, and answer it.
 
 ## 6. A diagram that belongs to this topic
 
