@@ -404,10 +404,45 @@
           }
         })
         .catch(function () {
-          if (status) {
-            status.setAttribute('data-state', 'error')
-            // Never leave someone with a dead end — give them a way through.
-            status.textContent = 'השליחה נכשלה. אפשר להתקשר 052-707-5029 או לכתוב לוואטסאפ.'
+          if (!status) return
+          status.setAttribute('data-state', 'error')
+          // Never leave someone with a dead end. form.reset() only runs on
+          // success, so the fields still hold what they typed — the WhatsApp
+          // link carries the enquiry across rather than asking for it twice.
+          // A phone number printed as text is not a way through on a phone.
+          while (status.firstChild) status.removeChild(status.firstChild)
+
+          var typed = Object.fromEntries(new FormData(form))
+          var lines = ['היי, מילאתי טופס באתר והשליחה נכשלה. הפרטים:']
+          ;[['name', 'שם'], ['phone', 'נייד'], ['email', 'מייל'], ['message', 'הודעה']].forEach(
+            function (pair) {
+              if (typed[pair[0]]) lines.push(pair[1] + ': ' + typed[pair[0]])
+            }
+          )
+          lines.push('עמוד: ' + location.pathname)
+
+          var said = document.createElement('span')
+          said.textContent = 'השליחה נכשלה, והפרטים לא הגיעו. אפשר להעביר אותם בלחיצה אחת:'
+          status.appendChild(said)
+
+          var wa = form.getAttribute('data-wa')
+          if (wa) {
+            var waLink = document.createElement('a')
+            waLink.className = 'form__rescue form__rescue--wa'
+            waLink.href = wa + '?text=' + encodeURIComponent(lines.join('\n'))
+            waLink.target = '_blank'
+            waLink.rel = 'noopener'
+            waLink.textContent = 'שליחת הפרטים בוואטסאפ'
+            status.appendChild(waLink)
+          }
+
+          var tel = form.getAttribute('data-tel')
+          if (tel) {
+            var telLink = document.createElement('a')
+            telLink.className = 'form__rescue form__rescue--tel'
+            telLink.href = tel
+            telLink.textContent = 'חיוג ' + (form.getAttribute('data-phone') || '')
+            status.appendChild(telLink)
           }
         })
         .then(function () {

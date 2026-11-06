@@ -1679,6 +1679,32 @@
   color: var(--orange-ink);
   font-weight: 600;
 }
+/* The rescue path, shown only when a send fails. A phone number set in text
+   is not something a thumb can act on — these are. */
+.form__rescue {
+  display: block;
+  margin-block-start: 0.6rem;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  text-align: center;
+  font-weight: 700;
+  text-decoration: none;
+}
+/* The site's WhatsApp green, same as the floating button and the action bar.
+   Orange is the submit button that just failed — repeating it here would put
+   two identical calls to action one under the other. */
+.form__rescue--wa {
+  background: #25d366;
+  color: #08331a;
+}
+.form__rescue--tel {
+  background: var(--mist);
+  color: var(--purple-ink);
+}
+.form__rescue:focus-visible {
+  outline: 2px solid var(--purple-ink);
+  outline-offset: 2px;
+}
 .form.is-sending {
   opacity: 0.7;
   pointer-events: none;

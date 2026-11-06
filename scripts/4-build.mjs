@@ -589,12 +589,34 @@ const main = async () => {
             { name: 'email', type: 'email', label: 'אימייל', required: false },
             { name: 'message', type: 'textarea', label: 'ספרו לי על העסק', required: false },
           ]
+      /**
+       * What the field posts under.
+       *
+       * The captured Elementor forms name their fields `form_fields[name]`,
+       * `form_fields[email]` and `form_fields[field_1]` — and the middle one
+       * is the *phone*, type `tel`, labelled נייד. The handler read `name`,
+       * `phone` and `email`, so every live submission arrived with all three
+       * empty and came back 400 before delivery was ever attempted.
+       *
+       * Mapping on the type rather than on the captured name is what makes
+       * that unambiguous: a `tel` input is the phone whatever WordPress
+       * called it. Label, placeholder, order and required all stay as
+       * captured — nothing a reader sees changes, only the posted key.
+       */
+      const canonical = { text: 'name', tel: 'phone', email: 'email', textarea: 'message' }
+      const taken = new Set()
+      const postName = (f) => {
+        const want = canonical[f.type]
+        if (!want || taken.has(want)) return f.name
+        taken.add(want)
+        return want
+      }
       const row = fields
         .filter((f) => f.type !== 'textarea')
         .map(
           (f, i) => `<div class="field">
               <label for="f-${i}">${esc(f.label || f.name)}${f.required ? ' *' : ''}</label>
-              <input id="f-${i}" name="${esc(f.name)}" type="${esc(f.type === 'tel' ? 'tel' : f.type)}" ${f.required ? 'required' : ''} placeholder="${esc(f.placeholder || '')}">
+              <input id="f-${i}" name="${esc(postName(f))}" type="${esc(f.type === 'tel' ? 'tel' : f.type)}" ${f.required ? 'required' : ''} placeholder="${esc(f.placeholder || '')}">
             </div>`
         )
         .join('\n            ')
@@ -603,11 +625,12 @@ const main = async () => {
       // the browser navigates and the handler answers — and site.js upgrades it
       // to an inline submit. The honeypot is hidden from people, never from bots.
       return `<div class="form-card reveal">
-            <form class="form" method="post" action="/api/lead/" novalidate>
+            <form class="form" method="post" action="/api/lead/" novalidate
+              data-wa="${esc(site.whatsapp.split('?')[0])}" data-tel="${esc(site.phoneHref)}" data-phone="${esc(site.phone)}">
               <div class="form__row">${row}</div>
               ${area ? `<div class="field">
                 <label for="f-msg">${esc(area.label || 'הודעה')}</label>
-                <textarea id="f-msg" name="${esc(area.name)}" placeholder="${esc(area.placeholder || '')}"></textarea>
+                <textarea id="f-msg" name="${esc(postName(area))}" placeholder="${esc(area.placeholder || '')}"></textarea>
               </div>` : ''}
               <div class="form__trap" aria-hidden="true">
                 <label for="f-company">אל תמלאו שדה זה</label>
