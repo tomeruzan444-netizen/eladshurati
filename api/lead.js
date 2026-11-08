@@ -11,8 +11,15 @@
  *
  * Spam: reCAPTCHA guarded the old form. A honeypot plus a minimum fill time
  * turns away the volume bots without loading a third-party script on every
- * page. If real spam shows up, Cloudflare Turnstile drops in here — the DNS is
- * already on Cloudflare — without touching the markup.
+ * page. If real spam shows up, Turnstile or a similar check drops in here
+ * without touching the markup.
+ *
+ * (This comment used to say the DNS was on Cloudflare. It is not, and has not
+ * been since the cutover: the zone is authoritative on ns1/ns2.vercel-dns.com,
+ * confirmed against the Vercel API on 8.11.2026. The runbook's Cloudflare
+ * section describes the state *before* the migration and is history, not the
+ * current setup — which matters, because anything needing a DNS record for
+ * this domain is added in Vercel now.)
  */
 
 const TO = process.env.LEAD_TO || 'eladshurati131@gmail.com'
