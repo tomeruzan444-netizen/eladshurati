@@ -49,8 +49,13 @@ export function press(items, sizes = {}) {
           }>`
         : `<span class="pcard__wordmark">${esc(p.publisher)}</span>`
 
+      // nofollow on the way out, at Tomer's instruction (9.11.2026). Nineteen
+      // outbound links from the home page is the strongest page on the site
+      // handing authority to nineteen others, for no return - the strip exists
+      // to show a reader where Elad was published, not to rank the publishers.
+      // noopener stays regardless: it is what makes target="_blank" safe.
       return `<article class="pcard">
-              <a class="pcard__link" href="${esc(p.url)}" target="_blank" rel="noopener">
+              <a class="pcard__link" href="${esc(p.url)}" target="_blank" rel="nofollow noopener">
                 <span class="pcard__mark">${mark}</span>
                 ${p.logo ? `<span class="pcard__name">${esc(p.publisher)}</span>` : ''}
                 <span class="pcard__title">${esc(p.title)}</span>
