@@ -1023,6 +1023,27 @@ export const blockInserts = [
       },
     ],
   },
+
+  /* /פיתוח-עסקי/ - one of the better-linked pages on the site, and the last
+   * section on it already separates consulting from development in the
+   * abstract. /ייעוץ-עסקי-ליועצי-מס/ was published 9.11.2026 and needed an
+   * editorial inbound link (rule 9א); the nearest page by subject,
+   * /ייעוץ-עסקי-לרואי-חשבון/, is authored and capped at three outbound links,
+   * so the second link comes from here instead. The paragraph earns its place
+   * on its own: the generic distinction above it is exactly the kind of thing
+   * that means nothing until it is put against one real practice. */
+  {
+    id: 'bizdev-page-link-to-tax-advisors',
+    page: '/פיתוח-עסקי/',
+    after: /^בעוד ייעוץ עסקי מתמקד/,
+    why: 'קישור תוכן נכנס לעמוד חדש, והמחשה של הבחנה שנאמרה עד כה רק באופן כללי',
+    blocks: [
+      {
+        type: 'richtext',
+        html: '<p>במשרד מקצועי ההבחנה הזאת מפסיקה להיות תיאורטית מהר מאוד. אצל יועצי מס, למשל, המחיר החודשי זהה לכל הלקוחות בעוד העלות של כל תיק נקבעת על ידי הלקוח עצמו - מתי הוא מעביר חומר, באיזה מצב, וכמה פעמים צריך לבקש. הפירוט בעמוד על <a href="/ייעוץ-עסקי-ליועצי-מס/">ייעוץ עסקי ליועצי מס</a>.</p>',
+      },
+    ],
+  },
 ]
 
 /* ------------------------------------------------------ alt text */
