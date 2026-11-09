@@ -2987,4 +2987,98 @@ a:focus-visible .arrow-chip {
   .tcard {
     inline-size: min(68vw, 260px);
   }
+  /* Narrower than the video cards: a press card is text, and a card that
+     reaches the far edge stops the next one peeking in, which is the only
+     thing that tells a thumb there is more to the right. */
+  .pcard {
+    inline-size: min(76vw, 250px);
+  }
+}
+
+/* ---------- press: who published Elad ----------------------------------- */
+
+.press__lead {
+  margin-block-start: 0.85rem;
+  max-inline-size: 46ch;
+  color: var(--ink-soft);
+}
+.press__rail {
+  margin-block-start: 2.25rem;
+}
+.pcard {
+  flex: 0 0 auto;
+  inline-size: 250px;
+  scroll-snap-align: center;
+}
+.pcard__link {
+  display: flex;
+  flex-direction: column;
+  /* Flex rather than fixed grid rows: a card without a logo has one child
+     fewer, and named rows would silently shift everything up on that one. */
+  gap: 0.55rem;
+  block-size: 100%;
+  padding: 1.15rem 1.15rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--white);
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 1px 2px rgb(43 0 56 / 0.05);
+  transition: transform 0.28s var(--ease), box-shadow 0.28s var(--ease), border-color 0.28s var(--ease);
+}
+.pcard__link:hover {
+  transform: translateY(-4px);
+  border-color: var(--purple-300);
+  box-shadow: 0 1px 2px rgb(43 0 56 / 0.08), 0 18px 34px -20px rgb(43 0 56 / 0.5);
+}
+.pcard__link:focus-visible {
+  outline: 3px solid var(--purple-500);
+  outline-offset: 3px;
+}
+.pcard__mark {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  /* The logos arrive at wildly different proportions - a wordmark five times
+     as wide as it is tall next to a square app icon. Containing them inside
+     one box on a shared baseline is what makes the row read as a set. */
+  block-size: 3.5rem;
+}
+.pcard__logo {
+  max-block-size: 2.75rem;
+  max-inline-size: 100%;
+  inline-size: auto;
+  block-size: auto;
+  object-fit: contain;
+}
+/* No logo file: the publisher's name set as a mark, so a missing asset costs
+   recognition rather than leaving a hole in the row. */
+.pcard__wordmark {
+  font-weight: 800;
+  font-size: var(--step-1);
+  letter-spacing: 0.01em;
+  color: var(--plum-700);
+}
+.pcard__name {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--purple-ink);
+}
+.pcard__title {
+  /* Takes the slack, so the "לכתבה" line sits on the same baseline on every
+     card whatever the headline length. */
+  flex: 1 1 auto;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+.pcard__go {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--orange-ink);
 }

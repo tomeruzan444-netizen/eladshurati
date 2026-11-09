@@ -1,0 +1,173 @@
+[
+  {
+    "slug": "maariv",
+    "publisher": "מעריב",
+    "logo": "/assets/press/maariv.png",
+    "title": "סוכני AI - המהפכה הבאה בעולם העסקים",
+    "url": "https://www.maariv.co.il/economy/consumerism/article-1237183",
+    "published": "2025-09-29",
+    "byline": true
+  },
+  {
+    "slug": "news1",
+    "publisher": "News1",
+    "logo": "/assets/press/news1.png",
+    "title": "ליווי עסקי למרפאות: איך להפוך מרפאה רגילה לעסק מצליח ומשגשג",
+    "url": "https://www.news1.co.il/showarticles.aspx?docid=508999&subjectid=42&showall=true",
+    "published": "2025-10-13",
+    "byline": true
+  },
+  {
+    "slug": "chabad-info",
+    "publisher": "חב\"ד אינפו",
+    "logo": "/assets/press/chabad-info.png",
+    "title": "מינוף אוטומציה ובינה מלאכותית לטובת שיווק ממומן",
+    "url": "https://chabad.info/tzarchanut/1277017/",
+    "published": "2025-12-13",
+    "byline": true
+  },
+  {
+    "slug": "prog",
+    "publisher": "פרוג",
+    "logo": "/assets/press/prog.png",
+    "title": "איך לשלב עבודה עם בינה מלאכותית בעבודה השוטפת - אל תשארו מאחור",
+    "url": "https://www.prog.co.il/articles/%D7%90%D7%99%D7%9A-%D7%9C%D7%A9%D7%9C%D7%91-%D7%A2%D7%91%D7%95%D7%93%D7%94-%D7%A2%D7%9D-%D7%91%D7%99%D7%A0%D7%94-%D7%9E%D7%9C%D7%90%D7%9B%D7%95%D7%AA%D7%99%D7%AA-%D7%91%D7%A2%D7%91%D7%95%D7%93%D7%94-%D7%94%D7%A9%D7%95%D7%98%D7%A4%D7%AA-%D7%90%D7%9C-%D7%AA%D7%A9%D7%90%D7%A8%D7%95-%D7%9E%D7%90%D7%97%D7%95%D7%A8.6781/",
+    "published": "",
+    "byline": true
+  },
+  {
+    "slug": "jokopost",
+    "publisher": "JOKOPOST",
+    "logo": null,
+    "title": "איך הפכתי את העסק הקטן שלי למכונת הצלחה",
+    "url": "https://jokopost.com/buisiness/%d7%a2%d7%a1%d7%a7%d7%99%d7%9d-%d7%93%d7%91%d7%a8%d7%99%d7%9d-%d7%91%d7%a9%d7%9d-%d7%90%d7%95%d7%9e%d7%a8%d7%9d/50987/",
+    "published": "2025-06-08",
+    "byline": true
+  },
+  {
+    "slug": "karmel",
+    "publisher": "פורטל הכרמל והצפון",
+    "logo": "/assets/press/karmel.png",
+    "title": "אלעד שורתי: היועץ שלוקח את האוטומציה והבינה המלאכותית צעד קדימה",
+    "url": "https://www.karmel.co.il/%d7%a2%d7%a1%d7%a7%d7%99%d7%9d/%d7%90%d7%9c%d7%a2%d7%93-%d7%a9%d7%95%d7%a8%d7%aa%d7%99-%d7%94%d7%99%d7%95%d7%a2%d7%a5-%d7%a9%d7%9c%d7%95%d7%a7%d7%97-%d7%90%d7%aa-%d7%94%d7%90%d7%95%d7%98%d7%95%d7%9e%d7%a6%d7%99%d7%94-%d7%95%d7%94%d7%91%d7%99%d7%a0%d7%94-%d7%94%d7%9e%d7%9c%d7%90%d7%9b%d7%95%d7%aa%d7%99%d7%aa-%d7%a6%d7%a2%d7%93-%d7%a7%d7%93%d7%99%d7%9e%d7%94",
+    "published": "",
+    "byline": true
+  },
+  {
+    "slug": "news-israel",
+    "publisher": "עניין מרכזי",
+    "logo": "/assets/press/news-israel.svg",
+    "title": "איך בונים אסטרטגיה שיווקית בעידן ה-AI? אלעד שורתי כאן כדי לשפוך אור",
+    "url": "https://www.news-israel.net/2025/12/28/%d7%90%d7%99%d7%9a-%d7%91%d7%95%d7%a0%d7%99%d7%9d-%d7%90%d7%a1%d7%98%d7%a8%d7%98%d7%92%d7%99%d7%94-%d7%a9%d7%99%d7%95%d7%95%d7%a7%d7%99%d7%aa-%d7%91%d7%a2%d7%99%d7%93%d7%9f-%d7%94-ai-%d7%90%d7%9c/",
+    "published": "2025-12-28",
+    "byline": true
+  },
+  {
+    "slug": "mashcanta-info",
+    "publisher": "משכנתא אינפו",
+    "logo": "/assets/press/mashcanta-info.png",
+    "title": "אלעד שורתי ייעוץ עסקי: כל העקרונות לפיתוח עסקי עבור בית העסק שלכם",
+    "url": "https://mashcantainfo.com/%D7%90%D7%9C%D7%A2%D7%93-%D7%A9%D7%95%D7%A8%D7%AA%D7%99-%D7%A2%D7%A7%D7%A8%D7%95%D7%A0%D7%95%D7%AA-%D7%9C%D7%A4%D7%99%D7%AA%D7%95%D7%97-%D7%A2%D7%A1%D7%A7%D7%99/",
+    "published": "2025-03-06",
+    "byline": true
+  },
+  {
+    "slug": "martindale",
+    "publisher": "עו\"ד עכשיו",
+    "logo": "/assets/press/martindale.png",
+    "title": "ייעוץ עסקי לעורכי דין: כך תגדילו את מאגר הלקוחות ותרוויחו יותר",
+    "url": "https://www.martindale.co.il/%D7%99%D7%99%D7%A2%D7%95%D7%A5-%D7%A2%D7%A1%D7%A7%D7%99-%D7%9C%D7%A2%D7%95%D7%A8%D7%9B%D7%99-%D7%93%D7%99%D7%9F-%D7%A6%D7%9E%D7%99%D7%97%D7%94-%D7%95%D7%A8%D7%95%D7%95%D7%97%D7%99%D7%9D/",
+    "published": "2025-02-20",
+    "byline": true
+  },
+  {
+    "slug": "newsnow",
+    "publisher": "מגזין חדשות עכשיו",
+    "logo": "/assets/press/newsnow.png",
+    "title": "הדרך לכוכבים: איך ייעוץ עסקי בתחום היופי יכול להפוך את החלום למציאות",
+    "url": "https://www.newsnow.co.il/mag/%d7%94%d7%93%d7%a8%d7%9a-%d7%9c%d7%9b%d7%95%d7%9b%d7%91%d7%99%d7%9d-%d7%90%d7%99%d7%9a-%d7%99%d7%99%d7%a2%d7%95%d7%a5-%d7%a2%d7%a1%d7%a7%d7%99-%d7%91%d7%aa%d7%97%d7%95%d7%9d-%d7%94%d7%99%d7%95%d7%a4/",
+    "published": "2025-06-01",
+    "byline": false
+  },
+  {
+    "slug": "hamlatza",
+    "publisher": "המלצה",
+    "logo": "/assets/press/hamlatza.png",
+    "title": "תשכחו מכל מה שהכרתם על ליווי ופיתוח עסקי לפני 2025",
+    "url": "https://www.hamlatza.co.il/index2.php?id=17431&lang=HEB",
+    "published": "",
+    "byline": true
+  },
+  {
+    "slug": "ashdods",
+    "publisher": "אשדודס",
+    "logo": "/assets/press/ashdods.png",
+    "title": "למה כל רופא צריך אסטרטגיה עסקית - והאמת על מה שבתי הספר לרפואה לא מלמדים",
+    "url": "https://ashdods.co.il/%d7%a6%d7%a8%d7%9b%d7%a0%d7%95%d7%aa-%d7%95%d7%a2%d7%a1%d7%a7%d7%99%d7%9d/%d7%9c%d7%9e%d7%94-%d7%9b%d7%9c-%d7%a8%d7%95%d7%a4%d7%90-%d7%a6%d7%a8%d7%99%d7%9a-%d7%90%d7%a1%d7%98%d7%a8%d7%98%d7%92%d7%99%d7%94-%d7%a2%d7%a1%d7%a7%d7%99%d7%aa-%d7%95%d7%94%d7%90%d7%9e%d7%aa-%d7%a2%d7%9c-%d7%9e%d7%94-%d7%a9%d7%91%d7%aa%d7%99-%d7%94%d7%a1%d7%a4%d7%a8-%d7%9c%d7%a8%d7%a4%d7%95%d7%90%d7%94-%d7%9c%d7%90-%d7%9e%d7%9c%d7%9e%d7%93%d7%99%d7%9d-663891",
+    "published": "2025-08-05",
+    "byline": true
+  },
+  {
+    "slug": "consulates",
+    "publisher": "קונסוליות בעולם",
+    "logo": "/assets/press/consulates.png",
+    "title": "מדוע משרדי עורכי דין זקוקים לייעוץ עסקי מקצועי בעידן הדיגיטלי",
+    "url": "https://consulates.co.il/%d7%9e%d7%93%d7%95%d7%a2-%d7%9e%d7%a9%d7%a8%d7%93%d7%99-%d7%a2%d7%95%d7%a8%d7%9b%d7%99-%d7%93%d7%99%d7%9f-%d7%96%d7%a7%d7%95%d7%a7%d7%99%d7%9d-%d7%9c%d7%99%d7%99%d7%a2%d7%95%d7%a5-%d7%a2%d7%a1%d7%a7/",
+    "published": "2025-10-16",
+    "byline": true
+  },
+  {
+    "slug": "shavuon",
+    "publisher": "השבועון פתח תקווה",
+    "logo": "/assets/press/shavuon.png",
+    "title": "איך להצליח ב-2025 בתור עסק קטן: המדריך המלא לשנה מנצחת",
+    "url": "https://shavuon.co.il/?p=22346",
+    "published": "2025-08-13",
+    "byline": false
+  },
+  {
+    "slug": "top-constructor",
+    "publisher": "טופ קונסטרוקטור",
+    "logo": "/assets/press/top-constructor.png",
+    "title": "איך להפוך את התשוקה לעיצוב לעסק משגשג",
+    "url": "https://top-constructor.co.il/%d7%90%d7%99%d7%9a-%d7%9c%d7%94%d7%a4%d7%95%d7%9a-%d7%90%d7%aa-%d7%94%d7%aa%d7%a9%d7%95%d7%a7%d7%94-%d7%9c%d7%a2%d7%99%d7%a6%d7%95%d7%91-%d7%9c%d7%a2%d7%a1%d7%a7-%d7%9e%d7%a9%d7%92%d7%a9%d7%92/",
+    "published": "2025-09-01",
+    "byline": true
+  },
+  {
+    "slug": "keyforme",
+    "publisher": "קי פור מי",
+    "logo": "/assets/press/keyforme.png",
+    "title": "כמה מרוויח מנעולן? המדריך המלא",
+    "url": "https://www.keyforme.co.il/%D7%9B%D7%9E%D7%94-%D7%9E%D7%A8%D7%95%D7%95%D7%99%D7%97-%D7%9E%D7%A0%D7%A2%D7%95%D7%9C%D7%9F/",
+    "published": "",
+    "byline": true
+  },
+  {
+    "slug": "puenta",
+    "publisher": "המרכז למתנות ממותגות",
+    "logo": "/assets/press/puenta.png",
+    "title": "למה מחווה קטנה יכולה לעשות הבדל גדול בעסק שלכם",
+    "url": "https://puenta.co.il/%d7%9c%d7%9e%d7%94-%d7%9e%d7%97%d7%95%d7%95%d7%94-%d7%a7%d7%98%d7%a0%d7%94-%d7%99%d7%9b%d7%95%d7%9c%d7%94-%d7%9c%d7%a2%d7%a9%d7%95%d7%aa-%d7%94%d7%91%d7%93%d7%9c-%d7%92%d7%93%d7%95%d7%9c-%d7%91%d7%a2/",
+    "published": "2025-09-07",
+    "byline": true
+  },
+  {
+    "slug": "magnet",
+    "publisher": "מגנט",
+    "logo": "/assets/press/magnet.png",
+    "title": "טובים במקצוע שלכם אבל פחות בניהול המשרד? אלו 20 דרכים להשתפר",
+    "url": "https://www.magnet.org.il/%D7%9E%D7%A6%D7%95%D7%99%D7%A0%D7%99%D7%9D-%D7%91%D7%9E%D7%A7%D7%A6%D7%95%D7%A2-%D7%9E%D7%AA%D7%A7%D7%A9%D7%99%D7%9D-%D7%91%D7%A0%D7%99%D7%94%D7%95%D7%9C-20-%D7%98%D7%99%D7%A4%D7%99%D7%9D/",
+    "published": "2025-03-20",
+    "byline": false
+  },
+  {
+    "slug": "monopoli",
+    "publisher": "מונופולי",
+    "logo": "/assets/press/monopoli.png",
+    "title": "העובד הזול ביותר בעסק שלכם הוא אתם - קצת על ייעול העסק",
+    "url": "https://monopoli.co.il/blog/detail/streamlining-abusiness",
+    "published": "2026-11-09",
+    "byline": false
+  }
+]

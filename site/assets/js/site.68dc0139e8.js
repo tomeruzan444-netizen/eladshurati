@@ -319,7 +319,10 @@
     var sign = rtl ? -1 : 1
 
     function step() {
-      var card = track.querySelector('.tcard')
+      // Whatever the rail holds - a video card or a press card - one step is
+      // one card. Measuring the first child keeps this rail-agnostic instead
+      // of naming a class that only one of them uses.
+      var card = track.firstElementChild
       if (!card) return track.clientWidth * 0.8
       var gap = parseFloat(getComputedStyle(track).columnGap || '16') || 16
       return card.getBoundingClientRect().width + gap

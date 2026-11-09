@@ -18,6 +18,7 @@ import {
 } from './lib/clients.mjs'
 import { applyCorrections } from './lib/corrections.mjs'
 import { testimonials, clips } from './lib/testimonials.mjs'
+import { press } from './lib/press.mjs'
 import { minifyCss, minifyHtml } from './lib/minify.mjs'
 
 const ROOT = path.resolve(import.meta.dirname, '..')
@@ -55,6 +56,22 @@ const byPath = (pages) => Object.fromEntries(pages.map((p) => [p.seo.path, p]))
 async function pngSize(file) {
   const buf = await readFile(file)
   return { width: buf.readUInt32BE(16), height: buf.readUInt32BE(20) }
+}
+
+/**
+ * Intrinsic size of a press logo, so the strip reserves its space instead of
+ * reflowing as each one loads. PNGs carry it in the IHDR; an SVG has to be
+ * read, and viewBox is the reliable field - width/height are often absent or
+ * in units that mean nothing here.
+ */
+async function logoSize(file) {
+  if (file.endsWith('.png')) return pngSize(file)
+  const svg = await readFile(file, 'utf8')
+  const vb = svg.match(/viewBox="[\d.\-\s]*?([\d.]+)[\s,]+([\d.]+)"/)
+  if (vb) return { width: Number(vb[1]), height: Number(vb[2]) }
+  const w = svg.match(/\bwidth="([\d.]+)/)
+  const h = svg.match(/\bheight="([\d.]+)/)
+  return w && h ? { width: Number(w[1]), height: Number(h[1]) } : null
 }
 
 /* ------------------------------------------------------------------- home */
@@ -188,6 +205,8 @@ function homePage(page, ctx) {
       </section>` : ''}
 
       ${ctx.latestPosts()}
+
+      ${ctx.press || ''}
 
       <section class="section section--mist" id="contact">
         <div class="container contact-grid">
@@ -429,6 +448,9 @@ const main = async () => {
   const projects = existsSync(path.join(ROOT, 'content', 'projects.json'))
     ? await read('projects.json')
     : []
+  const pressItems = existsSync(path.join(ROOT, 'content', 'press.json'))
+    ? await read('press.json')
+    : []
   const lookup = byPath(pages)
 
   await rm(OUT, { recursive: true, force: true })
@@ -440,6 +462,18 @@ const main = async () => {
 
   const portrait = await pngSize(path.join(ROOT, 'assets', 'brand', 'portrait-cutout.png'))
 
+  // The press strip is identical on every render, so it is built once. A logo
+  // whose file is missing fails the build rather than shipping a broken image
+  // onto the home page.
+  const pressSizes = {}
+  for (const p of pressItems) {
+    if (!p.logo) continue
+    const file = path.join(ROOT, decodeURIComponent(p.logo).replace(/^\//, ''))
+    if (!existsSync(file)) throw new Error(`content/press.json: ${p.slug} points at a logo that does not exist: ${p.logo}`)
+    pressSizes[p.logo] = await logoSize(file)
+  }
+  const pressHtml = press(pressItems, pressSizes)
+
   const ctx = {
     manifest,
     altMap,
@@ -447,6 +481,7 @@ const main = async () => {
     responsiveImage,
     projects,
     portrait,
+    press: pressHtml,
     img(src) {
       if (src?.startsWith('/wp-content/')) return manifest[site.origin + src] || src
       return manifest[src] || src
