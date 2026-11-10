@@ -116,8 +116,16 @@ At the end of every session, post the LAN preview URL in chat.
 ## Open, and known
 
 `docs/worklog.md` is the list. The urgent one, at the time of writing: the
-contact form silently drops every enquiry because `RESEND_API_KEY` is not set in
+contact form cannot mail anything, because `RESEND_API_KEY` is not set in
 Vercel. `curl https://elad-digital.co.il/api/lead/` should return
-`configured:true` and does not.
+`configured:true` and does not. Only Elad or Tomer can close this — it needs a
+Resend account, and the short path is the Vercel Marketplace integration, which
+also writes the DNS records because the zone is already in Vercel.
+
+It no longer *loses* an enquiry, which is a different thing from working. A
+submission that cannot be mailed is written to a private Blob store and the
+person is offered WhatsApp with their details prefilled. That is a net, not a
+delivery channel: nobody is notified. `keeps:true` in the same health probe
+says the net is live.
 
 Do not act on an open item without asking. They are logged, not approved.
