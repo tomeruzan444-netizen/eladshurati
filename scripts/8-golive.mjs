@@ -202,6 +202,15 @@ else if (!health.configured)
   bad('/api/lead/ is up but RESEND_API_KEY is not set — every enquiry would be dropped')
 else console.log('  /api/lead/ is configured for delivery')
 
+/* The safety net, checked separately from delivery. `keeps:false` is not a
+   cut-over blocker on its own — the form still works and still offers
+   WhatsApp — but it means the next delivery failure loses the enquiry for
+   good, because the log that holds it expires in an hour on this plan. Worth
+   seeing, so it is a warning rather than silence. */
+if (health && !health.keeps)
+  console.log('  ⚠ /api/lead/ has no durable store — a failed enquiry would only live in the log, for one hour')
+else if (health) console.log('  /api/lead/ keeps a durable copy of a failed enquiry')
+
 // --send posts a real enquiry, so an inbox proves the whole path end to end.
 if (process.argv.includes('--send')) {
   const r = await fetch(base + '/api/lead/', {

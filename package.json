@@ -18,5 +18,8 @@
   },
   "devDependencies": {
     "cheerio": "^1.0.0"
+  },
+  "dependencies": {
+    "@vercel/blob": "2.8.2"
   }
 }

@@ -14,6 +14,10 @@
  * page. If real spam shows up, Turnstile or a similar check drops in here
  * without touching the markup.
  *
+ * Delivery is not the only copy. An enquiry that cannot be mailed is written
+ * to a private Blob store as well — see `keep` below for why that exists and
+ * what it deliberately does not store.
+ *
  * (This comment used to say the DNS was on Cloudflare. It is not, and has not
  * been since the cutover: the zone is authoritative on ns1/ns2.vercel-dns.com,
  * confirmed against the Vercel API on 8.11.2026. The runbook's Cloudflare
@@ -84,6 +88,75 @@ const shell = (title, inner) => `<!doctype html>
 /** Only ever treat the submitted page as a same-site path. */
 const backTo = (p) => (/^\/(?!\/)/.test(p || '') ? p : '/')
 
+/**
+ * Keep a copy of an enquiry that could not be delivered.
+ *
+ * The console.error below used to be described in this file as "the only copy
+ * that exists". On this plan that copy lives for **one hour** — the logs API
+ * refuses a seven-day window outright — so anyone who filled the form, read
+ * "השליחה נכשלה" and did not press the WhatsApp button was simply gone. This
+ * writes the enquiry to a private Blob store instead, where it keeps.
+ *
+ * Private, not public. A public blob is readable by anyone holding the URL,
+ * and these records carry a name, a phone number and an email address. Reading
+ * one back needs `BLOB_READ_WRITE_TOKEN`.
+ *
+ * Only failures are kept, and only after validation passes. A delivered
+ * enquiry already has a durable copy — the mailbox it arrived in — and keeping
+ * a second one would double the personal data at rest for no gain. A
+ * submission missing a name or a phone is not kept either: there is nothing to
+ * call back, and the person gets the error and can correct it. Bots never
+ * reach here; the honeypot and the fill-timer return earlier.
+ *
+ * This stays useful after RESEND_API_KEY is set. Every future delivery failure
+ * — a 403 on an unverified sender, a quota, an outage at Resend — lands in
+ * exactly the same place.
+ */
+const keep = async (lead, reason) => {
+  const record = { receivedAt: new Date().toISOString(), reason, ...lead }
+
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    console.error('lead: BLOB_READ_WRITE_TOKEN is not set — no durable copy kept', record)
+    return null
+  }
+
+  const stamp = record.receivedAt.replace(/[:.]/g, '-')
+  const pathname = `leads/${stamp}-${Math.random().toString(36).slice(2, 8)}.json`
+
+  let timer
+  try {
+    // Imported here rather than at the top of the file, deliberately. If this
+    // dependency ever fails to resolve or to package, a top-level import takes
+    // the whole function down and every visitor gets a 500 instead of the
+    // WhatsApp fallback. A backup that can break the thing it is backing up is
+    // worse than no backup. This way the cost of that failure is one missing
+    // copy, logged.
+    const { put } = await import('@vercel/blob')
+    const written = await Promise.race([
+      put(pathname, JSON.stringify(record, null, 1), {
+        access: 'private',
+        contentType: 'application/json; charset=utf-8',
+        // The timestamp plus six random characters is already unique, and a
+        // name we choose ourselves is one we can sort and read.
+        addRandomSuffix: false,
+      }),
+      new Promise((_, reject) => {
+        timer = setTimeout(() => reject(new Error('blob_timeout')), 4000)
+      }),
+    ])
+    console.log('lead: kept at', pathname)
+    return written
+  } catch (err) {
+    // Still shout the whole enquiry into the log. It expires in an hour, but
+    // an hour is better than nothing, and this is the path where everything
+    // else has already failed.
+    console.error('lead: could not keep a durable copy —', err?.message || err, record)
+    return null
+  } finally {
+    clearTimeout(timer)
+  }
+}
+
 /** Success, for the browser that posted the form without JavaScript. */
 const ok = (req, res, lead) => {
   if (!String(req.headers?.accept || '').includes('text/html')) {
@@ -127,11 +200,17 @@ const fail = (req, res, status, error, lead, headline) => {
 }
 
 export default async function handler(req, res) {
-  // Health probe for the go-live sweep. Reports only whether delivery is
-  // wired up — never the key itself. Without this the sweep cannot tell a
-  // working endpoint from one that will drop every enquiry.
+  // Health probe for the go-live sweep. Reports only whether delivery and the
+  // durable copy are wired up — never either credential. Without this the
+  // sweep cannot tell a working endpoint from one that will drop every
+  // enquiry. `configured` keeps its meaning (mail can be sent) so the existing
+  // check does not change; `keeps` says whether a failed enquiry would survive.
   if (req.method === 'GET') {
-    return res.status(200).json({ ok: true, configured: Boolean(process.env.RESEND_API_KEY) })
+    return res.status(200).json({
+      ok: true,
+      configured: Boolean(process.env.RESEND_API_KEY),
+      keeps: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
+    })
   }
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST, GET')
@@ -176,9 +255,8 @@ export default async function handler(req, res) {
   if (!key) {
     // Fail loudly rather than pretending the lead was sent. A silent success
     // here is exactly how enquiries disappear without anyone noticing.
-    // The whole enquiry goes to the log, not just the contact fields — while
-    // the key is missing this line is the only copy that exists.
     console.error('lead: RESEND_API_KEY is not set — enquiry NOT delivered', lead)
+    await keep(lead, 'not_configured')
     return fail(req, res, 503, 'not_configured', lead, 'השליחה נכשלה')
   }
 
@@ -225,11 +303,13 @@ export default async function handler(req, res) {
       // resend.dev, which may only deliver to the Resend account's own
       // address. The detail string says which — keep it in the log.
       console.error('lead: delivery failed', r.status, detail, lead)
+      await keep(lead, `delivery_failed_${r.status}`)
       return fail(req, res, 502, 'delivery_failed', lead, 'השליחה נכשלה')
     }
     return ok(req, res, lead)
   } catch (err) {
     console.error('lead: delivery threw', err, lead)
+    await keep(lead, 'delivery_threw')
     return fail(req, res, 502, 'delivery_failed', lead, 'השליחה נכשלה')
   }
 }
