@@ -1044,6 +1044,44 @@ export const blockInserts = [
       },
     ],
   },
+
+  /* /ייעוץ-עסקי-לחנויות-בגדים/ - the sentence this attaches to names loss of
+   * control over "מלאי, תזרים ורווחיות" and then moves on, which is exactly
+   * the kind of list that means nothing until one trade shows what it looks
+   * like. /ייעוץ-עסקי-לאופטיקה/ was published 13.11.2026 and needed editorial
+   * inbound links (rule 9א); this is the nearest page by subject, and the
+   * contrast is real rather than decorative - a clothing shop's customer
+   * returns next season, an optician's does not. */
+  {
+    id: 'clothing-page-link-to-optics',
+    page: '/ייעוץ-עסקי-לחנויות-בגדים/',
+    after: /^צוות עייף, בעלים שמכבים שריפות/,
+    why: 'קישור תוכן נכנס לעמוד חדש, והמחשה של מה ש"חוסר שליטה על מלאי" אומר בענף אחד',
+    blocks: [
+      {
+        type: 'richtext',
+        html: '<p>הצורה שהבעיה הזאת לובשת משתנה מענף לענף. בחנות אופטיקה, למשל, המסגרות נכנסות בקצב של אופנה והלקוחות חוזרים רק אחרי כמה שנים, ולכן ההפרש בין שני הקצבים מצטבר על הקיר כהון שכבר שולם עליו. הרחבתי על כך בעמוד על <a href="/ייעוץ-עסקי-לאופטיקה/">ייעוץ עסקי לאופטיקה</a>.</p>',
+      },
+    ],
+  },
+
+  /* /ייעוץ-עסקי-לייבואנים/ - the second inbound link for the same new page.
+   * The anchor paragraph is written entirely from the importer's side, and
+   * the arrangement it describes is decided with a retailer on the other end
+   * of it. Saying what that arrangement is worth to the retailer is new
+   * information on this page, not a signpost. */
+  {
+    id: 'importers-page-link-to-optics',
+    page: '/ייעוץ-עסקי-לייבואנים/',
+    after: /^לפי דעתי, ניהול חכם של שרשרת האספקה/,
+    why: 'קישור תוכן נכנס לעמוד חדש, וזווית הקמעונאי על אותו הסדר אספקה',
+    blocks: [
+      {
+        type: 'richtext',
+        html: '<p>הצד השני של ההסדר הזה יושב אצל הקמעונאי, וכדאי להכיר אותו. חנות אופטיקה, למשל, קונה מסגרות בקצב של אופנה ומוכרת אותן בקצב שבו לקוחות מחליפים משקפיים - ולכן אפשרות להחזיר או להחליף דגם שלא זז שווה לה לפעמים יותר מאחוז הנחה. פירטתי את החשבון הזה בעמוד על <a href="/ייעוץ-עסקי-לאופטיקה/">ייעוץ עסקי לאופטיקה</a>.</p>',
+      },
+    ],
+  },
 ]
 
 /* ------------------------------------------------------ alt text */
