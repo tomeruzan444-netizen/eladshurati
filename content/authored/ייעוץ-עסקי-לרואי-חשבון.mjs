@@ -31,7 +31,31 @@ export default {
   // the /פיתוח-עסקי/ link in the succession section gave up its anchor to stay
   // inside the 2-3 cap. The body changed, so the stamp moves with it - the
   // opposite of finding 8ב, where it moves and the body does not.
-  modified: '2026-11-09T09:00:00+02:00',
+  //
+  // 13.11.2026: Tomer asked for a new page on this topic; this page already
+  // owned the intent, so it was strengthened instead of joined by a rival.
+  // Two paragraphs were added, both filling a hole rather than padding:
+  //   - "מי עושה את העבודה" named the most expensive deferred decision and
+  //     then gave the reader nothing to do. Every other section on the page
+  //     ends with a handle. It now names which work transfers first.
+  //   - "המשרד שתלוי באדם אחד" said the firm has little value apart from its
+  //     owner, and stopped there. The second half of that answer is the page's
+  //     own argument: what a buyer sees is what the firm bills, so a stale fee
+  //     list discounts the practice as well as the year. No multiple, no
+  //     percentage, no named method - /תיווך-עסקים/ owns valuation technique.
+  //
+  // Rejected on purpose, so they are not written again:
+  //   - A "התרגיל" block (an H2, a three-step ordered list, then "זה לא מדע
+  //     מדויק"). Five sector pages already carry that scaffold. This page is
+  //     one of the few that escaped it; adding it would cost more than it buys.
+  //   - A section on the firm's year and when to measure. /שיווק-רואי-חשבון/
+  //     owns the calendar, with its own timeline figure.
+  //   - "שלוש אפשרויות ברגע שהמספר על הדף", i.e. what to do once the list is
+  //     filled in. /ייעוץ-עסקי-ליועצי-מס/ owns that move under that name.
+  //   - Scoping what is included in the retainer. Assigned to the tax advisors
+  //     page by this page's own routing paragraph.
+  // Still missing and only Elad can supply it: a first-hand claim. Finding 9ה.
+  modified: '2026-11-13T09:00:00+02:00',
   title: 'ייעוץ עסקי לרואי חשבון | הרווח שנשחק בלי שמרגישים',
   description:
     'הכנסה של משרד רואי חשבון נראית יציבה, ודווקא לכן השחיקה בה לא מורגשת. שכר טרחה שנקבע פעם אחת, עבודה שגדלה, ומה עושים עם זה.',
@@ -113,7 +137,7 @@ export default {
     { type: 'heading', level: 2, text: 'מי עושה את העבודה' },
     {
       type: 'richtext',
-      html: '<p>בשירות מקצועי, הרווח נקבע פחות במחיר ויותר בשאלה מי מבצע. שעה של שותף יקרה הרבה יותר משעה של עובד, וכשהיא מושקעת בעבודה שעובד היה יכול לעשות, ההפרש יוצא מהרווח.</p><p>אני חושב שזו ההחלטה היקרה ביותר שמשרד דוחה, ולא משום שהיא קשה אלא משום שהיא אף פעם לא דחופה. במשרדים קטנים זה כמעט תמיד המצב, ולא מחוסר מודעות. העברה של עבודה למטה דורשת שיהיה מישהו שאפשר להעביר אליו, ושיהיה נוהל שמאפשר לבדוק אחריו מהר. בלי השניים האלה, ההעברה יקרה יותר מלעשות לבד - וזה נכון, לטווח הקצר.</p>',
+      html: '<p>בשירות מקצועי, הרווח נקבע פחות במחיר ויותר בשאלה מי מבצע. שעה של שותף יקרה הרבה יותר משעה של עובד, וכשהיא מושקעת בעבודה שעובד היה יכול לעשות, ההפרש יוצא מהרווח.</p><p>אני חושב שזו ההחלטה היקרה ביותר שמשרד דוחה, ולא משום שהיא קשה אלא משום שהיא אף פעם לא דחופה. במשרדים קטנים זה כמעט תמיד המצב, ולא מחוסר מודעות. העברה של עבודה למטה דורשת שיהיה מישהו שאפשר להעביר אליו, ושיהיה נוהל שמאפשר לבדוק אחריו מהר. בלי השניים האלה, ההעברה יקרה יותר מלעשות לבד - וזה נכון, לטווח הקצר.</p><p>מה שכן אפשר להחליט בלי פרויקט שלם הוא מאיפה מתחילים. העבודה הראשונה שעוברת היא זו שחוזרת בתאריך ידוע. יש לה פלט, ורואים עליו מיד אם הוא נכון. לא המשימות שנראות הכי קלות - אלה נשארות אצל השותף דווקא משום שאף אחד לא ניסח מתי הן נגמרות.</p>',
     },
 
     { type: 'heading', level: 2, text: 'השיחה על עדכון שכר טרחה' },
@@ -125,7 +149,7 @@ export default {
     { type: 'heading', level: 2, text: 'המשרד שתלוי באדם אחד' },
     {
       type: 'richtext',
-      html: '<p>יש מבחן פשוט אחד. אם השותף הבכיר נעלם לחודשיים, כמה לקוחות עוזבים? במשרד שבו הקשר הוא אישי בלבד, התשובה גבוהה, וזה אומר שלמשרד עצמו כמעט אין שווי נפרד מהאדם שמנהל אותו.</p><p>זה לא נפתר בשיווק. זה נפתר בכך שהלקוח מכיר עוד מישהו במשרד, שהידע על התיק כתוב ולא זכור, ושיש תהליך שמישהו אחר יכול להיכנס אליו. כל אלה הם עבודה של פיתוח עסקי, וכדאי להתחיל אותה הרבה לפני שחושבים על מכירה או על פרישה.</p>',
+      html: '<p>יש מבחן פשוט אחד. אם השותף הבכיר נעלם לחודשיים, כמה לקוחות עוזבים? במשרד שבו הקשר הוא אישי בלבד, התשובה גבוהה, וזה אומר שלמשרד עצמו כמעט אין שווי נפרד מהאדם שמנהל אותו.</p><p>זה לא נפתר בשיווק. זה נפתר בכך שהלקוח מכיר עוד מישהו במשרד, שהידע על התיק כתוב ולא זכור, ושיש תהליך שמישהו אחר יכול להיכנס אליו. כל אלה הם עבודה של פיתוח עסקי, וכדאי להתחיל אותה הרבה לפני שחושבים על מכירה או על פרישה.</p><p>ושתי הבעיות שבעמוד הזה נפגשות בדיוק כאן. התלות באדם היא חצי מהתשובה. החצי השני הוא מה שהמשרד מחייב בפועל. קונה או שותף שנכנס מסתכלים על החיוב, לא על העבודה שעומדת מאחוריו. רשימת שכר טרחה שלא זזה שש שנים מורידה גם את החצי הזה, והיא לא מתוקנת בחודש שלפני.</p>',
     },
 
     { type: 'heading', level: 2, text: 'מה ייעוץ עסקי לא עושה כאן' },

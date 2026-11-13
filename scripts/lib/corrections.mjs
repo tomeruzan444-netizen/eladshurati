@@ -1082,6 +1082,49 @@ export const blockInserts = [
       },
     ],
   },
+
+  /* /תיווך-עסקים/ - /ייעוץ-עסקי-לרואי-חשבון/ had exactly two editorial inbound
+   * links (13.11.2026), and both came from the other two pages about accounting
+   * firms. It met rule 9א at the floor and drew nothing from the rest of the
+   * site. These two inserts fix that, and neither is a signpost.
+   *
+   * This one lands after the four valuation methods and before "הסודות של
+   * תיווך מוצלח". The list above it already says that owner dependency lowers
+   * the multiple; what it does not say is that the figure being multiplied is
+   * itself soft in a professional practice. That is new information on this
+   * page, and it is the one place on the site where valuation technique is
+   * explained - which is also why the accountants page does not explain it. */
+  {
+    id: 'brokerage-page-link-to-accountants',
+    page: '/תיווך-עסקים/',
+    after: /^הסודות של תיווך מוצלח/,
+    before: true,
+    why: 'קישור תוכן נכנס, והשלמה לשיטות ההערכה: גם הבסיס שמוכפל יכול להיות שחוק',
+    blocks: [
+      {
+        type: 'richtext',
+        html: '<p>במשרד מקצועי יש כאן עוד שכבה. הבסיס שהשיטות האלה מוכפלות בו הוא מה שהמשרד מחייב בפועל. שכר טרחה שנקבע פעם אחת ולא עודכן שנים מקטין את הבסיס עצמו, עוד לפני שמדברים על תלות בבעלים. פירקתי את זה לגורמים בעמוד <a href="/ייעוץ-עסקי-לרואי-חשבון/">ייעוץ עסקי לרואי חשבון</a>.</p>',
+      },
+    ],
+  },
+
+  /* /רווח-תפעולי/ - the second inbound link for the same page, and the return
+   * leg of a link that already ran the other way. The three ways to improve
+   * operating profit are written around a dressmaker: stock, suppliers, rent.
+   * None of the three behaves the same way in a practice that bills a retainer,
+   * and saying so is the missing case rather than a cross-reference. */
+  {
+    id: 'operating-profit-page-link-to-accountants',
+    page: '/רווח-תפעולי/',
+    after: /^דרך שלישית: הורדת הוצאות תפעוליות/,
+    why: 'קישור תוכן נכנס, ומה שלוש הדרכים אומרות בעסק שחי מהכנסה חוזרת',
+    blocks: [
+      {
+        type: 'richtext',
+        html: '<p>בעסק שחי מהכנסה חוזרת, הדרך הראשונה נראית אחרת לגמרי. אין כאן החלטה אחת על מחיר. יש רשימת לקוחות שכל שורה בה תומחרה בשנה אחרת, ואף אחת מהן לא נבדקה מאז. גם הדרך השלישית מוגבלת שם, כי רוב ההוצאה היא זמן של אנשים ולא חשבונות שאפשר לבטל. <a href="/ייעוץ-עסקי-לרואי-חשבון/">במשרד רואי חשבון</a> זה המצב הרגיל ולא מקרה קצה.</p>',
+      },
+    ],
+  },
 ]
 
 /* ------------------------------------------------------ alt text */
