@@ -200,7 +200,10 @@ export async function loadAuthored(pages) {
     key: page.path.replace(/^\/|\/$/g, ''),
     type: 'page',
     authored: true,
-    lastmod: page.modified,
+    // Falls back to `published` on purpose. A new page that forgot `modified`
+    // used to enter the sitemap with no <lastmod> at all, and nothing in the
+    // build said so - the page looked fine everywhere else. 13.11.2026.
+    lastmod: page.modified || page.published,
     wordCount: check(page, file, migrated, resolvable),
     cta: page.cta,
     blocks: page.blocks,

@@ -1125,6 +1125,47 @@ export const blockInserts = [
       },
     ],
   },
+
+  /* /ייעוץ-עסקי-לקוסמטיקאיות/ - the first editorial inbound link for
+   * /ייעוץ-עסקי-למספרות/ (13.11.2026). The anchor paragraph is this page's
+   * time-management section, and it says the hours are worth money without
+   * ever saying what shape they have. A salon is the clean contrast: part of
+   * a colour is time the chair is held and the stylist is not, which is why
+   * the lever there is the order of the day rather than the price of the hour.
+   *
+   * Written in אתן, because the page is. Mixing address inside one page is
+   * the one thing docs/voice-guide.md forbids outright. */
+  {
+    id: 'cosmeticians-page-link-to-salons',
+    page: '/ייעוץ-עסקי-לקוסמטיקאיות/',
+    after: /^יאללה, בואו נדבר/,
+    why: 'קישור תוכן נכנס לעמוד חדש, וההבדל בין מקצוע שבו הזמן רציף לאחד שבו הוא נקטע',
+    blocks: [
+      {
+        type: 'richtext',
+        html: '<p>שווה להכיר את הצד שבו הזמן מתנהג אחרת. במספרה חלק מכל תור צבע הוא קטע שבו הכיסא תפוס והספרית כבר פנויה, כי החומר פועל והלקוחה יושבת. שם שאלת הזמן היא איך מסדרים את היום ולא כמה שעות עומדים בו. בקליניקה הטיפול הוא בלוק אחד שהמטפלת נוכחת בו מהתחלה ועד הסוף, ולכן המנופים שונים לגמרי. ההבדל מפורט בעמוד על <a href="/ייעוץ-עסקי-למספרות/">ייעוץ עסקי למספרות</a>.</p>',
+      },
+    ],
+  },
+
+  /* /ייעוץ-לעסקים-קטנים/ - the second inbound link for the same new page. The
+   * anchor promises that an outside view finds opportunities the owner cannot
+   * see, and then never shows one. A salon's colour appointment is the
+   * cheapest possible example of exactly that: capacity already paid for,
+   * sitting unused, and freed by changing the booking order rather than the
+   * price list. No direct address, because this page mixes אתם and אתה. */
+  {
+    id: 'small-business-page-link-to-salons',
+    page: '/ייעוץ-לעסקים-קטנים/',
+    after: /^פיתוח עסקי לעסק קטן יכול לספק/,
+    why: 'קישור תוכן נכנס לעמוד חדש, ודוגמה קונקרטית ל"הזדמנות שרואים מבחוץ"',
+    blocks: [
+      {
+        type: 'richtext',
+        html: '<p>לא פעם ההזדמנות הזאת כבר קיימת בתוך מה שהעסק משלם עליו גם ככה. קחו מספרה: בכל תור צבע יש קטע שבו הכיסא תפוס והספרית פנויה, ובמספרות רבות הקטע הזה פשוט עובר. אפשר להכניס לתוכו עבודה נוספת בלי להעלות מחיר ובלי להאריך את היום, והשינוי כולו הוא בסדר שבו נקבעים התורים. הסברתי את זה בעמוד על <a href="/ייעוץ-עסקי-למספרות/">ייעוץ עסקי למספרות</a>.</p>',
+      },
+    ],
+  },
 ]
 
 /* ------------------------------------------------------ alt text */
