@@ -59,8 +59,9 @@ not being told about.
 
 It measures form. It cannot tell you whether a page is worth reading.
 
-For that, go to `docs/google-helpful-content.md` — the "who, how and why"
-questions and the warning signs for search-engine-first content — and read the
+For that, go to the Google section of `docs/content-guide.md` — the "who, how
+and why" questions and the warning signs for search-engine-first content — and
+read the
 pages themselves. The questions that matter are the ones no script answers:
 does this page say something the other seventy-nine do not; would someone
 forward it; does it read like Elad or like a brief about Elad.

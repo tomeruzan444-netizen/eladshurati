@@ -2,7 +2,8 @@
  * The client pages — /לקוחות/ and a page per client.
  *
  * These are the first pages on the site that are not migrated 1:1 from
- * WordPress, so docs/content-guide.md governs them: first person, a 40-60 word
+ * WordPress, so the first content guide (docs/content-guide.md as of 30.8.2026,
+ * since merged into the single guide) governed them: first person, a 40-60 word
  * answer straight after the H1, no internal link in the opening paragraph,
  * two or three descriptive internal links spread down the page, a real call to
  * action at the end.

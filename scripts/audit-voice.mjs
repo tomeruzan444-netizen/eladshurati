@@ -1,8 +1,8 @@
 /**
- * Re-measure the numbers in docs/voice-guide.md.
+ * Re-measure the voice numbers in docs/content-guide.md ("הקול במספרים").
  *
  * The guide is built on measurement, not opinion, so the measurement has to be
- * repeatable. Run this after new pages go up and update section 3 if the
+ * repeatable. Run this after new pages go up and update that table if the
  * figures have moved.
  */
 import { readFile } from 'node:fs/promises'
@@ -13,7 +13,7 @@ const ROOT = path.resolve(import.meta.dirname, '..')
 
 /*
  * With no argument this measures the whole site, which is where the figures in
- * docs/voice-guide.md come from. With a file it measures one draft against
+ * docs/content-guide.md come from. With a file it measures one draft against
  * those same figures, so a new page can be checked before it is built.
  */
 const draftPath = process.argv[2]

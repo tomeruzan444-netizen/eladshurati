@@ -36,24 +36,20 @@ stays pristine.
 | `site/` | the build output, committed |
 | `docs/worklog.md` | the single task log — what was asked, what was done, what is open |
 
-## The writing guides, in precedence order
+## The writing guide
 
-1. `docs/writing-spec.md` — the top authority. Approach, originality, search
-   intent, SEO, E-E-A-T, visuals, links, the 20-point quality check.
-2. `docs/voice-guide.md` — how Elad sounds, in numbers, measured from 1,230
-   sentences of his own writing.
-3. `docs/content-guide.md` — the first guide. Structure, GEO, FAQ.
+`docs/content-guide.md` is the one guide for writing content: approach, voice
+(measured, in numbers), the rules for new pages, structure, links, visuals, SEO,
+E-E-A-T, FAQ, the pre-delivery check, and a short digest of Google's
+helpful-content principles. It replaced five separate documents on 14.11.2026;
+those are in git history. There is no precedence between documents any more:
+inside the guide, the "new pages" section wins on a new page.
 
-**On a conflict the lower number wins.** `docs/README.md` holds the full map.
-
-Alongside them, and not ours: `docs/google-helpful-content.md` (a faithful
-translation of Google's official page) and `docs/google-content-practical.md`
-(the practical companion, explicitly interpretation). They do not override the
-three — they measure them. When an internal rule contradicts Google, raise it
-for a decision rather than quietly picking a side. One such conflict is open
-right now; `docs/README.md` has it.
-
-When quoting Google, quote the translation, not the practical guide.
+It applies to new pages. Migrated pages change only through corrections, as
+above. When an internal rule contradicts Google, raise it for a decision rather
+than quietly picking a side. The 800-1,100 word range was decided on 14.11.2026:
+every new page must fall inside it (the gate blocks), and existing pages outside
+it are left as they are.
 
 ---
 

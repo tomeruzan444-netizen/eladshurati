@@ -6,7 +6,7 @@
  * of the record - canonical, og, twitter, JSON-LD - is derived here, so a new
  * page gets exactly the same <head> shape as the migrated ones.
  *
- * This is also where docs/writing-spec.md becomes enforceable. Every rule that
+ * This is also where docs/content-guide.md becomes enforceable. Every rule that
  * can be measured is checked, and a page that breaks one does not build. The
  * rules that need judgement - voice, uniqueness, real value - stay with the
  * writer and with scripts/audit-voice.mjs.
@@ -77,7 +77,7 @@ function check(page, file, migrated, resolvable) {
     fail.push(`description must be 70-165 chars, is ${page.description?.length || 0} (spec 14)`)
   if (h1s[0] && page.title === h1s[0].text) fail.push('title is a copy of the H1 (spec 14)')
   if (lead && /<a\s/i.test(lead.html)) fail.push('link in the first paragraph (spec 9)')
-  if (outbound.length < 2 || outbound.length > 3) fail.push(`needs 2-3 internal links in the body, has ${outbound.length} (spec 9)`)
+  if (outbound.length < 2 || outbound.length > 5) fail.push(`needs 2-5 internal links in the body, has ${outbound.length} (spec 9)`)
   for (const href of outbound) if (!resolvable.has(href)) fail.push(`links to a page that does not exist: ${href}`)
   if (words < 800 || words > 1100) fail.push(`needs 800-1,100 words, has ${words} (spec 17)`)
   for (const b of page.blocks.filter((x) => x.type === 'figure')) {

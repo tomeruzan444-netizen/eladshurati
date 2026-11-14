@@ -17,10 +17,8 @@
 | `.claude/skills/` | סקילים: עמוד חדש, בדיקות ושחרור, אודיט SEO, ויזואל לעמוד |
 | `.claude/skills/page-visual/reference.md` | השפה הוויזואלית: טוקנים, מחלקות, והצורות שכבר תפוסות |
 | `git log` | כל שינוי, עם הנימוק המלא בגוף הקומיט |
-| `docs/writing-spec.md` | ההנחיה העליונה לכתיבת תוכן |
-| `docs/voice-guide.md` | איך אלעד נשמע, במספרים |
-| `docs/content-guide.md` | המדריך הראשון: מבנה, GEO, FAQ |
-| `docs/README.md` | סדר הקדימות בין שלושת המסמכים |
+| `docs/content-guide.md` | המדריך היחיד לכתיבת תוכן (אוחד מחמישה מסמכים, 14.11.2026) |
+| `docs/README.md` | מפת המסמכים בתיקייה |
 | `docs/migration-runbook.md` | המעבר מקלאודוויז לוורסל |
 | `scripts/lib/corrections.mjs` | כל תיקון תוכן, עם סיבה וספירה צפויה |
 | `content/authored/*.mjs` | כל עמוד חדש, עם הנימוקים בכותרת הקובץ |

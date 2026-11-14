@@ -32,14 +32,13 @@ author page, where `/אודות/` was extended rather than joined by a rival.
 
 ---
 
-## 2. Read the guides, in order
+## 2. Read the guide
 
-`docs/writing-spec.md`, then `docs/voice-guide.md`, then
-`docs/content-guide.md`. Lower number wins a conflict.
-
-Then `docs/google-helpful-content.md` — in particular the "who, how and why"
-questions and the list of warning signs for search-engine-first content. The
-page should survive those questions, not just the measurable rules below.
+`docs/content-guide.md`, in full. It is the single writing guide; its "new
+pages" section (no template, an infographic, 2-5 links, banned AI tells) wins
+over anything else in it. Its Google section carries the "who, how and why"
+questions and the warning signs for search-engine-first content. The page
+should survive those questions, not just the measurable rules below.
 
 ---
 
@@ -54,7 +53,7 @@ The build **refuses** a page that breaks any of these
 | `title` | 1–65 chars, not a copy of the H1 |
 | `description` | 70–165 chars |
 | first paragraph | no link in it |
-| internal links | 2–3 in the body, each to a page that exists |
+| internal links | 2–5 in the body, each to a page that exists |
 | length | 800–1,100 words |
 | figure | `role="img"`, a `<title>`, and a caption |
 | CTA | its own, not boilerplate |
@@ -66,17 +65,23 @@ content written for the search engine. Our rule 17 demands 800. If a draft lands
 short, do not pad: find what is genuinely missing, or say the topic does not
 carry 800 words of real material and let Tomer decide. On three pages this has
 already been resolved by adding content to clear the gate, which is the exact
-behaviour Google warns about — it is logged in `docs/worklog.md` as an open
-conflict.
+behaviour Google warns about — it is listed under open decisions in
+`docs/content-guide.md`.
+
+Not checked by the build, but required by the guide: a direct answer to the
+main question within the first ~80 words, 3-5 real FAQ questions at the end
+that no other page already asks, and an original infographic.
 
 ## 4. Voice
 
-`docs/voice-guide.md` is measured, so match the measurements, not the vibe:
+The voice section of `docs/content-guide.md` is measured, so match the
+measurements, not the vibe:
 
 - median sentence ~12 words; 39 is the ceiling and once per page at most
 - first person is the default, not a seasoning
-- at least one "מהניסיון שלי", anchored in a real meeting or client
-- at least one "what this is not" and one genuine concession
+- at least one anchor in real experience, worded differently from other pages
+- a "what this is not" and a genuine concession, woven into the argument, never
+  as a fixed H2 section of their own
 - close on an observation in second person, not a summary paragraph
 - consistent address — אתם throughout, or אתן where the field is women
 - every number either has a named source, or came from Elad, or is not in the text

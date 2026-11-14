@@ -1134,7 +1134,7 @@ export const blockInserts = [
    * the lever there is the order of the day rather than the price of the hour.
    *
    * Written in אתן, because the page is. Mixing address inside one page is
-   * the one thing docs/voice-guide.md forbids outright. */
+   * the one thing docs/content-guide.md forbids outright. */
   {
     id: 'cosmeticians-page-link-to-salons',
     page: '/ייעוץ-עסקי-לקוסמטיקאיות/',
