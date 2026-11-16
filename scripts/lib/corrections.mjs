@@ -1166,6 +1166,34 @@ export const blockInserts = [
       },
     ],
   },
+
+  /* /ייעוץ-עסקי-למעצבים/ - the inbound link for /ייעוץ-עסקי-לגרפיקאים/, and
+   * the half of the disambiguation that a crawler needs in this direction.
+   *
+   * This page is the reason the new one was nearly not written at all. It is
+   * 271 words about "מעצבים" with no occurrence of "גרפי" anywhere, and the
+   * only designer queries reaching the site in the 30 days to 16.11.2026 were
+   * "ייעוץ עסקי למעצבות" and "ייעוץ עסקי למעצבי פנים" - interior design, a
+   * different profession. The two pages do not compete, and saying so in the
+   * copy is cheaper than hoping Google works it out.
+   *
+   * Placed before "למי השירות מתאים", so the distinction lands after the
+   * approach has been described and before the page starts qualifying the
+   * reader. No direct address: this page slips into singular ("קראת", "שלך")
+   * and rule "never mix address" applies to the inserted text too. */
+  {
+    id: 'designers-page-link-to-graphic-designers',
+    page: '/ייעוץ-עסקי-למעצבים/',
+    after: /^למי השירות מתאים/,
+    before: true,
+    why: 'קישור תוכן נכנס לעמוד חדש, והבחנה בין עיצוב גרפי לשאר תחומי העיצוב',
+    blocks: [
+      {
+        type: 'richtext',
+        html: '<p>המילה "מעצבים" מכסה כאן כמה מקצועות, והמנגנון העסקי לא זהה בכולם. בעיצוב גרפי יש גורם אחד שמכריע את תמהיל העבודות, והוא תיק העבודות עצמו: מה שמוצג בו הוא מה שיבקשו, ולכן הוא החלטה עסקית ולא תצוגה. הרחבתי על כך תחת <a href="/ייעוץ-עסקי-לגרפיקאים/">ייעוץ עסקי לגרפיקאים</a>.</p>',
+      },
+    ],
+  },
 ]
 
 /* ------------------------------------------------------ alt text */

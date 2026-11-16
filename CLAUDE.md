@@ -104,6 +104,15 @@ At the end of every session, post the LAN preview URL in chat.
   files with the editing tools, not heredoc pipelines.
 - **Console encoding.** `PYTHONIOENCODING=utf-8` or `python -X utf8` before
   printing Hebrew.
+- **Hebrew in a bash argument is destroyed before it is sent.** Git Bash on
+  Windows turned every Hebrew character in a `curl -d '…'` inline body into
+  `?`, and the mangled text arrived in a real inbox looking exactly like a
+  charset bug in the product. It was not — the server received UTF-8 perfectly
+  when the same body came from a file. **Put Hebrew payloads in a file written
+  by the editing tools and send them with `curl --data-binary @file`**, and
+  before blaming the code, check whether the static Hebrew around it survived:
+  if the template's Hebrew renders and only your values are `?`, the fault is
+  on this side of the wire. 16.11.2026.
 - **`/wp-content/uploads/` still resolves** — `vercel.json` rewrites it to
   `/assets/images/`. A URL under it is not broken; check before "fixing" one.
 
@@ -111,17 +120,35 @@ At the end of every session, post the LAN preview URL in chat.
 
 ## Open, and known
 
-`docs/worklog.md` is the list. The urgent one, at the time of writing: the
-contact form cannot mail anything, because `RESEND_API_KEY` is not set in
-Vercel. `curl https://elad-digital.co.il/api/lead/` should return
-`configured:true` and does not. Only Elad or Tomer can close this — it needs a
-Resend account, and the short path is the Vercel Marketplace integration, which
-also writes the DNS records because the zone is already in Vercel.
+`docs/worklog.md` is the list. **The contact form is no longer on it.** The
+Resend Marketplace integration was installed on 16.11.2026 and
+`curl https://elad-digital.co.il/api/lead/` returns `configured:true`. Mail
+leaves as `leads@elad-digital.co.il`, on the verified domain — *not* as
+`onboarding@resend.dev`, which delivers only to the Resend account owner's own
+address and would 403 on Elad's. The integration wrote its own DNS into the
+Vercel zone: DKIM at `resend._domainkey`, return path at `send`, plus `rsend`.
+Do not move the sender off the verified domain.
 
-It no longer *loses* an enquiry, which is a different thing from working. A
+Two things about that fix are worth carrying forward. **Env vars only take
+effect in a new deployment** — the key was set and the endpoint still said
+`configured:false` until the production deployment was re-run on the same
+commit. And a DKIM TXT over 255 characters has to be split into several
+strings; this one is 218 and intact, but check it if the domain is ever
+re-verified.
+
+The net under it stayed, and now covers what it was actually built for — a
+quota, a 403, an outage at Resend — rather than covering for a missing key. A
 submission that cannot be mailed is written to a private Blob store and the
-person is offered WhatsApp with their details prefilled. That is a net, not a
-delivery channel: nobody is notified. `keeps:true` in the same health probe
-says the net is live.
+person is offered WhatsApp with their details prefilled. `keeps:true` in the
+same health probe says the net is live.
+
+Delivery was confirmed in Elad's mailbox itself, **inbox and not spam** — a 200
+from Resend proves acceptance, not placement, so this had to be seen. There is
+no DMARC record on the domain: not required at this volume, but `_dmarc` with
+`p=none` would improve delivery and add reporting, and it is unapproved.
+
+The urgent one now is **finding 1ה**: the form is the only thing on the site
+that collects personal data, it is now delivering that data, and the privacy
+policy is stock WordPress boilerplate that never mentions it.
 
 Do not act on an open item without asking. They are logged, not approved.
