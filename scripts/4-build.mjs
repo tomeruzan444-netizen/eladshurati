@@ -26,6 +26,12 @@ const OUT = path.join(ROOT, 'site')
 const read = async (f) => JSON.parse(await readFile(path.join(ROOT, 'content', f), 'utf8'))
 const RAW = process.env.RAW === '1'   // skip minification when debugging output
 
+// How many H2 links the sticky rail shows. Any cap can silently drop a real
+// section's link, which has happened twice, so `railTruncated` collects the
+// pages that hit it and the build prints them at the end.
+const RAIL_MAX = 16
+const railTruncated = []
+
 /* ---------------------------------------------------------------- helpers */
 
 /*
@@ -425,6 +431,38 @@ const main = async () => {
   // on top of it — see lib/corrections.mjs.
   const captured = await read('pages.json')
   const { pages, report: fixReport } = applyCorrections(captured)
+
+  /**
+   * FAQPage structured data for migrated pages that show a FAQ.
+   *
+   * Authored pages have had this since the beginning (lib/authored.mjs), but a
+   * migrated page displayed its questions to readers and said nothing about
+   * them to a crawler. scripts/audit-seo.mjs has been reporting the gap as
+   * `faqGap` all along. Built from the questions actually on the page, after
+   * the corrections layer has run, so what is marked up and what is displayed
+   * cannot drift apart. A page whose capture already carries a FAQPage node is
+   * left alone. 18.11.2026.
+   */
+  let faqSchemaAdded = 0
+  for (const p of pages) {
+    const faq = p.blocks?.find((b) => b.type === 'faq' && (b.items || []).length)
+    if (!faq) continue
+    const graph = p.seo?.jsonld?.[0]?.['@graph']
+    if (!Array.isArray(graph)) continue
+    if (graph.some((n) => n['@type'] === 'FAQPage')) continue
+    const strip = (h = '') =>
+      String(h).replace(/<[^>]*>/g, ' ').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim()
+    graph.push({
+      '@type': 'FAQPage',
+      '@id': `${p.seo.url}#faq`,
+      mainEntity: faq.items.map((i) => ({
+        '@type': 'Question',
+        name: strip(i.q),
+        acceptedAnswer: { '@type': 'Answer', text: strip(i.a) },
+      })),
+    })
+    faqSchemaAdded++
+  }
   // Pages written for the site join here, before anything reads the list, so
   // titles, links and the sitemap all see them. They skip the corrections
   // layer: that layer exists to fix the capture, and these were never in it.
@@ -569,6 +607,12 @@ const main = async () => {
             <h2>אצל אלעד הלקוחות תמיד מרוצים</h2>
             <a class="sec-head__link" href="/לקוחות/">לכל הלקוחות${arrowChip}</a>
           </div>
+          <!-- Three of the portfolio cards are law firms, and until 18.11.2026
+               the home page linked to /ייעוץ-עסקי-לעורכי-דין/ only from the nav
+               and the footer: zero editorial links from inside <main>. This is
+               the one contextual link, written as a sentence rather than as a
+               "read more" chip, so it counts as a content link. -->
+          <p class="work-lede">ליוויתי כמה משרדי עורכי דין בתהליכי צמיחה. כאן אפשר לקרוא איך נראה <a href="/ייעוץ-עסקי-לעורכי-דין/">ייעוץ עסקי לעורכי דין</a> בפועל.</p>
           <div class="work" style="margin-block-start:2.25rem">
             ${cards}
           </div>
@@ -581,13 +625,20 @@ const main = async () => {
       const h2s = blocks.filter(
         (b) => b.type === 'heading' && b.level === 2 && !/^["“”״']/.test((b.text || '').trim())
       )
+      if (h2s.length > RAIL_MAX) {
+        const lost = h2s.slice(RAIL_MAX).map((b) => b.text).join(' / ')
+        railTruncated.push(`${h2s.length} H2s (cap ${RAIL_MAX}) — no rail link for: ${lost}`)
+      }
       const toc = h2s.length >= 3
         ? `<nav class="toc" aria-label="בעמוד הזה">
               <h2>בעמוד הזה</h2>
               <ol>${h2s
-                // 12, not 9: at 9 a page that gained a section silently lost
-                // the link to an existing one (the FAQ on the cosmetics page).
-                .slice(0, 12)
+                // Third time: 9 lost the cosmetics page's FAQ link, 12 lost
+                // the lawyers page's on 18.11.2026 when it went to 13 H2s.
+                // Raising the number alone only moves the cliff, so the build
+                // now says when a rail is truncated instead of doing it in
+                // silence - see the warning below.
+                .slice(0, RAIL_MAX)
                 .map((h) => `<li><a href="#${esc(slugify(h.text))}">${esc(h.text)}</a></li>`)
                 .join('')}</ol>
             </nav>`
@@ -802,11 +853,13 @@ const main = async () => {
 
   const fixedText = Object.values(fixReport.text).reduce((a, b) => a + b, 0)
   console.log(
-    `       corrections: ${fixedText} text, ${fixReport.seo} metadata, ${fixReport.faq} faq, ${fixReport.joins} list, ${fixReport.blocks} blocks, ${fixReport.alts} alt, ${fixReport.inserts} inserted, ${fixReport.author} author`
+    `       corrections: ${fixedText} text, ${fixReport.seo} metadata, ${fixReport.faq} faq, ${fixReport.faqAdds} faq+, ${fixReport.lastmod} lastmod, ${fixReport.joins} list, ${fixReport.blocks} blocks, ${fixReport.alts} alt, ${fixReport.inserts} inserted, ${fixReport.author} author`
   )
   console.log(`built ${written} pages -> site/ (${authored.length} authored)`)
   console.log(`       ${copied} assets copied (${(bytes / 1048576).toFixed(1)} MB), sitemap.xml, robots.txt, url-map.csv`)
   console.log(`       ${cssUrl}  ${jsUrl}`)
+  for (const t of railTruncated) console.log(`       rail truncated: ${t}`)
+  if (faqSchemaAdded) console.log(`       ${faqSchemaAdded} migrated page(s) given FAQPage schema`)
 }
 
 /** Assemble the stylesheet and script, and give each a content-hashed URL. */

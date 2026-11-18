@@ -2492,6 +2492,16 @@
 }
 
 /* a hint that the row scrolls, shown only where it does */
+/* One sentence above the portfolio cards, carrying the home page's only
+   editorial link into a sector page. Body copy, not a UI chip. */
+.work-lede {
+  margin-block-start: 1.25rem;
+  max-width: 60ch;
+  color: var(--ink-soft);
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+
 .work-hint {
   display: none;
 }

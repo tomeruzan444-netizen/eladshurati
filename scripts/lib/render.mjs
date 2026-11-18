@@ -308,8 +308,18 @@ export function renderBlock(b, ctx) {
     }
     case 'quote':
       return `<blockquote>${rewriteHtml(b.html, manifest)}</blockquote>`
-    case 'table':
-      return `<div class="table-wrap">${rewriteHtml(b.html, manifest)}</div>`
+    // WordPress gave us the table's *insides* and not the table: every one of
+    // the 14 captured table blocks starts at <thead>, with no <table> around
+    // it. Emitted as-is, a browser discards <thead>, <tr> and <td> that have no
+    // table ancestor and leaves the cells as one run of bare text. That is what
+    // the KPI table on /ייעוץ-עסקי-לעורכי-דין/ had become: real content, parsed
+    // into a paragraph. Wrapped only when the wrapper is genuinely missing, so
+    // a capture that ever arrives complete is not double-wrapped. 18.11.2026.
+    case 'table': {
+      const inner = rewriteHtml(b.html, manifest)
+      const table = /^\s*<table[\s>]/i.test(inner) ? inner : `<table>${inner}</table>`
+      return `<div class="table-wrap">${table}</div>`
+    }
     case 'image': {
       if (!b.src) return ''
       const img = responsiveImage(b.src, {
