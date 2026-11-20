@@ -749,12 +749,33 @@ const main = async () => {
   // The client pages are the first pages that are not migrated from
   // WordPress. They join the same list so they get the same <head>, the same
   // chrome, and a place in the sitemap.
-  const today = new Date().toISOString().replace(/\.\d{3}Z$/, '+00:00')
+  /**
+   * When a client page last actually changed (finding 8ב, closed 20.11.2026).
+   *
+   * These eight pages used to carry `new Date()` — the build time. Every
+   * deploy therefore republished a sitemap telling Google that all eight had
+   * changed, when none of them had. Reverting the stamp in the committed
+   * `site/` did nothing: `vercel.json` sets a buildCommand, so Vercel rebuilds
+   * from source on every deploy and writes its own sitemap over ours. The only
+   * place this could be fixed is here.
+   *
+   * Each project now states its own date in content/projects.json, and the
+   * index takes the newest of them, since its content is the list. A project
+   * added without one falls back to the date these pages last genuinely
+   * changed, and the build says which, so the silence cannot come back.
+   */
+  const CLIENTS_FALLBACK = '2026-10-26T21:22:12+00:00'
+  const projectLastmod = (p) => p.updated || CLIENTS_FALLBACK
+  const missingUpdated = projects.filter((p) => !p.updated).map((p) => p.slug)
+  const clientsLastmod = projects.length
+    ? projects.map(projectLastmod).sort().at(-1)
+    : CLIENTS_FALLBACK
+
   pages.push({
     type: 'clients-index',
     seo: clientsIndexSeo(projects),
     blocks: [],
-    lastmod: today,
+    lastmod: clientsLastmod,
   })
   for (const project of projects) {
     pages.push({
@@ -762,7 +783,7 @@ const main = async () => {
       project,
       seo: clientSeo(project),
       blocks: [],
-      lastmod: today,
+      lastmod: projectLastmod(project),
     })
   }
 
@@ -859,6 +880,9 @@ const main = async () => {
   console.log(`       ${copied} assets copied (${(bytes / 1048576).toFixed(1)} MB), sitemap.xml, robots.txt, url-map.csv`)
   console.log(`       ${cssUrl}  ${jsUrl}`)
   for (const t of railTruncated) console.log(`       rail truncated: ${t}`)
+  if (missingUpdated.length) {
+    console.log(`       client project(s) with no "updated" date, using the fallback: ${missingUpdated.join(', ')}`)
+  }
   if (faqSchemaAdded) console.log(`       ${faqSchemaAdded} migrated page(s) given FAQPage schema`)
 }
 
