@@ -874,7 +874,7 @@ const main = async () => {
 
   const fixedText = Object.values(fixReport.text).reduce((a, b) => a + b, 0)
   console.log(
-    `       corrections: ${fixedText} text, ${fixReport.seo} metadata, ${fixReport.faq} faq, ${fixReport.faqAdds} faq+, ${fixReport.lastmod} lastmod, ${fixReport.joins} list, ${fixReport.blocks} blocks, ${fixReport.alts} alt, ${fixReport.inserts} inserted, ${fixReport.author} author`
+    `       corrections: ${fixedText} text, ${fixReport.seo} metadata, ${fixReport.faq} faq, ${fixReport.faqAdds} faq+, ${fixReport.lastmod} lastmod, ${fixReport.joins} list, ${fixReport.blocks} blocks, ${fixReport.alts} alt, ${fixReport.inserts} inserted, ${fixReport.author} author, ${fixReport.sameAs} sameAs`
   )
   console.log(`built ${written} pages -> site/ (${authored.length} authored)`)
   console.log(`       ${copied} assets copied (${(bytes / 1048576).toFixed(1)} MB), sitemap.xml, robots.txt, url-map.csv`)

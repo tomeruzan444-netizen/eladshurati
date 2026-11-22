@@ -12,6 +12,8 @@
  * rather than quietly applying something nobody reviewed.
  */
 
+import { site } from './render.mjs'
+
 const HEB = '֐-׿'
 
 /* ------------------------------------------------------- spelling fixes */
@@ -1797,6 +1799,53 @@ export function applyCorrections(pages) {
     )
   }
 
+  /**
+   * The site's social profiles, in the structured data (sameAs).
+   *
+   * The site-wide #person node — the entity every page's WebSite, WebPage and
+   * Article point at as publisher — had no sameAs, so nothing machine-readable
+   * tied the site to the profiles its own footer links to. These are exactly
+   * the two that WordPress linked in its header and footer social icons, and
+   * the two in `site` that the footer here still renders.
+   *
+   * Deliberately left out: LinkedIn. WordPress showed a LinkedIn icon on the
+   * service pages, but the anchor had no href — there is no profile address in
+   * the capture, and one is not guessed. WhatsApp is a contact channel, not a
+   * profile. Add any other network only once its address is supplied.
+   *
+   * Only the node that defines #person (it carries a name) is touched, not the
+   * references to it. Authored pages copy this node from the corrected home
+   * page, so they inherit it without a second rule.
+   */
+  const SAME_AS = [site.facebook, site.instagram]
+  const PERSON_ID = 'https://elad-digital.co.il/#person'
+  // One defining node on each of the 63 captured pages.
+  const SAME_AS_EXPECTED = 63
+
+  let sameAsAdded = 0
+  corrected = corrected.map((p) => {
+    const graph = p.seo.jsonld?.[0]?.['@graph']
+    if (!Array.isArray(graph)) return p
+    let hit = false
+    const next = graph.map((n) => {
+      if (n?.['@id'] !== PERSON_ID || !n.name) return n
+      if (n.sameAs) throw new Error(`${p.seo.path}: #person already carries sameAs - re-read the capture before adding it.`)
+      hit = true
+      sameAsAdded++
+      return { ...n, sameAs: SAME_AS }
+    })
+    if (!hit) return p
+    const jsonld = [{ ...p.seo.jsonld[0], '@graph': next }, ...p.seo.jsonld.slice(1)]
+    return { ...p, seo: { ...p.seo, jsonld } }
+  })
+
+  if (sameAsAdded !== SAME_AS_EXPECTED) {
+    throw new Error(
+      `sameAs: expected ${SAME_AS_EXPECTED} #person nodes, found ${sameAsAdded}.\n` +
+        'The capture changed. Re-read the graph and update scripts/lib/corrections.mjs.'
+    )
+  }
+
   const drift = textRules
     .filter((r) => counts[r.id] !== r.expect)
     .map((r) => `  ${r.id}: expected ${r.expect}, matched ${counts[r.id]}`)
@@ -1843,6 +1892,6 @@ export function applyCorrections(pages) {
 
   return {
     pages: corrected,
-    report: { text: counts, seo: seoApplied.length, faq: faqApplied.length, faqAdds: faqAddApplied.length, lastmod: lastmodApplied.length, joins: joinApplied.length, blocks: blockApplied.length, alts: new Set(altApplied).size, inserts: insertApplied.length, author: authorFixed },
+    report: { text: counts, seo: seoApplied.length, faq: faqApplied.length, faqAdds: faqAddApplied.length, lastmod: lastmodApplied.length, joins: joinApplied.length, blocks: blockApplied.length, alts: new Set(altApplied).size, inserts: insertApplied.length, author: authorFixed, sameAs: sameAsAdded },
   }
 }
